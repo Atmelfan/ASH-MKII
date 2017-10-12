@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=DC_INrp Pin=R88-1
+Removed Pin From Net: NetName=BQL Pin=R88-2
+Removed Pin From Net: NetName=NetR88_S1 Pin=R90-2
+Removed Pin From Net: NetName=NetR88_S2 Pin=R91-2
+Change Component Footprint: Designator=C73 Old Footprint=C1608[0603] New Footprint=C1005[0402]
+Change Component Footprint: Designator=C74 Old Footprint=C1608[0603] New Footprint=C1005[0402]
+Change Component Footprint: Designator=C80 Old Footprint=C1608[0603] New Footprint=C1005[0402]
+Added Pin To Net: NetName=BQL Pin=R88-1
+Added Pin To Net: NetName=DC_INrp Pin=R88-2
+Added Pin To Net: NetName=NetR88_S2 Pin=R90-2
+Added Pin To Net: NetName=NetR88_S1 Pin=R91-2

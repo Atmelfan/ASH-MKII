@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=GND Pin=FB23-1
+Removed Pin From Net: NetName=GND Pin=FB24-1
+Removed Member From Class: ClassName=SND Member=FB23
+Removed Member From Class: ClassName=SND Member=FB24
+Added Pin To Net: NetName=GND Pin=C102-1
+Added Pin To Net: NetName=GND Pin=C103-1
+Added Pin To Net: NetName=GND Pin=U15-16
+Added Pin To Net: NetName=GND Pin=U15-20
+Added Pin To Net: NetName=GND Pin=U15-25
+Added Pin To Net: NetName=GND Pin=U15-29
+Added Pin To Net: NetName=GND Pin=U15-33
+Change Net Name : Old Net Name=GND New Net Name=AUDIO_GND

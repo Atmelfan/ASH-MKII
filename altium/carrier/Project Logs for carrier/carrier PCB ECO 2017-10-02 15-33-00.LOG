@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=I2C_CAM2.SDA Pin=R22-1
+Removed Pin From Net: NetName=I2C_CAM2.SCL Pin=R128-1
+Removed Pin From Net: NetName=I2C_CAM1.SDA Pin=R129-1
+Removed Pin From Net: NetName=I2C_CAM1.SCL Pin=R130-1
+Removed Pin From Net: NetName=I2C_CAM2.SDA Pin=U3-17
+Removed Pin From Net: NetName=I2C_CAM2.SCL Pin=U3-18
+Removed Pin From Net: NetName=I2C_CAM1.SDA Pin=U3-19
+Removed Pin From Net: NetName=I2C_CAM1.SCL Pin=U3-20
+Added Pin To Net: NetName=I2C_CAM1.SDA Pin=R22-1
+Added Pin To Net: NetName=I2C_CAM1.SCL Pin=R128-1
+Added Pin To Net: NetName=I2C_CAM2.SDA Pin=R129-1
+Added Pin To Net: NetName=I2C_CAM2.SCL Pin=R130-1
+Added Pin To Net: NetName=I2C_CAM1.SDA Pin=U3-17
+Added Pin To Net: NetName=I2C_CAM1.SCL Pin=U3-18
+Added Pin To Net: NetName=I2C_CAM2.SDA Pin=U3-19
+Added Pin To Net: NetName=I2C_CAM2.SCL Pin=U3-20
+Change Net Color : Old Net Color=RGB(158, 161, 117) New Net Color=Default

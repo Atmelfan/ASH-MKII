@@ -1,0 +1,15 @@
+Replace Symbol from C13 cap in D:\hexapod\carrier\front_raspicams.SchDoc with cap from gpa_passives.SchLib
+Replace Symbol from C? cap in D:\hexapod\carrier\front_raspicams.SchDoc with cap from gpa_passives.SchLib
+Replace Symbol from J? ffc_1x15 in D:\hexapod\carrier\front_raspicams.SchDoc with ffc_1x15 from gpa_connectors.SchLib
+Replace Symbol from J? ffc_1x15 in D:\hexapod\carrier\front_raspicams.SchDoc with ffc_1x15 from gpa_connectors.SchLib
+Replace Symbol from R11 res in D:\hexapod\carrier\front_raspicams.SchDoc with res from gpa_passives.SchLib
+Replace Symbol from R12 res in D:\hexapod\carrier\front_raspicams.SchDoc with res from gpa_passives.SchLib
+Replace Symbol from R? res in D:\hexapod\carrier\front_raspicams.SchDoc with res from gpa_passives.SchLib
+Replace Symbol from R? res in D:\hexapod\carrier\front_raspicams.SchDoc with res from gpa_passives.SchLib
+Replace Symbol from R? res_array in D:\hexapod\carrier\front_raspicams.SchDoc with res_array from gpa_passives.SchLib
+Replace Symbol from R? res_array in D:\hexapod\carrier\front_raspicams.SchDoc with res_array from gpa_passives.SchLib
+Replace Symbol from R? res_array in D:\hexapod\carrier\front_raspicams.SchDoc with res_array from gpa_passives.SchLib
+Replace Symbol from R? res_array in D:\hexapod\carrier\front_raspicams.SchDoc with res_array from gpa_passives.SchLib
+Replace Symbol from U3 tca9548a in D:\hexapod\carrier\front_raspicams.SchDoc with tca9548a from gpa_ti.SchLib
+Replace Symbol from U4 lsf0204 in D:\hexapod\carrier\front_raspicams.SchDoc with lsf0204 from gpa_ti.SchLib
+Replace Symbol from U5 at24c02d in D:\hexapod\carrier\front_raspicams.SchDoc with at24c02d from gpa_atmel.SchLib

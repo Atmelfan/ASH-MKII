@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=USB1_D_P Pin=D13-4
+Removed Pin From Net: NetName=USB1_D_P Pin=D13-4
+Removed Pin From Net: NetName=USB1_D_N Pin=D13-5
+Removed Pin From Net: NetName=USB1_D_N Pin=D13-5
+Added Component: Designator=D16(TI_PSON50P100X55-10N)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=D16-3
+Added Pin To Net: NetName=GND Pin=D16-3
+Added Pin To Net: NetName=USB1_D_N Pin=D16-4
+Added Pin To Net: NetName=USB1_D_N Pin=D16-4
+Added Pin To Net: NetName=USB1_D_P Pin=D16-5
+Added Pin To Net: NetName=USB1_D_P Pin=D16-5
+Added Member To Class: ClassName=USB Member=Component D16 TPD4E05U06

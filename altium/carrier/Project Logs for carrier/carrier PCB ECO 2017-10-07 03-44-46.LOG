@@ -1,0 +1,46 @@
+Added Component: Designator=C121(C1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manufacturer"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100n"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C122(C1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manufacturer"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100n"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C123(C1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manufacturer"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "2n2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=U17(INVSENSE_QFN50P400X400X95_HS-25M)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=C121-1
+Added Pin To Net: NetName=GND Pin=C121-2
+Added Pin To Net: NetName=GND Pin=C122-2
+Added Pin To Net: NetName=GND Pin=C123-2
+Added Pin To Net: NetName=GND Pin=U17-1
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=U17-8
+Added Pin To Net: NetName=GND Pin=U17-9
+Added Pin To Net: NetName=GND Pin=U17-11
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=U17-13
+Added Pin To Net: NetName=GND Pin=U17-18
+Added Pin To Net: NetName=MCU_SCL Pin=U17-23
+Added Pin To Net: NetName=MCU_SDA Pin=U17-24
+Added Pin To Net: NetName=GND Pin=U17-25
+Added Pin To Net: NetName=NetC122_1 Pin=C122-1
+Added Pin To Net: NetName=NetC122_1 Pin=U17-10
+Added Net: Name=NetC122_1
+Added Pin To Net: NetName=NetC123_1 Pin=C123-1
+Added Pin To Net: NetName=NetC123_1 Pin=U17-20
+Added Net: Name=NetC123_1
+Added Member To Class: ClassName=GPIO Member=Component C121 cap
+Added Member To Class: ClassName=GPIO Member=Component C122 cap
+Added Member To Class: ClassName=GPIO Member=Component C123 cap
+Added Member To Class: ClassName=GPIO Member=Component U17 MPU6000

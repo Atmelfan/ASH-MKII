@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=NetJ1_B33 Pin=R31-1
+Removed Pin From Net: NetName=VDD_3V3_SYS Pin=R31-2
+Removed Member From Class: ClassName=ETH Member=R31

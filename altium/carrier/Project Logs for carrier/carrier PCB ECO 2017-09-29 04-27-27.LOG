@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=NetJ1_A33 Pin=Q4-1
+Removed Pin From Net: NetName=NetQ4_2 Pin=Q4-2
+Removed Pin From Net: NetName=GND Pin=Q4-3
+Removed Pin From Net: NetName=NetQ22_2 Pin=Q23-1
+Removed Pin From Net: NetName=NetQ23_2 Pin=Q23-2
+Removed Pin From Net: NetName=GND Pin=Q23-3
+Change Component Footprint: Designator=Q4 Old Footprint=TO-226-AA New Footprint=NPN_SOT95P230X110-3N
+Change Component Footprint: Designator=Q23 Old Footprint=TO-226-AA New Footprint=NPN_SOT95P230X110-3N
+Change Component Comment : Designator=Q23 Old Comment=MBT3604 New Comment=MMBT3904
+Added Pin To Net: NetName=NetQ4_2 Pin=Q4-B
+Added Pin To Net: NetName=NetJ1_A33 Pin=Q4-C
+Added Pin To Net: NetName=GND Pin=Q4-E
+Added Pin To Net: NetName=NetQ23_2 Pin=Q23-B
+Added Pin To Net: NetName=NetQ22_2 Pin=Q23-C
+Added Pin To Net: NetName=GND Pin=Q23-E
+Change Net Name : Old Net Name=NetQ4_2 New Net Name=NetQ4_B
+Change Net Name : Old Net Name=NetQ23_2 New Net Name=NetQ23_B

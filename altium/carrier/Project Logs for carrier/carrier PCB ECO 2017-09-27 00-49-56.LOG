@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=GND Pin=J9-G1
+Removed Pin From Net: NetName=GND Pin=J9-G2
+Removed Pin From Net: NetName=GND Pin=J9-G3
+Removed Pin From Net: NetName=GND Pin=J9-G4
+Removed Pin From Net: NetName=GND Pin=J9-G5
+Removed Pin From Net: NetName=GND Pin=J9-G6
+Removed Pin From Net: NetName=GND Pin=J9-G7
+Removed Pin From Net: NetName=GND Pin=J9-G8
+Removed Pin From Net: NetName=NetD14_4 Pin=J9-SW
+Removed Pin From Net: NetName=NetD15_5 Pin=J9-T1
+Removed Pin From Net: NetName=NetD15_4 Pin=J9-T2
+Removed Pin From Net: NetName=NetD14_1 Pin=J9-T3
+Removed Pin From Net: NetName=NetC21_2 Pin=J9-T4
+Removed Pin From Net: NetName=NetD14_2 Pin=J9-T5
+Removed Pin From Net: NetName=GND Pin=J9-T6
+Removed Pin From Net: NetName=NetD15_2 Pin=J9-T7
+Removed Pin From Net: NetName=NetD15_1 Pin=J9-T8
+Added Component: Designator=J9(molex_usd)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetD15_5 Pin=J9-1
+Added Pin To Net: NetName=NetD15_4 Pin=J9-2
+Added Pin To Net: NetName=NetD14_1 Pin=J9-3
+Added Pin To Net: NetName=NetC21_2 Pin=J9-4
+Added Pin To Net: NetName=NetD14_2 Pin=J9-5
+Added Pin To Net: NetName=GND Pin=J9-6
+Added Pin To Net: NetName=NetD15_2 Pin=J9-7
+Added Pin To Net: NetName=NetD15_1 Pin=J9-8
+Added Pin To Net: NetName=GND Pin=J9-SHIELD
+Added Pin To Net: NetName=GND Pin=J9-SHIELD
+Added Pin To Net: NetName=GND Pin=J9-SHIELD
+Added Pin To Net: NetName=GND Pin=J9-SHIELD
+Added Pin To Net: NetName=NetD14_4 Pin=J9-SW1
+Added Pin To Net: NetName=GND Pin=J9-SW2

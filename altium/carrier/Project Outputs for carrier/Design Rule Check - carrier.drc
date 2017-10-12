@@ -1,0 +1,158 @@
+Protel Design System Design Rule Check
+PCB File : D:\hexapod\carrier\carrier.PcbDoc
+Date     : 2017-10-10
+Time     : 01:11:23
+
+Processing Rule : Clearance Constraint (Gap=30mil) (InDifferentialPairClass('usb_diff100') and not WithinRoom('NVM')),(InPolygon)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=30mil) (InDifferentialPairClass('csi_diff100') and not WithinRoom('NVM')),(InPolygon)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=30mil) (InAnyDifferentialPair and not WithinRoom('NVM')),(InPolygon)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=29.528mil) (IsBoardCutoutRegion),(InPolygon)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=30mil) (IsStitchingVia and InNet('GND')),(InAnyDifferentialPair)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=8mil) (InNetClass('All Nets')),(InPolygon)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=6mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=10mil) (IsStitchingVia and InNet('GND')),((IsVia and (Not IsStitchingVia)) Or IsPad)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=20mil) (Preferred=13.5mil) (InNetClass('50ohm'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=6mil) (Max=78.74mil) (Preferred=8mil) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Minimum Annular Ring (Minimum=5.905mil) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=11.811mil) (Max=248.031mil) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=10mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+Rule Violations :0
+
+Processing Rule : Board Clearance Constraint (Gap=0mil) (not OnSilkscreen and not OnMechanical)
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=2470.472mil) (Max=2549.213mil) (Disabled)(InNet('SDC_D1'))
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=2196.85mil) (Max=2354.331mil) (Disabled)(InNet('SDC_D3'))
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=2157.48mil) (Max=2236.22mil) (Disabled)(All)
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=2858.268mil) (Max=2866.142mil) (Disabled)(InNet('SDC_CLK'))
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=2186.22mil) (Max=2343.701mil) (Disabled)(InNet('SDC_CMD'))
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=2429.921mil) (Max=2587.402mil) (Disabled)(InNet('SDC_D0'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('sata_diff'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=885.827mil) (InNet('DP0_D?_?'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('mdi_diff'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('hdmi_diff95'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('usb_diff100'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('csi_diff100'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=39.37mil) (InDifferentialPair('USBM2_D') or InDifferentialPair('USB0_D') or InDifferentialPair('USB1_D'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=29.528mil) (Disabled)(InNet('CSI2_*'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=39.37mil) (Disabled)(InNet('SDC_*') and not InNet('SDC_CLK'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=39.37mil) (Disabled)(InNet('SDCARD_*'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=29.528mil) (Disabled)(InNet('CSI3_*'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=29.528mil) (InNet('CSI1_*'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=29.528mil) (InNet('CSI0_*'))
+Rule Violations :0
+
+Processing Rule : Room SR1 (Bounding Region = (7055.134mil, 949.806mil, 8358.284mil, 1922.246mil) (Disabled)(InComponentClass('SR1'))
+Rule Violations :0
+
+Processing Rule : Room SND (Bounding Region = (6556.422mil, 9491.605mil, 13851.07mil, 10395.192mil) (Disabled)(InComponentClass('SND'))
+Rule Violations :0
+
+Processing Rule : Room USB (Bounding Region = (119.468mil, 6801.427mil, 6022.315mil, 7570.165mil) (Disabled)(InComponentClass('USB'))
+Rule Violations :0
+
+Processing Rule : Room SR2 (Bounding Region = (4795.276mil, 10803.15mil, 7748.032mil, 11846.457mil) (Disabled)(InComponentClass('SR2'))
+Rule Violations :0
+
+Processing Rule : Room ETH (Bounding Region = (270.247mil, -173.184mil, 12623.212mil, 907.578mil) (Disabled)(InComponentClass('ETH'))
+Rule Violations :0
+
+Processing Rule : Room carrier (Bounding Region = (6730.042mil, 1950.766mil, 19245.416mil, 2757.892mil) (Disabled)(InComponentClass('carrier'))
+Rule Violations :0
+
+Processing Rule : Room CAM0 (Bounding Region = (6681.102mil, 468.504mil, 8118.11mil, 799.213mil) (Disabled)(InComponentClass('CAM0'))
+Rule Violations :0
+
+Processing Rule : Room GPIO (Bounding Region = (6556.422mil, 2988.189mil, 10280.029mil, 4471.675mil) (Disabled)(InComponentClass('GPIO'))
+Rule Violations :0
+
+Processing Rule : Room PS1 (Bounding Region = (1944.98mil, 4675.609mil, 41152.689mil, 9255.794mil) (Disabled)(InComponentClass('PS1'))
+Rule Violations :0
+
+Processing Rule : Room NVM (Bounding Region = (3421.26mil, 1334.646mil, 3972.441mil, 4188.976mil) (Disabled)(InComponentClass('NVM'))
+Rule Violations :0
+
+Processing Rule : Room M2 (Bounding Region = (1174.887mil, 4476.322mil, 4852.232mil, 5777.566mil) (Disabled)(InComponentClass('M2'))
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+
+Violations Detected : 0
+Time Elapsed        : 00:00:15

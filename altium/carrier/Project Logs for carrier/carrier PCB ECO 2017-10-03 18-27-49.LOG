@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=NetJ1_B36 Pin=Q4-C
+Removed Pin From Net: NetName=GND Pin=Q4-E
+Removed Pin From Net: NetName=NetD1_5 Pin=R29-1
+Removed Member From Class: ClassName=ETH Member=R29
+Change Component Footprint: Designator=Q4 Old Footprint=NPN_SOT95P230X110-3N New Footprint=NCH_SOT95P237X110-3N
+Change Component Comment : Designator=Q4 Old Comment=MMBT3904 New Comment=NTR4003N
+Change component parameters: Designator = "Q4"; Footprint = "NCH_SOT95P237X110-3N"; UniqueID = "\ABXBYYKL\HSHENQIL"
+Change component parameters. Clean all parameters for all variants
+Added Pin To Net: NetName=NetJ1_B36 Pin=Q4-D
+Added Pin To Net: NetName=NetD1_5 Pin=Q4-G
+Added Pin To Net: NetName=GND Pin=Q4-S

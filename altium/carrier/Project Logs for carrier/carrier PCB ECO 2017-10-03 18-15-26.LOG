@@ -1,0 +1,10 @@
+Change Component Footprint: Designator=FB2 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB3 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB4 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB6 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB7 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB8 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB9 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Change Component Footprint: Designator=FB10 Old Footprint=FBC1608X07N New Footprint=FBC1005X06N
+Added Member To Class: ClassName=ETH Member=Component R40 res
+Added Member To Class: ClassName=ETH Member=Component R41 res

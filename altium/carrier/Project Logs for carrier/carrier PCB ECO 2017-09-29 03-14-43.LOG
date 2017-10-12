@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=MCU_SDA Pin=R110-1
+Removed Pin From Net: NetName=VDD_3V3_MCU Pin=R110-2
+Removed Pin From Net: NetName=MCU_SCL Pin=R111-1
+Removed Pin From Net: NetName=VDD_3V3_MCU Pin=R111-2
+Removed Member From Class: ClassName=GPIO Member=R110
+Removed Member From Class: ClassName=GPIO Member=R111

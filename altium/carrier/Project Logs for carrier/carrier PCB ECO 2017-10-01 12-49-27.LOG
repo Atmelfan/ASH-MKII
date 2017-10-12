@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=VDD_1V8_SYS Pin=FB20-1
+Removed Pin From Net: NetName=VDD_5V0_SYS Pin=FB22-1
+Removed Member From Class: ClassName=SND Member=FB20
+Removed Member From Class: ClassName=SND Member=FB22
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=C100-2
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=C101-2
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=C102-2
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=C103-2
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=R105-1
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=U15-2
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=U15-3
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=U15-21
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=U15-24

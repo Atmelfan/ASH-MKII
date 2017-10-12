@@ -1,0 +1,72 @@
+Removed Pin From Net: NetName=CSI3_D0_N Pin=J1-C25
+Removed Pin From Net: NetName=CSI3_D0_P Pin=J1-C26
+Removed Pin From Net: NetName=CSI1_D0_N Pin=J1-C28
+Removed Pin From Net: NetName=CSI1_D0_P Pin=J1-C29
+Removed Pin From Net: NetName=CSI3_CLK_N Pin=J1-D24
+Removed Pin From Net: NetName=CSI3_CLK_P Pin=J1-D25
+Removed Pin From Net: NetName=CSI1_CLK_N Pin=J1-D27
+Removed Pin From Net: NetName=CSI1_CLK_P Pin=J1-D28
+Removed Pin From Net: NetName=CSI3_D1_P Pin=J1-E23
+Removed Pin From Net: NetName=CSI3_D1_N Pin=J1-E24
+Removed Pin From Net: NetName=CSI1_D1_P Pin=J1-E26
+Removed Pin From Net: NetName=CSI1_D1_N Pin=J1-E27
+Removed Pin From Net: NetName=CSI2_D0_N Pin=J1-F25
+Removed Pin From Net: NetName=CSI2_D0_P Pin=J1-F26
+Removed Pin From Net: NetName=CSI0_D0_N Pin=J1-F28
+Removed Pin From Net: NetName=CSI0_D0_P Pin=J1-F29
+Removed Pin From Net: NetName=CSI2_CLK_N Pin=J1-G24
+Removed Pin From Net: NetName=CSI2_CLK_P Pin=J1-G25
+Removed Pin From Net: NetName=CSI0_CLK_N Pin=J1-G27
+Removed Pin From Net: NetName=CSI0_CLK_P Pin=J1-G28
+Removed Pin From Net: NetName=CSI2_D1_N Pin=J1-H23
+Removed Pin From Net: NetName=CSI2_D1_P Pin=J1-H24
+Removed Pin From Net: NetName=CSI0_D1_N Pin=J1-H26
+Removed Pin From Net: NetName=CSI0_D1_P Pin=J1-H27
+Added Pin To Net: NetName=CSI2_D0_N Pin=J1-C22
+Added Pin To Net: NetName=CSI2_D0_P Pin=J1-C23
+Added Pin To Net: NetName=CSI3_D0_N Pin=J1-C28
+Added Pin To Net: NetName=CSI3_D0_P Pin=J1-C29
+Added Pin To Net: NetName=CSI2_CLK_N Pin=J1-D21
+Added Pin To Net: NetName=CSI2_CLK_P Pin=J1-D22
+Added Pin To Net: NetName=CSI3_CLK_N Pin=J1-D27
+Added Pin To Net: NetName=CSI3_CLK_P Pin=J1-D28
+Added Pin To Net: NetName=CSI2_D1_P Pin=J1-E20
+Added Pin To Net: NetName=CSI2_D1_N Pin=J1-E21
+Added Pin To Net: NetName=CSI3_D1_P Pin=J1-E26
+Added Pin To Net: NetName=CSI3_D1_N Pin=J1-E27
+Added Pin To Net: NetName=CSI0_D0_N Pin=J1-F22
+Added Pin To Net: NetName=CSI0_D0_P Pin=J1-F23
+Added Pin To Net: NetName=CSI1_D0_N Pin=J1-F28
+Added Pin To Net: NetName=CSI1_D0_P Pin=J1-F29
+Added Pin To Net: NetName=CSI0_CLK_N Pin=J1-G21
+Added Pin To Net: NetName=CSI0_CLK_P Pin=J1-G22
+Added Pin To Net: NetName=CSI1_CLK_N Pin=J1-G27
+Added Pin To Net: NetName=CSI1_CLK_P Pin=J1-G28
+Added Pin To Net: NetName=CSI0_D1_N Pin=J1-H20
+Added Pin To Net: NetName=CSI0_D1_P Pin=J1-H21
+Added Pin To Net: NetName=CSI1_D1_N Pin=J1-H26
+Added Pin To Net: NetName=CSI1_D1_P Pin=J1-H27
+Added Pin To Net: NetName=NetJ1_C25 Pin=J1-C25
+Added Net: Name=NetJ1_C25
+Added Pin To Net: NetName=NetJ1_C26 Pin=J1-C26
+Added Net: Name=NetJ1_C26
+Added Pin To Net: NetName=NetJ1_D24 Pin=J1-D24
+Added Net: Name=NetJ1_D24
+Added Pin To Net: NetName=NetJ1_D25 Pin=J1-D25
+Added Net: Name=NetJ1_D25
+Added Pin To Net: NetName=NetJ1_E23 Pin=J1-E23
+Added Net: Name=NetJ1_E23
+Added Pin To Net: NetName=NetJ1_E24 Pin=J1-E24
+Added Net: Name=NetJ1_E24
+Added Pin To Net: NetName=NetJ1_F25 Pin=J1-F25
+Added Net: Name=NetJ1_F25
+Added Pin To Net: NetName=NetJ1_F26 Pin=J1-F26
+Added Net: Name=NetJ1_F26
+Added Pin To Net: NetName=NetJ1_G24 Pin=J1-G24
+Added Net: Name=NetJ1_G24
+Added Pin To Net: NetName=NetJ1_G25 Pin=J1-G25
+Added Net: Name=NetJ1_G25
+Added Pin To Net: NetName=NetJ1_H23 Pin=J1-H23
+Added Net: Name=NetJ1_H23
+Added Pin To Net: NetName=NetJ1_H24 Pin=J1-H24
+Added Net: Name=NetJ1_H24

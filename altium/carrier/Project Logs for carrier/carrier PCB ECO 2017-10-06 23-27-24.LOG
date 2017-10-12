@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=MH5 Old Footprint=m3_pan_tight_round New Footprint=m2_pan_tight_round
+Change Component Comment : Designator=MH5 Old Comment=M3 New Comment=M2
+Added Member To Class: ClassName=carrier Member=Component MH2 M3

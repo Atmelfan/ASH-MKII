@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=GND Pin=U17-18
+Removed Pin From Net: NetName=GND Pin=U17-25
+Change Component Footprint: Designator=U17 Old Footprint= New Footprint=INVSENSE_QFN50P400X400X95_HS-25M

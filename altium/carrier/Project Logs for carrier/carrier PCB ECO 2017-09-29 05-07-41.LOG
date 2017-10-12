@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetQ22_2 Pin=Q22-1
+Removed Pin From Net: NetName=NetFB21_2 Pin=Q22-2
+Removed Pin From Net: NetName=NetC98_2 Pin=Q22-3
+Change Component Footprint: Designator=Q22 Old Footprint=SOT232_SC70 New Footprint=NCH_SOT95P237X110-3N
+Change Component Comment : Designator=Q22 Old Comment=NT4001NT1G New Comment=DMG2301L
+Added Pin To Net: NetName=NetC98_2 Pin=Q22-D
+Added Pin To Net: NetName=NetQ22_2 Pin=Q22-G
+Added Pin To Net: NetName=NetFB21_2 Pin=Q22-S
+Change Net Name : Old Net Name=NetQ22_2 New Net Name=NetQ22_G

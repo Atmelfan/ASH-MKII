@@ -1,0 +1,20 @@
+Removed Member From Class: ClassName=50ohm Member=NetD14_1
+Removed Member From Class: ClassName=50ohm Member=NetD14_2
+Removed Member From Class: ClassName=50ohm Member=NetD15_1
+Removed Member From Class: ClassName=50ohm Member=NetD15_2
+Removed Member From Class: ClassName=50ohm Member=NetD15_4
+Removed Member From Class: ClassName=50ohm Member=NetD15_5
+Change Net Name : Old Net Name=NetD14_1 New Net Name=SDCARD_DAT3
+Change Net Name : Old Net Name=NetD14_2 New Net Name=SDCARD_DAT2
+Change Net Name : Old Net Name=NetD15_1 New Net Name=SDCARD_DAT1
+Change Net Name : Old Net Name=NetD15_2 New Net Name=SDCARD_DAT0
+Change Net Name : Old Net Name=NetD15_4 New Net Name=SDCARD_CLK
+Change Net Name : Old Net Name=NetD15_5 New Net Name=SDCARD_CMD
+Added Member To Class: ClassName=USB Member=Component C96 cap
+Added Member To Class: ClassName=USB Member=Component C97 cap
+Added Member To Class: ClassName=50ohm Member=Wire SDCARD_CLK
+Added Member To Class: ClassName=50ohm Member=Wire SDCARD_CMD
+Added Member To Class: ClassName=50ohm Member=Wire SDCARD_DAT0
+Added Member To Class: ClassName=50ohm Member=Wire SDCARD_DAT1
+Added Member To Class: ClassName=50ohm Member=Wire SDCARD_DAT2
+Added Member To Class: ClassName=50ohm Member=Wire SDCARD_DAT3

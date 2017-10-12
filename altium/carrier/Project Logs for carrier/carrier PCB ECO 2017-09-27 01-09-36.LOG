@@ -1,0 +1,28 @@
+Change component parameters: Designator = "R13_SR1"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\SOAHJAPC\UVQWVOER"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R13_SR2"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\BJYRSXBS\UVQWVOER"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R14_SR1"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\SOAHJAPC\EMXVQBVV"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R14_SR2"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\BJYRSXBS\EMXVQBVV"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R15_SR1"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\SOAHJAPC\DJYFEVQN"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R15_SR2"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\BJYRSXBS\DJYFEVQN"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R16_SR1"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\SOAHJAPC\QYHXKBGB"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R16_SR2"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\BJYRSXBS\QYHXKBGB"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R26"; Footprint = "CAC-80P319X159-8N"; UniqueID = "\DFTPLOSU\KAOWOGNH"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=M2 Member=Component J9 molex_usd

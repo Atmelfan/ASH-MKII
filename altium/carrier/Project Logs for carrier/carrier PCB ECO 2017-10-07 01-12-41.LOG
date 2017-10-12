@@ -1,0 +1,51 @@
+Added Component: Designator=C120(C3216[1206])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Manufacturer"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100n"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=Q26(NCH_SOT95P237X110-3N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R29(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R31(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4K7"; VariantName = "[No Variations]"
+Added Component: Designator=R108(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R109(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100R"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C120-1
+Added Pin To Net: NetName=NetJ1_B17 Pin=C120-2
+Added Pin To Net: NetName=GND Pin=J16-1
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=J16-2
+Added Pin To Net: NetName=NetJ1_B17 Pin=J16-3
+Added Pin To Net: NetName=NetJ1_C16 Pin=Q26-G
+Added Pin To Net: NetName=GND Pin=Q26-S
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=R29-1
+Added Pin To Net: NetName=NetJ1_C16 Pin=R31-1
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=R31-2
+Added Pin To Net: NetName=NetJ1_B17 Pin=R108-1
+Added Pin To Net: NetName=VDD_1V8_SYS Pin=R108-2
+Change Net Name : Old Net Name=NetJ1_B17 New Net Name=NetC120_2
+Added Pin To Net: NetName=NetJ16_4 Pin=J16-4
+Added Pin To Net: NetName=NetJ16_4 Pin=R29-2
+Added Pin To Net: NetName=NetJ16_4 Pin=R109-1
+Added Net: Name=NetJ16_4
+Added Pin To Net: NetName=NetQ26_D Pin=Q26-D
+Added Pin To Net: NetName=NetQ26_D Pin=R109-2
+Added Net: Name=NetQ26_D
+Added Member To Class: ClassName=carrier Member=Component C120 cap
+Added Member To Class: ClassName=carrier Member=Component Q26 NTR4003N
+Added Member To Class: ClassName=carrier Member=Component R29 res
+Added Member To Class: ClassName=carrier Member=Component R31 res
+Added Member To Class: ClassName=carrier Member=Component R108 res
+Added Member To Class: ClassName=carrier Member=Component R109 res

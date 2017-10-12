@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=GND Pin=FB2-1
+Removed Pin From Net: NetName=GND Pin=FB3-1
+Removed Pin From Net: NetName=GND Pin=FB4-1
+Removed Pin From Net: NetName=GND Pin=FB6-1
+Removed Pin From Net: NetName=GND Pin=FB7-1
+Removed Pin From Net: NetName=GND Pin=FB8-1
+Removed Pin From Net: NetName=GND Pin=FB9-1
+Removed Pin From Net: NetName=GND Pin=FB10-1
+Added Component: Designator=Q25(NCH_SOT95P237X110-3N)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VDD_3V3_STBY Pin=Q25-G
+Added Pin To Net: NetName=GND Pin=Q25-S
+Added Pin To Net: NetName=NetFB2_1 Pin=FB2-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB3-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB4-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB6-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB7-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB8-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB9-1
+Added Pin To Net: NetName=NetFB2_1 Pin=FB10-1
+Added Pin To Net: NetName=NetFB2_1 Pin=Q25-D
+Added Net: Name=NetFB2_1
+Added Member To Class: ClassName=ETH Member=Component Q25 NTR4003N

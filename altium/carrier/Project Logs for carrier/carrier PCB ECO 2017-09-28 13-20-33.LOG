@@ -1,0 +1,353 @@
+Removed Pin From Net: NetName=NetR16_SR1_1 Pin=U6_SR1-6
+Removed Pin From Net: NetName=NetR15_SR1_1 Pin=U6_SR1-10
+Removed Pin From Net: NetName=NetR14_SR1_1 Pin=U6_SR1-15
+Removed Pin From Net: NetName=NetR16_SR2_1 Pin=U6_SR2-6
+Removed Pin From Net: NetName=NetR15_SR2_1 Pin=U6_SR2-10
+Removed Pin From Net: NetName=NetR14_SR2_1 Pin=U6_SR2-15
+Added Component: Designator=J6_SR1(FTSH-105-01-XXX-DV-K)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "CREATED"; Value = "November 30, 2016 - Wendy Xin"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MANUFACTURER"; Value = "SAMTEC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MODIFIED"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PCB DECAL"; Value = "FTSH-105-01-XXX-DV-K"; VariantName = "[No Variations]"
+Added Component: Designator=J6_SR2(FTSH-105-01-XXX-DV-K)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "CREATED"; Value = "November 30, 2016 - Wendy Xin"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MANUFACTURER"; Value = "SAMTEC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MODIFIED"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PCB DECAL"; Value = "FTSH-105-01-XXX-DV-K"; VariantName = "[No Variations]"
+Added Component: Designator=J7_SR1(FTSH-105-01-XXX-DV-K)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "CREATED"; Value = "November 30, 2016 - Wendy Xin"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MANUFACTURER"; Value = "SAMTEC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MODIFIED"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PCB DECAL"; Value = "FTSH-105-01-XXX-DV-K"; VariantName = "[No Variations]"
+Added Component: Designator=J7_SR2(FTSH-105-01-XXX-DV-K)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "CREATED"; Value = "November 30, 2016 - Wendy Xin"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MANUFACTURER"; Value = "SAMTEC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MODIFIED"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PCB DECAL"; Value = "FTSH-105-01-XXX-DV-K"; VariantName = "[No Variations]"
+Added Component: Designator=R13_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R13_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R14_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R14_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R15_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R15_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R16_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R16_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R113_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R113_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R114_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R114_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R115_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R115_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R116_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R116_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R117_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R117_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R118_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R118_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R119_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R119_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R120_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R120_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R121_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R121_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R122_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R122_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R123_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R123_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R124_SR1(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Component: Designator=R124_SR2(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "220R"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=J6_SR1-1
+Added Pin To Net: NetName=GND Pin=J6_SR1-2
+Added Pin To Net: NetName=S0_SR1 Pin=J6_SR1-3
+Added Pin To Net: NetName=S1_SR1 Pin=J6_SR1-4
+Added Pin To Net: NetName=S2_SR1 Pin=J6_SR1-5
+Added Pin To Net: NetName=S3_SR1 Pin=J6_SR1-6
+Added Pin To Net: NetName=S4_SR1 Pin=J6_SR1-7
+Added Pin To Net: NetName=S5_SR1 Pin=J6_SR1-8
+Added Pin To Net: NetName=MCU_SCL Pin=J6_SR1-9
+Added Pin To Net: NetName=MCU_SDA Pin=J6_SR1-10
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=J6_SR2-1
+Added Pin To Net: NetName=GND Pin=J6_SR2-2
+Added Pin To Net: NetName=S0_SR2 Pin=J6_SR2-3
+Added Pin To Net: NetName=S1_SR2 Pin=J6_SR2-4
+Added Pin To Net: NetName=S2_SR2 Pin=J6_SR2-5
+Added Pin To Net: NetName=S3_SR2 Pin=J6_SR2-6
+Added Pin To Net: NetName=S4_SR2 Pin=J6_SR2-7
+Added Pin To Net: NetName=S5_SR2 Pin=J6_SR2-8
+Added Pin To Net: NetName=MCU_SCL Pin=J6_SR2-9
+Added Pin To Net: NetName=MCU_SDA Pin=J6_SR2-10
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=J7_SR1-1
+Added Pin To Net: NetName=GND Pin=J7_SR1-2
+Added Pin To Net: NetName=S6_SR1 Pin=J7_SR1-3
+Added Pin To Net: NetName=S7_SR1 Pin=J7_SR1-4
+Added Pin To Net: NetName=S8_SR1 Pin=J7_SR1-5
+Added Pin To Net: NetName=S9_SR1 Pin=J7_SR1-6
+Added Pin To Net: NetName=S10_SR1 Pin=J7_SR1-7
+Added Pin To Net: NetName=S11_SR1 Pin=J7_SR1-8
+Added Pin To Net: NetName=MCU_SCL Pin=J7_SR1-9
+Added Pin To Net: NetName=MCU_SDA Pin=J7_SR1-10
+Added Pin To Net: NetName=VDD_3V3_MCU Pin=J7_SR2-1
+Added Pin To Net: NetName=GND Pin=J7_SR2-2
+Added Pin To Net: NetName=S6_SR2 Pin=J7_SR2-3
+Added Pin To Net: NetName=S7_SR2 Pin=J7_SR2-4
+Added Pin To Net: NetName=S8_SR2 Pin=J7_SR2-5
+Added Pin To Net: NetName=S9_SR2 Pin=J7_SR2-6
+Added Pin To Net: NetName=S10_SR2 Pin=J7_SR2-7
+Added Pin To Net: NetName=S11_SR2 Pin=J7_SR2-8
+Added Pin To Net: NetName=MCU_SCL Pin=J7_SR2-9
+Added Pin To Net: NetName=MCU_SDA Pin=J7_SR2-10
+Added Pin To Net: NetName=NetR13_SR1_1 Pin=R13_SR1-1
+Added Pin To Net: NetName=S0_SR1 Pin=R13_SR1-2
+Added Pin To Net: NetName=NetR13_SR2_1 Pin=R13_SR2-1
+Added Pin To Net: NetName=S0_SR2 Pin=R13_SR2-2
+Added Pin To Net: NetName=NetR14_SR1_1 Pin=R14_SR1-1
+Added Pin To Net: NetName=S1_SR1 Pin=R14_SR1-2
+Added Pin To Net: NetName=NetR14_SR2_1 Pin=R14_SR2-1
+Added Pin To Net: NetName=S1_SR2 Pin=R14_SR2-2
+Added Pin To Net: NetName=NetR15_SR1_1 Pin=R15_SR1-1
+Added Pin To Net: NetName=S2_SR1 Pin=R15_SR1-2
+Added Pin To Net: NetName=NetR15_SR2_1 Pin=R15_SR2-1
+Added Pin To Net: NetName=S2_SR2 Pin=R15_SR2-2
+Added Pin To Net: NetName=NetR16_SR1_1 Pin=R16_SR1-1
+Added Pin To Net: NetName=S3_SR1 Pin=R16_SR1-2
+Added Pin To Net: NetName=NetR16_SR2_1 Pin=R16_SR2-1
+Added Pin To Net: NetName=S3_SR2 Pin=R16_SR2-2
+Added Pin To Net: NetName=S4_SR1 Pin=R113_SR1-2
+Added Pin To Net: NetName=S4_SR2 Pin=R113_SR2-2
+Added Pin To Net: NetName=S5_SR1 Pin=R114_SR1-2
+Added Pin To Net: NetName=S5_SR2 Pin=R114_SR2-2
+Added Pin To Net: NetName=S6_SR1 Pin=R115_SR1-2
+Added Pin To Net: NetName=S6_SR2 Pin=R115_SR2-2
+Added Pin To Net: NetName=S7_SR1 Pin=R116_SR1-2
+Added Pin To Net: NetName=S7_SR2 Pin=R116_SR2-2
+Added Pin To Net: NetName=S8_SR1 Pin=R117_SR1-2
+Added Pin To Net: NetName=S8_SR2 Pin=R117_SR2-2
+Added Pin To Net: NetName=S9_SR1 Pin=R118_SR1-2
+Added Pin To Net: NetName=S9_SR2 Pin=R118_SR2-2
+Added Pin To Net: NetName=S10_SR1 Pin=R119_SR1-2
+Added Pin To Net: NetName=S10_SR2 Pin=R119_SR2-2
+Added Pin To Net: NetName=S11_SR1 Pin=R120_SR1-2
+Added Pin To Net: NetName=S11_SR2 Pin=R120_SR2-2
+Added Pin To Net: NetName=S12_SR1 Pin=R121_SR1-2
+Added Pin To Net: NetName=S12_SR2 Pin=R121_SR2-2
+Added Pin To Net: NetName=S13_SR1 Pin=R122_SR1-2
+Added Pin To Net: NetName=S13_SR2 Pin=R122_SR2-2
+Added Pin To Net: NetName=S14_SR1 Pin=R123_SR1-2
+Added Pin To Net: NetName=S14_SR2 Pin=R123_SR2-2
+Added Pin To Net: NetName=S15_SR1 Pin=R124_SR1-2
+Added Pin To Net: NetName=S15_SR2 Pin=R124_SR2-2
+Added Pin To Net: NetName=NetR16_SR1_1 Pin=U6_SR1-16
+Added Pin To Net: NetName=NetR15_SR1_1 Pin=U6_SR1-17
+Added Pin To Net: NetName=NetR14_SR1_1 Pin=U6_SR1-18
+Added Pin To Net: NetName=NetR16_SR2_1 Pin=U6_SR2-16
+Added Pin To Net: NetName=NetR15_SR2_1 Pin=U6_SR2-17
+Added Pin To Net: NetName=NetR14_SR2_1 Pin=U6_SR2-18
+Added Pin To Net: NetName=NetR113_SR1_1 Pin=R113_SR1-1
+Added Pin To Net: NetName=NetR113_SR1_1 Pin=U6_SR1-15
+Added Net: Name=NetR113_SR1_1
+Added Pin To Net: NetName=NetR113_SR2_1 Pin=R113_SR2-1
+Added Pin To Net: NetName=NetR113_SR2_1 Pin=U6_SR2-15
+Added Net: Name=NetR113_SR2_1
+Added Pin To Net: NetName=NetR114_SR1_1 Pin=R114_SR1-1
+Added Pin To Net: NetName=NetR114_SR1_1 Pin=U6_SR1-14
+Added Net: Name=NetR114_SR1_1
+Added Pin To Net: NetName=NetR114_SR2_1 Pin=R114_SR2-1
+Added Pin To Net: NetName=NetR114_SR2_1 Pin=U6_SR2-14
+Added Net: Name=NetR114_SR2_1
+Added Pin To Net: NetName=NetR115_SR1_1 Pin=R115_SR1-1
+Added Pin To Net: NetName=NetR115_SR1_1 Pin=U6_SR1-13
+Added Net: Name=NetR115_SR1_1
+Added Pin To Net: NetName=NetR115_SR2_1 Pin=R115_SR2-1
+Added Pin To Net: NetName=NetR115_SR2_1 Pin=U6_SR2-13
+Added Net: Name=NetR115_SR2_1
+Added Pin To Net: NetName=NetR116_SR1_1 Pin=R116_SR1-1
+Added Pin To Net: NetName=NetR116_SR1_1 Pin=U6_SR1-12
+Added Net: Name=NetR116_SR1_1
+Added Pin To Net: NetName=NetR116_SR2_1 Pin=R116_SR2-1
+Added Pin To Net: NetName=NetR116_SR2_1 Pin=U6_SR2-12
+Added Net: Name=NetR116_SR2_1
+Added Pin To Net: NetName=NetR117_SR1_1 Pin=R117_SR1-1
+Added Pin To Net: NetName=NetR117_SR1_1 Pin=U6_SR1-10
+Added Net: Name=NetR117_SR1_1
+Added Pin To Net: NetName=NetR117_SR2_1 Pin=R117_SR2-1
+Added Pin To Net: NetName=NetR117_SR2_1 Pin=U6_SR2-10
+Added Net: Name=NetR117_SR2_1
+Added Pin To Net: NetName=NetR118_SR1_1 Pin=R118_SR1-1
+Added Pin To Net: NetName=NetR118_SR1_1 Pin=U6_SR1-9
+Added Net: Name=NetR118_SR1_1
+Added Pin To Net: NetName=NetR118_SR2_1 Pin=R118_SR2-1
+Added Pin To Net: NetName=NetR118_SR2_1 Pin=U6_SR2-9
+Added Net: Name=NetR118_SR2_1
+Added Pin To Net: NetName=NetR119_SR1_1 Pin=R119_SR1-1
+Added Pin To Net: NetName=NetR119_SR1_1 Pin=U6_SR1-8
+Added Net: Name=NetR119_SR1_1
+Added Pin To Net: NetName=NetR119_SR2_1 Pin=R119_SR2-1
+Added Pin To Net: NetName=NetR119_SR2_1 Pin=U6_SR2-8
+Added Net: Name=NetR119_SR2_1
+Added Pin To Net: NetName=NetR120_SR1_1 Pin=R120_SR1-1
+Added Pin To Net: NetName=NetR120_SR1_1 Pin=U6_SR1-7
+Added Net: Name=NetR120_SR1_1
+Added Pin To Net: NetName=NetR120_SR2_1 Pin=R120_SR2-1
+Added Pin To Net: NetName=NetR120_SR2_1 Pin=U6_SR2-7
+Added Net: Name=NetR120_SR2_1
+Added Pin To Net: NetName=NetR121_SR1_1 Pin=R121_SR1-1
+Added Pin To Net: NetName=NetR121_SR1_1 Pin=U6_SR1-6
+Added Net: Name=NetR121_SR1_1
+Added Pin To Net: NetName=NetR121_SR2_1 Pin=R121_SR2-1
+Added Pin To Net: NetName=NetR121_SR2_1 Pin=U6_SR2-6
+Added Net: Name=NetR121_SR2_1
+Added Pin To Net: NetName=NetR122_SR1_1 Pin=R122_SR1-1
+Added Pin To Net: NetName=NetR122_SR1_1 Pin=U6_SR1-5
+Added Net: Name=NetR122_SR1_1
+Added Pin To Net: NetName=NetR122_SR2_1 Pin=R122_SR2-1
+Added Pin To Net: NetName=NetR122_SR2_1 Pin=U6_SR2-5
+Added Net: Name=NetR122_SR2_1
+Added Pin To Net: NetName=NetR123_SR1_1 Pin=R123_SR1-1
+Added Pin To Net: NetName=NetR123_SR1_1 Pin=U6_SR1-4
+Added Net: Name=NetR123_SR1_1
+Added Pin To Net: NetName=NetR123_SR2_1 Pin=R123_SR2-1
+Added Pin To Net: NetName=NetR123_SR2_1 Pin=U6_SR2-4
+Added Net: Name=NetR123_SR2_1
+Added Pin To Net: NetName=NetR124_SR1_1 Pin=R124_SR1-1
+Added Pin To Net: NetName=NetR124_SR1_1 Pin=U6_SR1-3
+Added Net: Name=NetR124_SR1_1
+Added Pin To Net: NetName=NetR124_SR2_1 Pin=R124_SR2-1
+Added Pin To Net: NetName=NetR124_SR2_1 Pin=U6_SR2-3
+Added Net: Name=NetR124_SR2_1
+Added Member To Class: ClassName=SR1 Member=Component J6_SR1 (J6) FTSH-105-01-XXX-DV-K
+Added Member To Class: ClassName=SR2 Member=Component J6_SR2 (J6) FTSH-105-01-XXX-DV-K
+Added Member To Class: ClassName=SR1 Member=Component J7_SR1 (J7) FTSH-105-01-XXX-DV-K
+Added Member To Class: ClassName=SR2 Member=Component J7_SR2 (J7) FTSH-105-01-XXX-DV-K
+Added Member To Class: ClassName=PS1 Member=Component J12 43045-0600
+Added Member To Class: ClassName=SR1 Member=Component R13_SR1 (R13) res
+Added Member To Class: ClassName=SR2 Member=Component R13_SR2 (R13) res
+Added Member To Class: ClassName=SR1 Member=Component R14_SR1 (R14) res
+Added Member To Class: ClassName=SR2 Member=Component R14_SR2 (R14) res
+Added Member To Class: ClassName=SR1 Member=Component R15_SR1 (R15) res
+Added Member To Class: ClassName=SR2 Member=Component R15_SR2 (R15) res
+Added Member To Class: ClassName=SR1 Member=Component R16_SR1 (R16) res
+Added Member To Class: ClassName=SR2 Member=Component R16_SR2 (R16) res
+Added Member To Class: ClassName=SR1 Member=Component R113_SR1 (R113) res
+Added Member To Class: ClassName=SR2 Member=Component R113_SR2 (R113) res
+Added Member To Class: ClassName=SR1 Member=Component R114_SR1 (R114) res
+Added Member To Class: ClassName=SR2 Member=Component R114_SR2 (R114) res
+Added Member To Class: ClassName=SR1 Member=Component R115_SR1 (R115) res
+Added Member To Class: ClassName=SR2 Member=Component R115_SR2 (R115) res
+Added Member To Class: ClassName=SR1 Member=Component R116_SR1 (R116) res
+Added Member To Class: ClassName=SR2 Member=Component R116_SR2 (R116) res
+Added Member To Class: ClassName=SR1 Member=Component R117_SR1 (R117) res
+Added Member To Class: ClassName=SR2 Member=Component R117_SR2 (R117) res
+Added Member To Class: ClassName=SR1 Member=Component R118_SR1 (R118) res
+Added Member To Class: ClassName=SR2 Member=Component R118_SR2 (R118) res
+Added Member To Class: ClassName=SR1 Member=Component R119_SR1 (R119) res
+Added Member To Class: ClassName=SR2 Member=Component R119_SR2 (R119) res
+Added Member To Class: ClassName=SR1 Member=Component R120_SR1 (R120) res
+Added Member To Class: ClassName=SR2 Member=Component R120_SR2 (R120) res
+Added Member To Class: ClassName=SR1 Member=Component R121_SR1 (R121) res
+Added Member To Class: ClassName=SR2 Member=Component R121_SR2 (R121) res
+Added Member To Class: ClassName=SR1 Member=Component R122_SR1 (R122) res
+Added Member To Class: ClassName=SR2 Member=Component R122_SR2 (R122) res
+Added Member To Class: ClassName=SR1 Member=Component R123_SR1 (R123) res
+Added Member To Class: ClassName=SR2 Member=Component R123_SR2 (R123) res
+Added Member To Class: ClassName=SR1 Member=Component R124_SR1 (R124) res
+Added Member To Class: ClassName=SR2 Member=Component R124_SR2 (R124) res

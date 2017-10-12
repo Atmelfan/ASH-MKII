@@ -1,0 +1,7 @@
+Change Physical Footprint: Designator=J3 Old Footprint=FTSH-105-01-XXX-DV-K New Footprint=FTSH-105-01-XXX-DV-K
+Change Physical Footprint: Designator=J9 Old Footprint=molex_usd New Footprint=molex_usd
+Change Physical Footprint: Designator=J10 Old Footprint=abraconn_rj45_arje0025 New Footprint=abraconn_rj45_arje0025
+Change Physical Footprint: Designator=J12 Old Footprint=molex_microfit_2x6_90deg New Footprint=molex_microfit_2x6_90deg
+Change Physical Footprint: Designator=J15 Old Footprint=usb3_micro_ab New Footprint=usb3_micro_ab
+Change Physical Footprint: Designator=Q16 Old Footprint=NCH_SON65P330X80_HS-9N New Footprint=NCH_SON65P330X80_HS-9N
+Change Physical Footprint: Designator=SPK1 Old Footprint=pui_audio_speaker New Footprint=pui_audio_speaker

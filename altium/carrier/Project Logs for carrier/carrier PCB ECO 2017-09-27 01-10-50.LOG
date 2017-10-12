@@ -1,0 +1,25 @@
+Added Component: Designator=J11(molex_hdmi)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=DP0_D0_J_P Pin=J11-1
+Added Pin To Net: NetName=GND Pin=J11-2
+Added Pin To Net: NetName=DP0_D0_J_N Pin=J11-3
+Added Pin To Net: NetName=DP0_D1_J_P Pin=J11-4
+Added Pin To Net: NetName=GND Pin=J11-5
+Added Pin To Net: NetName=DP0_D1_J_N Pin=J11-6
+Added Pin To Net: NetName=DP0_D2_J_P Pin=J11-7
+Added Pin To Net: NetName=GND Pin=J11-8
+Added Pin To Net: NetName=DP0_D2_J_N Pin=J11-9
+Added Pin To Net: NetName=DP0_D3_J_P Pin=J11-10
+Added Pin To Net: NetName=GND Pin=J11-11
+Added Pin To Net: NetName=DP0_D3_J_N Pin=J11-12
+Added Pin To Net: NetName=NetD1_1 Pin=J11-13
+Added Pin To Net: NetName=NetD1_4 Pin=J11-15
+Added Pin To Net: NetName=NetD1_5 Pin=J11-16
+Added Pin To Net: NetName=GND Pin=J11-17
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=J11-18
+Added Pin To Net: NetName=NetD1_2 Pin=J11-19
+Added Pin To Net: NetName=GND Pin=J11-SHIELD
+Added Pin To Net: NetName=GND Pin=J11-SHIELD
+Added Pin To Net: NetName=GND Pin=J11-SHIELD
+Added Pin To Net: NetName=GND Pin=J11-SHIELD
+Added Member To Class: ClassName=ETH Member=Component J11 10118242-0x1RLF

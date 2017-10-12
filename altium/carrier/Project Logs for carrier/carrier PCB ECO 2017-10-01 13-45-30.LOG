@@ -1,0 +1,14 @@
+Removed Member From Class: ClassName=SR1 Member=R121_SR1
+Removed Member From Class: ClassName=SR2 Member=R121_SR2
+Removed Member From Class: ClassName=SR1 Member=R122_SR1
+Removed Member From Class: ClassName=SR2 Member=R122_SR2
+Removed Member From Class: ClassName=SR1 Member=R123_SR1
+Removed Member From Class: ClassName=SR2 Member=R123_SR2
+Removed Member From Class: ClassName=SR1 Member=R124_SR1
+Removed Member From Class: ClassName=SR2 Member=R124_SR2
+Change component parameters: Designator = "R120_SR1"; Footprint = "R1005[0402]"; UniqueID = "\SOAHJAPC\FLBRJCOA"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R120_SR2"; Footprint = "R1005[0402]"; UniqueID = "\BJYRSXBS\FLBRJCOA"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"

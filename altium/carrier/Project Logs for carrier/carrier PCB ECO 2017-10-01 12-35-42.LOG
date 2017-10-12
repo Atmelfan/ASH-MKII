@@ -1,0 +1,12 @@
+Added Component: Designator=J16(molex_picoblade_1x4)
+Add component. Clean all parameters for all variants
+Added Component: Designator=J20(molex_picoblade_1x4)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetC104_2 Pin=J20-1
+Added Pin To Net: NetName=NetC105_1 Pin=J20-2
+Added Pin To Net: NetName=NetC106_1 Pin=J20-3
+Added Pin To Net: NetName=GND Pin=J20-4
+Change Net Name : Old Net Name=NetC105_1 New Net Name=NetJ20_2
+Change Net Name : Old Net Name=NetC106_1 New Net Name=NetJ20_3
+Added Member To Class: ClassName=carrier Member=Component J16 1x4
+Added Member To Class: ClassName=SND Member=Component J20 1x4

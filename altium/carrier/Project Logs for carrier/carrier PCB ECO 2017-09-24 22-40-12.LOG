@@ -1,0 +1,10 @@
+Change Component Footprint: Designator=R88 Old Footprint=R1005[0402] New Footprint=4W_R320P320X90-4N
+Change Component Footprint: Designator=R89 Old Footprint=R1005[0402] New Footprint=4W_R320P320X90-4N
+Change Component Comment : Designator=D9 Old Comment=DNC New Comment=Zener
+Added Pin To Net: NetName=GND Pin=D9-A
+Added Pin To Net: NetName=MCU_SDA Pin=D9-C1
+Added Pin To Net: NetName=MCU_SCL Pin=D9-C2
+Added Pin To Net: NetName=NetR88_S1 Pin=R88-S1
+Added Pin To Net: NetName=NetR88_S2 Pin=R88-S2
+Added Pin To Net: NetName=NetC72_2 Pin=R89-S1
+Added Pin To Net: NetName=NetC72_1 Pin=R89-S2

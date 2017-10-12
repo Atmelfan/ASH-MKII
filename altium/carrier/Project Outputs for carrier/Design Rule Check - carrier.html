@@ -1,0 +1,472 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\AD17\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2017-10-10</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">01:11:23</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:15</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\hexapod\carrier\carrier.PcbDoc" class="file"><acronym title="D:\hexapod\carrier\carrier.PcbDoc">D:\hexapod\carrier\carrier.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+</table>
+</td>
+</table><a name="IDM5TI4J5LTIWMF23KW4VYNVCNQZXCF5P3GRE44M4ENBZNKXROLGD"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOPI1PQKQW035IGGXM4YY1LI24ENH44VWME3441OQSS3QXMUGCJ5H">Clearance Constraint (Gap=30mil) (InDifferentialPairClass('usb_diff100') and not WithinRoom('NVM')),(InPolygon)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID05ISE1LORBS3JDMDUMXK31KFBLJM1GO5BKXX2GNC5CZGXGUUSTRC">Clearance Constraint (Gap=30mil) (InDifferentialPairClass('csi_diff100') and not WithinRoom('NVM')),(InPolygon)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYD31CECUXJAWHOEZ0FQEPJOSZBV2GN321MWI2RHFD1YK4ADKTXHO">Clearance Constraint (Gap=30mil) (InAnyDifferentialPair and not WithinRoom('NVM')),(InPolygon)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSFWJZUTNLCCTC3HHNNZQK3NR4BIYR5QSFFQXRXCJLQRUV3TTQLXM">Clearance Constraint (Gap=29.528mil) (IsBoardCutoutRegion),(InPolygon)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIGTNE13VQKSRKV02BUBV3U430GTNU3SZR5QLT0BUL450MJU0YV1F">Clearance Constraint (Gap=30mil) (IsStitchingVia and InNet('GND')),(InAnyDifferentialPair)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYKX551VV2HKZORLIKQHFAUNXBKRQ0FJGTLRT4BBAQ3QITAXCQOLN">Clearance Constraint (Gap=8mil) (InNetClass('All Nets')),(InPolygon)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJWTKPKCQMRP4XBN0GXZFEOA0CM14RZ4AZBLL3DETLR4WHAHIB2D">Clearance Constraint (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDS1A4TD4DE4Z2GTEUP31HILMFNNHDHVAFXLB3DOFHQXNFUKXGW0">Clearance Constraint (Gap=10mil) (IsStitchingVia and InNet('GND')),((IsVia and (Not IsStitchingVia)) Or IsPad)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDY534JMYLKWAHIVIGV225252VACKUPJVCX1WJYEN2LROOX0GOL1AO">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTCHBLTA1LMUMJPPCJ2OYMRK1DPSPNNLJZPOQVZCGLTSO1UMEXYHD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI5GCX5PYX0AGIVNOP5A5AQBZEMWH4YHADVIRLDEKC1VCVDLFTF1J">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4MLRLR2SGW5ZD1ENCF12KLRGEGZICX5EQIP3FKOXBJU3TN4LPPXG">Width Constraint (Min=10mil) (Max=20mil) (Preferred=13.5mil) (InNetClass('50ohm'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVV430XKNHR21KCESDFTQG31T0CNMBH30SMKG5VH0GZVRU5ZN5BMB">Width Constraint (Min=6mil) (Max=78.74mil) (Preferred=8mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDINF0LC55E5Y3PULTN33GWJ0BHOAOFIBTGXEZGBAU2TN3BN5VX4D">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDU02BUJQ0GSUAGUSK1RHAVDPTCEEZRTFDDB3N5RMMOM532FHZAXKP">Minimum Annular Ring (Minimum=5.905mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGNB3W40QEPVDEVVCMIV0A50VVGH3LHCCJZEMIZHYSVSEA4PAYEDJ">Hole Size Constraint (Min=11.811mil) (Max=248.031mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDP3R1UT24IMLGOYU5LRWQYU0VICWUMZ11UHAII5B0B541MVWRX2EE">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4PP1FML4C1K4D5QXM31PZVPJKH5WMENV4QW4JHD4F2CYGMNSHVOB">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4YQ0OL00K5HDP5XKBEMGV1KETN0MC2VNJD0TDJIXAVOAPHERXKYP">Board Clearance Constraint (Gap=0mil) (not OnSilkscreen and not OnMechanical)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDS0ZC5UCGFRHSEH2L1NYZJGERBMLEFCLRXJIVUYMBOJ0XEK3BDDTN">Length Constraint (Min=2470.472mil) (Max=2549.213mil) (Disabled)(InNet('SDC_D1'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCM1NE2HWUY43M0HYQZH3BBWZYKRJ2VQG32AB1HHL0SBD4DYZMHKD">Length Constraint (Min=2196.85mil) (Max=2354.331mil) (Disabled)(InNet('SDC_D3'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPOLVYP4TGM2QZJBISCE21RFUIFLB4HZG1D4SYDSRJLEIVKZNN4B">Length Constraint (Min=2157.48mil) (Max=2236.22mil) (Disabled)(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTEQAXSTHICMXJFN2D5C2ZBV05KBLQ0LUDYXS4PDI2WYXH1013POE">Length Constraint (Min=2858.268mil) (Max=2866.142mil) (Disabled)(InNet('SDC_CLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4JGQF2TJYTTRHJS0UWARTKKY5KOIPURWFI4M0ODAMQ4FKIU5DCR">Length Constraint (Min=2186.22mil) (Max=2343.701mil) (Disabled)(InNet('SDC_CMD'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXXY3YEQVMMIIDMCRPHX2ZPI0XCNIVAEIBJKZ2QMRVLMO12PVV5NC">Length Constraint (Min=2429.921mil) (Max=2587.402mil) (Disabled)(InNet('SDC_D0'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZ30MNZDIPP5NHRYOCKADJ4WUML31UVTXBFA3LMLBY5CAWN3CPRHJ">Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('sata_diff'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1VMP4ARQRMB2NULZG14WRIFULHUENTDNOLUEZH3VDUWODEPLAP">Matched Lengths(Tolerance=885.827mil) (InNet('DP0_D?_?'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDP3RJ4HUYRPT2OVQDLWXKQXKLTP0LZVEXVQMQ52HEDA5441YPDJGC">Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('mdi_diff'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMAEZU3MSLMXKO3BYU0I224JP5OSNJXH5GPVIKAC4AUYX4HOAHPBB">Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('hdmi_diff95'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTNQE1IB30BPYCZGETFN35EVGPEYEGCLGK5DIB5FFFVTI2PWIOCNE">Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('usb_diff100'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWIEKTU13RJ4IG2AXXTMSBAC1QPY2N0BANOS5IYITAR1M5HR03TFB">Matched Lengths(Tolerance=5.905mil) (InDifferentialPairClass('csi_diff100'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZQFV5C5L0UORESQFOV54WV50QCJOBSLQ2K0UWWMDORKCE3H1LV2G">Matched Lengths(Tolerance=39.37mil) (InDifferentialPair('USBM2_D') or InDifferentialPair('USB0_D') or InDifferentialPair('USB1_D'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5H2N4OQ4SLP3D0TT2X1PHB4VJLGRXHJBLWUSNLCWBTFJ0NYVXBM">Matched Lengths(Tolerance=29.528mil) (Disabled)(InNet('CSI2_*'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLIZ02KO1IKENKP2G4P3OR55TQF1R2PFXY4WFMMFUNNYC05KM5VFB">Matched Lengths(Tolerance=39.37mil) (Disabled)(InNet('SDC_*') and not InNet('SDC_CLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCHFJQUA1EU0YB5HPUNBXM23RNMWFIRR0LVSSZ4MU4OEKPSFT2V1L">Matched Lengths(Tolerance=39.37mil) (Disabled)(InNet('SDCARD_*'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFKOP3ZZTBY5DECOOCJONDZVWJDMW0KOKZN4SIOH2JUTUMIG3XZ5K">Matched Lengths(Tolerance=29.528mil) (Disabled)(InNet('CSI3_*'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDG1GQ55IZULKPBN0U3LEYAG13JCJQTG3A5AD0XKJX5NIF0RWGQHDE">Matched Lengths(Tolerance=29.528mil) (InNet('CSI1_*'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZVWXD303YUNAPHVCNJ5SNROMILTMLEBKLGGTVUBPWGTXAOENAIYF">Matched Lengths(Tolerance=29.528mil) (InNet('CSI0_*'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0NYITKZ5RBXILYXRAHLRYWYA2KBULFTBKJKY40I5ARVJQPPFQFO">Room SR1 (Bounding Region = (7055.134mil, 949.806mil, 8358.284mil, 1922.246mil) (Disabled)(InComponentClass('SR1'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUK5NZSIS5EHXID5V40LG4MRPWKO4CCZG1C4B5WBQKXIQWWRZRHRC">Room SND (Bounding Region = (6556.422mil, 9491.605mil, 13851.07mil, 10395.192mil) (Disabled)(InComponentClass('SND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZEWSYO1FDLVRFMAU4CJCUQIBOBRD3SU0LIA2O1LMJOL2XAE5I2DO">Room USB (Bounding Region = (119.468mil, 6801.427mil, 6022.315mil, 7570.165mil) (Disabled)(InComponentClass('USB'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID11I1E1RV34DNDS03PPGBLDMDJG5JIBHCTHTTHHINPHDOKFOOLRUC">Room SR2 (Bounding Region = (4795.276mil, 10803.15mil, 7748.032mil, 11846.457mil) (Disabled)(InComponentClass('SR2'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDN5LGSFHUXZ1LDOH42EA130LMYDQKI3CU5WC3J5MAFTAMIU30XLSB">Room ETH (Bounding Region = (270.247mil, -173.184mil, 12623.212mil, 907.578mil) (Disabled)(InComponentClass('ETH'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0ACBIFDCTKQFE1MVEN4OR2NLECLVYYPM3E1EHGSAC5LXL0PPQLB">Room carrier (Bounding Region = (6730.042mil, 1950.766mil, 19245.416mil, 2757.892mil) (Disabled)(InComponentClass('carrier'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKLWWBNLZZSKIHNDXUUSNENSFUKHPK5JZ0D0FKUIX1C5WJ51Q3TRJ">Room CAM0 (Bounding Region = (6681.102mil, 468.504mil, 8118.11mil, 799.213mil) (Disabled)(InComponentClass('CAM0'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLYRAJBEY2QYOGDORWNTP1AXCUIFLVDGAYKDNSZM5S4WTY0TJKFRM">Room GPIO (Bounding Region = (6556.422mil, 2988.189mil, 10280.029mil, 4471.675mil) (Disabled)(InComponentClass('GPIO'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID14KVXKYBZSVYCGK4L12JWTRMLMUCURJU0B2VHHNVQD3FFTISCMF">Room PS1 (Bounding Region = (1944.98mil, 4675.609mil, 41152.689mil, 9255.794mil) (Disabled)(InComponentClass('PS1'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVZK3SJTFLPQAIQBBYQZPNYHWDBGTUF2BICDLKTN1YBIGLS41H5FJ">Room NVM (Bounding Region = (3421.26mil, 1334.646mil, 3972.441mil, 4188.976mil) (Disabled)(InComponentClass('NVM'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUKZLLBRHJUUJIWKLVD4A5XGPEF25KN1DBY4APEOWAZVVYO4UCX1J">Room M2 (Bounding Region = (1174.887mil, 4476.322mil, 4852.232mil, 5777.566mil) (Disabled)(InComponentClass('M2'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGLT3NAFJPMLRK4NDNMN5WX300CJ3PXU0T4FNY0FKEEMYSDS3HG2P">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br></body>
+</html>

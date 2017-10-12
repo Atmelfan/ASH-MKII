@@ -1,0 +1,10 @@
+Output: Copy of Copy Files
+Type  : Copy Files
+From  : Project [carrier.PrjPcb]
+   Generated File[carrier.pdf]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 11:16:34 On 2017-09-29

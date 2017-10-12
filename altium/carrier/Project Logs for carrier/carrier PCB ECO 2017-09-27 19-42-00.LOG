@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=NetJ12_1 Pin=J12-1
+Removed Pin From Net: NetName=GND Pin=J12-2
+Removed Pin From Net: NetName=GND Pin=J12-3
+Removed Pin From Net: NetName=NetJ12_4 Pin=J12-4
+Removed Pin From Net: NetName=BAT_CON Pin=J12-5
+Removed Pin From Net: NetName=BAT_CON Pin=J12-6
+Added Component: Designator=J12(molex_microfit_2x6_90deg)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetJ12_1 Pin=J12-1
+Added Pin To Net: NetName=GND Pin=J12-2
+Added Pin To Net: NetName=GND Pin=J12-3
+Added Pin To Net: NetName=NetJ12_4 Pin=J12-4
+Added Pin To Net: NetName=BAT_CON Pin=J12-5
+Added Pin To Net: NetName=BAT_CON Pin=J12-6
+Added Member To Class: ClassName=PS1 Member=Component J12 43045-0600

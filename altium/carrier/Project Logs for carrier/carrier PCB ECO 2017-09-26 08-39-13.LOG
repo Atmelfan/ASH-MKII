@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=DP0_D0_J_P Pin=D3-4
+Removed Pin From Net: NetName=DP0_D0_J_P Pin=D3-4
+Removed Pin From Net: NetName=DP0_D0_J_N Pin=D3-5
+Removed Pin From Net: NetName=DP0_D0_J_N Pin=D3-5
+Added Pin To Net: NetName=DP0_D0_J_N Pin=D3-4
+Added Pin To Net: NetName=DP0_D0_J_N Pin=D3-4
+Added Pin To Net: NetName=DP0_D0_J_P Pin=D3-5
+Added Pin To Net: NetName=DP0_D0_J_P Pin=D3-5

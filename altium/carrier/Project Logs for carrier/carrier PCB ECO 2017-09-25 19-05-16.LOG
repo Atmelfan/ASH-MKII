@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=CSI2_D1_P Pin=J1-E20
+Removed Pin From Net: NetName=CSI2_D1_N Pin=J1-E21
+Removed Pin From Net: NetName=CSI3_D1_P Pin=J1-E26
+Removed Pin From Net: NetName=CSI3_D1_N Pin=J1-E27
+Added Pin To Net: NetName=CSI2_D1_N Pin=J1-E20
+Added Pin To Net: NetName=CSI2_D1_P Pin=J1-E21
+Added Pin To Net: NetName=CSI3_D1_N Pin=J1-E26
+Added Pin To Net: NetName=CSI3_D1_P Pin=J1-E27

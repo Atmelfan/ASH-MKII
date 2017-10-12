@@ -1,0 +1,18 @@
+Removed Member From Class: ClassName=50ohm Member=NetJ1_F18
+Removed Member From Class: ClassName=50ohm Member=NetJ1_F19
+Removed Member From Class: ClassName=50ohm Member=NetJ1_G19
+Removed Member From Class: ClassName=50ohm Member=NetJ1_H17
+Removed Member From Class: ClassName=50ohm Member=NetJ1_H18
+Removed Member From Class: ClassName=50ohm Member=SDCARD_CLK
+Change Net Name : Old Net Name=NetJ1_F18 New Net Name=SDC_D3
+Change Net Name : Old Net Name=NetJ1_F19 New Net Name=SDC_D2
+Change Net Name : Old Net Name=NetJ1_G19 New Net Name=SDC_CMD
+Change Net Name : Old Net Name=NetJ1_H17 New Net Name=SDC_D1
+Change Net Name : Old Net Name=NetJ1_H18 New Net Name=SDC_D0
+Change Net Name : Old Net Name=SDCARD_CLK New Net Name=SDC_CLK
+Added Member To Class: ClassName=50ohm Member=Wire SDC_CLK
+Added Member To Class: ClassName=50ohm Member=Wire SDC_CMD
+Added Member To Class: ClassName=50ohm Member=Wire SDC_D0
+Added Member To Class: ClassName=50ohm Member=Wire SDC_D1
+Added Member To Class: ClassName=50ohm Member=Wire SDC_D2
+Added Member To Class: ClassName=50ohm Member=Wire SDC_D3

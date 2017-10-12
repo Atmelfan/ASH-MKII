@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=NetJ1_D15 Pin=R108-1
+Removed Pin From Net: NetName=VDD_1V8_SYS Pin=R108-2
+Removed Pin From Net: NetName=NetJ1_E15 Pin=R109-1
+Removed Pin From Net: NetName=VDD_1V8_SYS Pin=R109-2
+Removed Member From Class: ClassName=SND Member=R108
+Removed Member From Class: ClassName=SND Member=R109

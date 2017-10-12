@@ -1,0 +1,4 @@
+Added Component: Designator=MH2(m3_pan_tight_round)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=MH2-1
+Added Member To Class: ClassName=carrier Member=Component MH2 M3

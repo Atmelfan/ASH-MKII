@@ -1,0 +1,28 @@
+Added Component: Designator=R22(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R128(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R129(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Component: Designator=R130(R1005[0402])
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Tolerance"; Value = "5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=I2C_CAM2.SDA Pin=R22-1
+Added Pin To Net: NetName=VDD_3V3_STBY Pin=R22-2
+Added Pin To Net: NetName=I2C_CAM2.SCL Pin=R128-1
+Added Pin To Net: NetName=VDD_3V3_STBY Pin=R128-2
+Added Pin To Net: NetName=I2C_CAM1.SDA Pin=R129-1
+Added Pin To Net: NetName=VDD_3V3_STBY Pin=R129-2
+Added Pin To Net: NetName=I2C_CAM1.SCL Pin=R130-1
+Added Pin To Net: NetName=VDD_3V3_STBY Pin=R130-2
+Added Member To Class: ClassName=CAM0 Member=Component R22 res
+Added Member To Class: ClassName=CAM0 Member=Component R128 res
+Added Member To Class: ClassName=CAM0 Member=Component R129 res
+Added Member To Class: ClassName=CAM0 Member=Component R130 res

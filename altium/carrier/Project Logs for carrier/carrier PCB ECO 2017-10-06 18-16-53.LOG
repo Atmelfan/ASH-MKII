@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=VDD_3V3_SYS Pin=J10-14
+Removed Pin From Net: NetName=VDD_3V3_SYS Pin=J10-16
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=J10-14
+Added Pin To Net: NetName=VDD_5V0_SYS Pin=J10-16
