@@ -1,6 +1,7 @@
 //
-// Created by atmelfan on 2017-10-12.
+// Created by atmelfan on 2017-09-20.
 //
+#include <assert.h>
 #include "linalg.h"
 
 /**MOVES CONTENT OF r INTO l**/
@@ -47,4 +48,20 @@ void mat_div(const matxx* l, const matxx* r, matxx* o){
     }
 }
 
-
+/**MATRIX MULTIPLICATION**/
+void mat_matmul(const matxx* l, const matxx* r, matxx* o){
+    const uint8_t HL = l->h;
+    const uint8_t WR = r->w;
+    const uint8_t WL = l->w;
+    assert(l->w == r->h && "Matrix dimensions must agree!");
+    assert(o->w == WR && o->h == HL && "Output matrix dimensions must agree!");
+    for(int x = 0; x < WR; ++x){
+        for(int y = 0; y < HL; ++y){
+            mat_f mxy = 0;
+            for(int j = 0; j < WL; ++j){
+                mxy += l->members[y*WL + j]*r->members[j*WR + x];
+            }
+            o->members[y*WL + x] = mxy;
+        }
+    }
+}

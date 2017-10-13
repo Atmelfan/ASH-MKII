@@ -1,0 +1,34 @@
+Commands:
+
+*IDN
+    -get -> "ASH Carrier Vx.y"
+SYStem
+    BATtery
+        VOLTage
+            -get -> <bat voltage>V
+        CURRent
+            -get -> <bat current>A
+    INput
+        VOLTage
+            -get -> <bat voltage>V
+        CURRent
+            -get -> <bat current>A
+
+EYEs
+    LOOKat
+        -set <yaw> <pitch> -> n/a
+    COLor
+        -set <R> <G> <B> -> n/a
+
+WALk
+    BEGin
+        -set <TRANslate|ROTate|CONTinius> -> n/a
+    END
+        -set -> <TRUE|FALSE>
+        -get -> <TRUE|FALSE>
+    ROTate
+        -set <yaw> <pitch> <roll> -> <yaw> <pitch> <roll>
+        -get -> <yaw> <pitch> <roll>
+    TRANSlate
+        -set <x> <y> <z> -> <x> <y> <z>
+        -get -> <x> <y> <z>

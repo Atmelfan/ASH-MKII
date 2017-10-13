@@ -1,0 +1,9 @@
+set(SOURCE_FILES
+        ${SOURCE_FILES}
+        ${CMAKE_CURRENT_SOURCE_DIR}/pca9685.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/pca9685.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/mpu6000.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/mpu6000.c
+        PARENT_SCOPE
+        )
+add_subdirectory(i2c)

@@ -1,5 +1,10 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+#include <stdio.h>
+#include "math/linalg.h"
+
+extern void initialise_monitor_handles(void);
+
 
 /* Set STM32 to 168 MHz. */
 static void clock_setup(void)
@@ -19,10 +24,29 @@ static void gpio_setup(void)
 
 int main(void)
 {
-    int i;
-
+    initialise_monitor_handles();
     clock_setup();
     gpio_setup();
+
+
+    int i;
+    printf("Hello world!");
+    scanf("%i", &i);
+
+    mat4 a = MAT4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+    mat4 b = MAT4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+    mat4 c = MAT4_ZERO();
+
+
+    mat_matmul((matxx*)&a, (matxx*)&b, (matxx*)&c);
+    printf("Hello world1!");
+
+    for(int j = 0; j < 4; ++j){
+        printf("RSULT: %f %f %f %f\n", c.members[j*4+0], c.members[j*4+1], c.members[j*4+2], c.members[j*4+3]);
+    }
+    scanf("%i", &i);
+
+
 
     /* Set two LEDs for wigwag effect when toggling. */
     gpio_set(GPIOA, GPIO8);

@@ -1,5 +1,5 @@
 //
-// Created by atmelfan on 2017-10-12.
+// Created by atmelfan on 2017-09-20.
 //
 
 #ifndef SRC_CARRIER_LINALG_H
@@ -27,7 +27,7 @@ typedef struct {
     mat_f members[9];
 } mat3;
 
-#define MAT3() {{3,3}, {}}
+#define MAT3(...) {{3,3}, {__VA_ARGS__}}
 #define MAT3_ZERO() {{3,3}, {0}}
 
 typedef struct {
@@ -35,7 +35,7 @@ typedef struct {
     mat_f members[16];
 } mat4;
 
-#define MAT4() {{4,4}, {}}
+#define MAT4(...) {{4,4}, {__VA_ARGS__}}
 #define MAT4_ZERO() {{4,4}, {0}}
 
 /**MOVES CONTENT OF r INTO l**/
@@ -57,6 +57,10 @@ LMAT_VARIANT(mat_mul, mat_mull)
 void mat_div(const matxx* l, const matxx* r, matxx* o);
 LMAT_VARIANT(mat_div, mat_divl)
 
+/**MATRIX MULTIPLICATION**/
+void mat_matmul(const matxx* l, const matxx* r, matxx* o);
+LMAT_VARIANT(mat_matmul, mat_matmull)/*Only works for cubic matrices!*/
+
 /************************************************FLOATING POINT VECTORS************************************************/
 typedef struct {
     uint8_t l;
@@ -68,7 +72,7 @@ typedef struct {
     mat_f members[3];
 } vec3;
 
-#define VEC3() {{3}, {}}
+#define VEC3(...) {{3}, {__VA_ARGS__}}
 #define VEC3_ZERO() {{3}, {0}}
 
 typedef struct {
@@ -76,7 +80,7 @@ typedef struct {
     mat_f members[4];
 } vec4;
 
-#define VEC4() {{4}, {}}
+#define VEC4(...) {{4}, {__VA_ARGS__}}
 #define VEC4_ZERO() {{4}, {0}}
 
 /**MOVES CONTENT OF r INTO l**/
@@ -101,7 +105,7 @@ LVEC_VARIANT(vec_div, vec_divl)
 
 /**CROSS PRODUCT**/
 void vec_cross(const vecx* l, const vecx* r, vecx* o);
-LVEC_VARIANT(vec_cross, vec_crossl)
+//LVEC_VARIANT(vec_cross, vec_crossl)
 
 /**SCALING**/
 void vec_scale(const vecx* l, mat_f s, vecx* o);
@@ -117,5 +121,9 @@ mat_f vec_dot(const vecx* l, const vecx* r);
 /**LENGTH**/
 mat_f vec_length(const vecx* l);
 mat_f vec_lengthsq(const vecx* l);
+
+/***********************************************MATRIX-VECTOR OPERATIONS***********************************************/
+
+void vecmat_mul(const matxx* r, const vecx* l, vecx* o);
 
 #endif //SRC_CARRIER_LINALG_H
