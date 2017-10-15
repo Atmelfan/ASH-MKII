@@ -1,0 +1,51 @@
+
+{
+	"sources" : 
+	[
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/CMakeFiles/libopencm3"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/CMakeFiles/libopencm3.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/CMakeFiles/libopencm3-complete.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-install.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-mkdir.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-download.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-update.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-patch.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-configure.rule"
+		},
+		
+		{
+			"file" : "/home/atmelfan/documents/ASH-MKII/src_carrier/cmake-build-debug/libopencm3-prefix/src/libopencm3-stamp/libopencm3-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : [ "libopencm3" ],
+		"name" : "libopencm3"
+	}
+}

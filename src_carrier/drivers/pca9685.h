@@ -7,7 +7,6 @@
 
 #include "i2c/i2c_generic.h"
 
-
 typedef uint16_t (*pca9685_callback)(uint8_t);
 
 #define PCA9685_MODE1_ALLCALL    0x01 //Enable call all address
@@ -34,21 +33,21 @@ typedef uint16_t (*pca9685_callback)(uint8_t);
  * @param mode1 Initial mode1 register
  * @param mode2 Initial mode2 register
  */
-void pca9685_init(i2c_addr addr, uint8_t mode1, uint8_t mode2);
+void pca9685_init(const i2c_device* dev, uint8_t mode1, uint8_t mode2);
 
 /**
  * Clock prescaler
  * @param addr Address of pca9685
  * @param prescale Sets prescale value, clk = (25MHz/(4096*update_rate)) - 1
  */
-void pca9685_prescale(i2c_addr addr, uint8_t prescale);
+void pca9685_prescale(const i2c_device* dev, uint8_t prescale);
 
 /**
  * Enter sleep mode
  * @param addr Address of pca9685
  * @param wake Will enter sleep if wake == 0, wake up otherwise
  */
-void pca9685_sleep(i2c_addr addr, uint8_t wake);
+void pca9685_sleep(const i2c_device* dev, uint8_t wake);
 
 /**
  * Update a LED pwm output
@@ -57,7 +56,7 @@ void pca9685_sleep(i2c_addr addr, uint8_t wake);
  * @param on On value (see datasheet)
  * @param off Off value (see datasheet)
  */
-void pca9685_update(i2c_addr addr, uint8_t led, uint16_t on, uint16_t off);
+void pca9685_update(const i2c_device* dev, uint8_t led, uint16_t on, uint16_t off);
 
 /**
  * Update multiple LED outputs with callback function
@@ -68,6 +67,6 @@ void pca9685_update(i2c_addr addr, uint8_t led, uint16_t on, uint16_t off);
  * @param led_on Callback, should return on value (see datasheet)
  * @param led_off Callback, should return off value (see datasheet)
  */
-void pca9685_update_cb(i2c_addr addr, uint8_t start, uint8_t end, pca9685_callback led_on, pca9685_callback led_off);
+void pca9685_update_cb(const i2c_device* dev, uint8_t start, uint8_t end, pca9685_callback led_on, pca9685_callback led_off);
 
 #endif //SRC_CARRIER_PCA9685_H
