@@ -42,7 +42,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CXXFLAGS} ${GCC_CCPFLAGS}")
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c leg.c leg.h)
+set(SOURCE_FILES main.c leg.c leg.h jetson.c jetson.h)
 include_directories(${LIBOCM3}/include)
 link_directories(${LIBOCM3}/lib )
 add_definitions( ${GCC_CPPFLAGS})
@@ -50,8 +50,10 @@ add_definitions( ${GCC_CPPFLAGS})
 
 add_subdirectory(math)
 add_subdirectory(drivers)
+add_subdirectory(fdt)
+include_directories(FDT_INCLUDES)
 
-add_executable(src_carrier ${SOURCE_FILES})
+add_executable(src_carrier ${SOURCE_FILES} ${FDT_SOURCE})
 set_target_properties(src_carrier PROPERTIES OUTPUT_NAME "carrier.elf")
 target_link_libraries(src_carrier ${GCC_LINKLIBRARIES} ${GCC_LINKERFLAGS} ${GCC_ARCHFLAGS})
 #set_target_properties(src_carrier PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})

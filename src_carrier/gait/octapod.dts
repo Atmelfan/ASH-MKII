@@ -1,0 +1,84 @@
+/dts-v1/;
+
+/ {
+    display-bootmsg = <0>,"GPA-Robotics",<1>,"gpa-robotics.com";
+
+    legs = {
+        /*Number of legs*/
+        #num-legs = < 8 >;
+
+        eye@0 {
+            index = < (-1) >;
+            name = "eye-left";
+        };
+
+        eye@1 {
+            index = < (-2) >;
+            name = "eye-right";
+            inverse-kinematics {
+                /*IK driver*/
+                compatible = "2dof";
+
+                /*Length in mm*10*/
+                length = < 250 1500 1700 >;
+
+            };
+        };
+
+        leg@0 {
+            /*Index of leg*/
+            index = 0;
+
+            /*Name of leg*/
+            name = "right-0";
+
+            /*Home coordinates (leg local-space)*/
+            home = < 100000 0 0 >;
+
+            /*Matrix used to transform to leg local-space, scaled by 1000*/
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                55000   150000  0       1000
+            >;
+
+            servos {
+
+            };
+
+            inverse-kinematics {
+                /*IK driver*/
+                compatible = "3dof";
+
+                /*Length in mm*10*/
+                length = < 250 1500 1700 >;
+
+            };
+
+
+        };
+        leg@1 {
+            home;
+        };
+        leg@2 {
+            home;
+        };
+        leg@3 {
+            home;
+        };
+        leg@4 {
+            home;
+        };
+        leg@5 {
+            home;
+        };
+        leg@6 {
+            home;
+        };
+        leg@7 {
+            home;
+        };
+
+    };
+};

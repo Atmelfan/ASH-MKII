@@ -1,5 +1,7 @@
+#include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/timer.h>
 #include <stdio.h>
 #include "math/linalg.h"
 
@@ -11,19 +13,29 @@ static void clock_setup(void)
 {
     rcc_clock_setup_hse_3v3(&rcc_hse_25mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
 
-    /* Enable GPIOA clock. */
+    //Enable peripheral clocks
     rcc_periph_clock_enable(RCC_GPIOA);
+    rcc_periph_clock_enable(RCC_TIM2);
 }
 
 static void gpio_setup(void)
 {
-    /* Set GPIO8 (in GPIO port A) to 'output push-pull'. */
-    gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT,
-                    GPIO_PUPD_NONE, GPIO8);
+    //Configure gpio
+    gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8);//PA8
+
+}
+
+static void timer_setup(){
+
+    /** TIMER 2 **/
+    nvic_enable_irq(NVIC_TIM2_IRQ);//Enable interrupt
+    rcc_periph_reset_pulse(RST_TIM2);//Reset timer
+
 }
 
 int main(void)
 {
+
     initialise_monitor_handles();
     clock_setup();
     gpio_setup();

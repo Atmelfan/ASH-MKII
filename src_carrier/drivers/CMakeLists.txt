@@ -7,3 +7,4 @@ set(SOURCE_FILES
         PARENT_SCOPE
         )
 add_subdirectory(i2c)
+add_subdirectory(spi)

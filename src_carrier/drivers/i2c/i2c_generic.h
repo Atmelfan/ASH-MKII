@@ -8,8 +8,8 @@
  */
 
 
-#ifndef SRC_CARRIER_I2C_UTILS_H
-#define SRC_CARRIER_I2C_UTILS_H
+#ifndef SRC_I2C_UTILS_H
+#define SRC_I2C_UTILS_H
 
 #include <stdint.h>
 
@@ -24,6 +24,7 @@ typedef enum {
      * Device responded with ACk/No error
      */
             I2C_ACK = 0,
+            I2C_NOERR = 0,
 
     /**
      * Device responded with NACK
@@ -128,4 +129,4 @@ void i2c_rburst(i2c_bus* i2c, i2c_addr addr, uint8_t len, uint8_t* data);
  */
 void i2c_rwburst(i2c_bus* i2c, i2c_addr addr, uint8_t wlen, uint8_t* wdata, uint8_t rlen, uint8_t* rdata);
 
-#endif //SRC_CARRIER_I2C_UTILS_H
+#endif //SRC_I2C_UTILS_H
