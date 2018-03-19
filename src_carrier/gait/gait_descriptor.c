@@ -10,9 +10,6 @@ typedef struct {
     char* comment;
 } gait_step;
 
-const gait_step steps[] = {
-    #include "test.gdf"
-};
 
 
 

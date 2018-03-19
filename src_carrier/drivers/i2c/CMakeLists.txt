@@ -1,5 +1,4 @@
-set(SOURCE_FILES
-        ${SOURCE_FILES}
+set(I2C_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/i2c_generic.h
         ${CMAKE_CURRENT_SOURCE_DIR}/i2c_stm32f4.h
         ${CMAKE_CURRENT_SOURCE_DIR}/i2c_stm32f4.c

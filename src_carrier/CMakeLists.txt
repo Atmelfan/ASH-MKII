@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.7)
 project(src_carrier)
+enable_language(C ASM)
 
 set(LIBOCM3 ../libopencm3)
 
 set(CMAKE_C_COMPILER "/usr/bin/arm-none-eabi-gcc")
+set(CMAKE_CXX_COMPILER "/usr/bin/arm-none-eabi-g++")
+
+set(CMAKE_ASM_COMPILER "/usr/bin/arm-none-eabi-gcc")
+message(INFO " ${CMAKE_ASM_COMPILER}")
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/STM32F415RGT6.ld)
 set(DEVICE STM32F4)
 #set(CMAKE_VERBOSE_MAKEFILE on)
@@ -38,22 +43,28 @@ set(GCC_CPPFLAGS "${GCC_ARCHFLAGS} -MD -Wall -Wundef -I${LIBOCM3}/include -D${DE
 #message("${GCC_ARCHFLAGS} -MD -Wall -Wundef -I${LIBOCM3}/include")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_CFLAGS} ${GCC_CCPFLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CXXFLAGS} ${GCC_CCPFLAGS}")
-
+SET(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} ${GCC_CXXFLAGS} ${GCC_CCPFLAGS}" )
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c leg.c leg.h jetson.c jetson.h)
+set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h)
 include_directories(${LIBOCM3}/include)
 link_directories(${LIBOCM3}/lib )
 add_definitions( ${GCC_CPPFLAGS})
 
 
+
 add_subdirectory(math)
 add_subdirectory(drivers)
+
+###
 add_subdirectory(fdt)
 include_directories(FDT_INCLUDES)
+set_source_files_properties(${FDT_BLOB_SOURCE} PROPERTIES GENERATED TRUE)
 
-add_executable(src_carrier ${SOURCE_FILES} ${FDT_SOURCE})
+
+add_executable(src_carrier ${SOURCE_FILES} ${DRIVERS_SRC} ${FDT_SOURCE} ${FDT_BLOB_SOURCE})
+add_dependencies(src_carrier fdt_blobs)
 set_target_properties(src_carrier PROPERTIES OUTPUT_NAME "carrier.elf")
 target_link_libraries(src_carrier ${GCC_LINKLIBRARIES} ${GCC_LINKERFLAGS} ${GCC_ARCHFLAGS})
 #set_target_properties(src_carrier PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})

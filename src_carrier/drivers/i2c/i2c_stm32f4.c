@@ -4,8 +4,8 @@
 
 #include "i2c_generic.h"
 #include "i2c_stm32f4.h"
-#include <libopencm3/stm32/f4/i2c.h>
-#include <libopencm3/stm32/f4/rcc.h>
+#include <libopencm3/stm32/i2c.h>
+#include <libopencm3/stm32/rcc.h>
 
 struct i2c_bus_struct {
     uint32_t i2c;//Libopencm3 I2C handles can be cast to i2c_bus
@@ -23,19 +23,15 @@ void i2c_init_all(){
  * Initializes specific i2c master unit
  * @param i2c i2c master handle, device specific
  */
-void i2c_init(i2c_bus i2c){
-    rcc_set_i2c_clock_hsi(i2c.i2c);
-    i2c_reset(i2c.i2c);
-    i2c_peripheral_disable(i2c.i2c);
+void i2c_init(i2c_bus *i2c){
+    rcc_
+    i2c_reset(i2c->i2c);
+    i2c_peripheral_disable(i2c->i2c);
     //configure ANFOFF DNF[3:0] in CR1
-    i2c_enable_analog_filter(i2c.i2c);
-    i2c_set_digital_filter(i2c.i2c, I2C_CR1_DNF_DISABLED);
-    i2c_set_speed(i2c.i2c, I2C_DEFAULT_SPEED, I2C_DEFAULT_CLK_FREQ_MHZ);//100kHz @ clk=8MHz
+    i2c_set_speed(i2c->i2c, I2C_DEFAULT_SPEED, I2C_DEFAULT_CLK_FREQ_MHZ);//100kHz @ clk=8MHz
     //configure No-Stretch CR1 (only relevant in slave mode)
-    i2c_enable_stretching(i2c.i2c);//Allows device to stretch SCL
-    //addressing mode
-    i2c_set_7bit_addr_mode(i2c.i2c);//Will send 7bit addr, not 10bit
-    i2c_peripheral_enable(i2c.i2c);
+    i2c_disable_dual_addressing_mode(i2c->i2c);
+    i2c_peripheral_enable(i2c->i2c);
 }
 
 /**

@@ -1,5 +1,4 @@
-set(SOURCE_FILES 
-        ${SOURCE_FILES}
+set(SPI_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/spi_generic.h
-        PARENT_SCOPE
         )
+set(SPI_SRC ${SPI_SRC} PARENT_SCOPE)

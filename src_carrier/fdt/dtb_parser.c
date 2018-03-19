@@ -239,4 +239,51 @@ uint32_t fdt_token_get_type(fdt_token* prop){
     return fdt_read_u32(&prop->token);
 }
 
+char* fdt_trace(fdt_header_t* fdt, fdt_token* t, char* buf){
+    fdt_token* n = fdt_get_tokens(fdt);
+    fdt_token* trace_stack[16];
+    int i = 0;
+
+    while(n != t){
+        switch(fdt_token_get_type(t)){
+            case FDT_BEGIN_NODE:
+                trace_stack[i] = n;
+                i++;
+                break;
+            case FDT_END_NODE:
+                i--;
+                break;
+            case FDT_END:
+                return NULL;
+
+            default:
+                break;
+        }
+
+        if(i >= 16)
+            return NULL;
+
+        t = fdt_token_next(fdt, t);
+    }
+    for(int j = 0; j < i; ++j){
+        *buf = '/';
+        buf++;
+        char* nodename = trace_stack[j]->name;
+        while(*nodename){
+            *buf = *nodename;
+            buf++;
+            nodename++;
+        }
+    }
+    *buf = ':';
+    buf++;
+    char* nodename = fdt_prop_name(fdt, n);
+    while(*nodename){
+        *buf = *nodename;
+        buf++;
+        nodename++;
+    }
+    return buf;
+}
+
 

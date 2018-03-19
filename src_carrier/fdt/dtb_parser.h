@@ -180,5 +180,6 @@ uint32_t fdt_node_get_u32(fdt_header_t* fdt, fdt_token* t, char* name, uint32_t 
  */
 char* fdt_node_get_str(fdt_header_t* fdt, fdt_token* t, char* name, char* def);
 
+char* fdt_trace(fdt_header_t* fdt, fdt_token* t, char* buf);
 
 #endif //SRC_CARRIER_DTB_PARSER_H

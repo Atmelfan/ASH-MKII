@@ -4,9 +4,21 @@
 #include <libopencm3/stm32/timer.h>
 #include <stdio.h>
 #include "math/linalg.h"
+#include "fdt/dtb_parser.h"
+#include "jetson.h"
 
 extern void initialise_monitor_handles(void);
+extern fdt_header_t gait_normal;
 
+bool mat4_from_node(fdt_token* t, mat4* m){
+    if(fdt_token_get_type(t) != FDT_PROP && fdt_read_u32(&t->len) >= 16*4){
+        for(int i = 0; i < 16; ++i){
+            m->members[i] = fdt_read_u32(&t->cells[i])/1000.0f;
+        }
+        return true;
+    }
+    return false;
+}
 
 /* Set STM32 to 168 MHz. */
 static void clock_setup(void)
@@ -33,12 +45,19 @@ static void timer_setup(){
 
 }
 
+void mk_indent(int lvl){
+    for(int i = 0; i < lvl; ++i){
+        printf("\t");
+    }
+}
+
 int main(void)
 {
 
     initialise_monitor_handles();
     clock_setup();
     gpio_setup();
+    jetson_batocp(false);
 
 
     int i;
@@ -58,19 +77,83 @@ int main(void)
     }
     scanf("%i", &i);
 
+    fdt_header_t* dtb = &gait_normal;
 
+    fdt_token* t = fdt_get_tokens(dtb);
+    int indent = 0;
+    while(t){
+        //printf("FDT TOKEN: %d, ", (int)fdt_token_get_type(t));
 
-    /* Set two LEDs for wigwag effect when toggling. */
-    gpio_set(GPIOA, GPIO8);
-
-    /* Blink the LEDs (PA8) on the board. */
-    while (1) {
-        /* Toggle LEDs. */
-        gpio_toggle(GPIOA, GPIO8);
-        for (i = 0; i < 6000000; i++) { /* Wait a bit. */
-            __asm__("nop");
+        switch(fdt_token_get_type(t)){
+            case FDT_BEGIN_NODE:
+                mk_indent(indent);
+                if(*t->name)
+                    printf("%s {\n", t->name);
+                else
+                    printf("/ {\n");
+                indent++;
+                break;
+            case FDT_END_NODE:
+                indent--;
+                mk_indent(indent);
+                printf("}\n");
+                break;
+            case FDT_PROP:
+                mk_indent(indent);
+                printf("%s : %d\n", fdt_prop_name(dtb, t), (int)fdt_prop_len(dtb, t));
+                break;
+            case FDT_END:
+                printf("EOT\n");
+                break;
+            default:
+                mk_indent(indent);
+                printf("\n");
+                break;
         }
+
+        t = fdt_token_next(dtb, t);
     }
+
+    char buffer[64];
+
+    printf("\n**Searching by phandle = '4'... ");
+    fdt_token* p = fdt_find_phandle(dtb, 3);
+    if(p)
+        printf("[OK, found %s at '%s'!]\n", p->name, fdt_trace(dtb, p, buffer));
+    else
+        printf("[FAIL]\n");
+
+    printf("\n**Searching by name = 'gait_start'... ");
+    fdt_token* g = fdt_find_subnode(dtb, fdt_get_tokens(dtb), "gait_start");
+    if(g)
+        printf("[OK, found %s at '%s'!]\n", g->name, fdt_trace(dtb, g, buffer));
+    else
+        printf("[FAIL]\n");
+
+    printf("\n**Running... \n");
+    int count = 0;
+    int num_commands = 0;
+    while(g && count < 10000){
+        //printf("> %s\n", g->name);
+        for(fdt_token* prop = fdt_token_next(dtb, g); prop && fdt_token_get_type(prop) == FDT_PROP; prop = fdt_token_next(dtb, prop)){
+            char* prop_name = fdt_prop_name(dtb, prop);
+            num_commands++;
+        }
+        /*Next!*/
+        uint32_t next = fdt_node_get_u32(dtb, g, "next", 0);
+        if(next){
+            g = fdt_find_phandle(dtb, next);
+        }else{
+            printf("Failed to find next\n");
+            g = NULL;
+        }
+        //printf("next = %d\n", next);
+        count++;
+    }
+
+    printf("10000 iterations took -s, found %d commands\n", num_commands);
+
+    scanf("%i", &i);
 
     return 0;
 }

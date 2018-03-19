@@ -2,6 +2,7 @@
 // Created by atmelfan on 2018-03-10.
 //
 
+#include <libopencm3/stm32/gpio.h>
 #include "jetson.h"
 
 void jetson_toggle_pwr(void){
@@ -21,5 +22,8 @@ void jetson_batlow(bool set){
 }
 
 void jetson_batocp(bool set){
-    (void)set;
+    if(set)
+        gpio_set(GPIOA, GPIO8);
+    else
+        gpio_clear(GPIOA, GPIO8);
 }
