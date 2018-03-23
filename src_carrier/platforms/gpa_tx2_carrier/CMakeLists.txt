@@ -1,0 +1,5 @@
+set(BOARD_SRC
+        ${CMAKE_CURRENT_SOURCE_DIR}/i2c.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/serial.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/spi.c
+        PARENT_SCOPE)

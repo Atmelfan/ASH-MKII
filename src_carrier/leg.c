@@ -2,6 +2,7 @@
 // Created by atmelfan on 2017-09-25.
 //
 
+#include <stdio.h>
 #include "leg.h"
 #include "math/linalg.h"
 #include "fdt/dtb_parser.h"
@@ -40,23 +41,26 @@ bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node){
         return false;
 
     /*Read transform matrix*/
-    fdt_token* matrix = fdt_node_get_prop(fdt, node, "matrix", false);
+    fdt_token* matrix = fdt_node_get_prop(fdt, node, "transform", false);
     l->transform = MAT4_ZERO();
-    if(matrix == NULL)
+    if(matrix == NULL){
         return false;
+    }
     for(int i = 0; i < 16; ++i){
-        l->transform.members[i] = matrix->cells[i]/1000.0f;
+        l->transform.members[i] = ((int32_t)matrix->cells[i])/1000.0f;
     }
 
     /*Read home vector*/
     fdt_token* home = fdt_node_get_prop(fdt, node, "home", false);
-    if(home == NULL)
+    if(home == NULL){
         return false;
-    l->home_position = VEC3_ZERO();
+    }
+    l->home_position = VEC4_ZERO();
     for(int i = 0; i < 3; ++i){
-        l->home_position.members[i] = matrix->cells[i]/1000.0f;
+        l->home_position.members[i] = ((int32_t)home->cells[i])/1000.0f;
     }
     l->home_position.members[3] = 1.0f;
 
-    return 0;
+    l->initialized = true;
+    return true;
 }

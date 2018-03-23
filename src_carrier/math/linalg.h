@@ -36,7 +36,7 @@ typedef struct {
 } mat4;
 
 #define MAT4(...) {{4,4}, {__VA_ARGS__}}
-#define MAT4_ZERO() {{4,4}, {0}}
+#define MAT4_ZERO() (mat4){{4,4}, {0}}
 
 /**MOVES CONTENT OF r INTO l**/
 void mat_mov(matxx* l, const matxx* r);
@@ -73,7 +73,7 @@ typedef struct {
 } vec3;
 
 #define VEC3(...) {{3}, {__VA_ARGS__}}
-#define VEC3_ZERO() {{3}, {0}}
+#define VEC3_ZERO() (vec3){{3}, {0}}
 
 typedef struct {
     vecx vecx;
@@ -81,7 +81,7 @@ typedef struct {
 } vec4;
 
 #define VEC4(...) {{4}, {__VA_ARGS__}}
-#define VEC4_ZERO() {{4}, {0}}
+#define VEC4_ZERO() (vec4){{4}, {0}}
 
 /**MOVES CONTENT OF r INTO l**/
 void vec_mov(vecx* l, const vecx* r);

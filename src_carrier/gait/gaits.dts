@@ -1,0 +1,22 @@
+/dts-v1/;
+
+#include "gait_dts_const.h"
+#include "gait_octa_polar.dtsi"
+
+
+/ {
+    #num-legs = < 8 >;
+    #address-cells = <1>;
+    #size-cells = < 0 >;
+
+    /*Executed after startup*/
+    startup {
+
+    };
+
+    /*Executed before shutdown*/
+    shutdown {
+
+    };
+
+};

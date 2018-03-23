@@ -24,7 +24,6 @@ void i2c_init_all(){
  * @param i2c i2c master handle, device specific
  */
 void i2c_init(i2c_bus *i2c){
-    rcc_
     i2c_reset(i2c->i2c);
     i2c_peripheral_disable(i2c->i2c);
     //configure ANFOFF DNF[3:0] in CR1

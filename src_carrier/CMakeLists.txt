@@ -6,6 +6,8 @@ set(LIBOCM3 ../libopencm3)
 
 set(CMAKE_C_COMPILER "/usr/bin/arm-none-eabi-gcc")
 set(CMAKE_CXX_COMPILER "/usr/bin/arm-none-eabi-g++")
+#set(CMAKE_LINKER "/usr/bin/arm-none-eabi-gcc")
+set(CMAKE_OBJCOPY "/usr/bin/arm-none-eabi-objcopy")
 
 set(CMAKE_ASM_COMPILER "/usr/bin/arm-none-eabi-gcc")
 message(INFO " ${CMAKE_ASM_COMPILER}")
@@ -47,7 +49,7 @@ SET(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} ${GCC_CXXFLAGS} ${GCC_CCPFLAGS}" )
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h)
+set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h platforms/dev.c platforms/dev.h)
 include_directories(${LIBOCM3}/include)
 link_directories(${LIBOCM3}/lib )
 add_definitions( ${GCC_CPPFLAGS})
@@ -56,16 +58,28 @@ add_definitions( ${GCC_CPPFLAGS})
 
 add_subdirectory(math)
 add_subdirectory(drivers)
-
-###
+add_subdirectory(platforms)
 add_subdirectory(fdt)
+add_subdirectory(gait)
 include_directories(FDT_INCLUDES)
-set_source_files_properties(${FDT_BLOB_SOURCE} PROPERTIES GENERATED TRUE)
+include(fdt/fdt.cmake)
+###
 
 
-add_executable(src_carrier ${SOURCE_FILES} ${DRIVERS_SRC} ${FDT_SOURCE} ${FDT_BLOB_SOURCE})
-add_dependencies(src_carrier fdt_blobs)
+set(DTS_SOURCES fdt/gait_normal.dts fdt/gpa_system.dts octapod.dts)
+
+add_executable(src_carrier ${SOURCE_FILES} ${DRIVERS_SRC})
 set_target_properties(src_carrier PROPERTIES OUTPUT_NAME "carrier.elf")
 target_link_libraries(src_carrier ${GCC_LINKLIBRARIES} ${GCC_LINKERFLAGS} ${GCC_ARCHFLAGS})
-#set_target_properties(src_carrier PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
+
+##Add FDT...
+target_link_libraries(src_carrier fdt)
+
+##Add gait
+target_link_libraries(src_carrier gait)
+
+##Add FDT blobs...
+add_fdt_target(fdt_blobs ${DTS_SOURCES})
+target_link_libraries(src_carrier fdt_blobs)
+
 

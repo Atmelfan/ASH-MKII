@@ -59,8 +59,8 @@ uint32_t fdt_prop_len(fdt_header_t* fdt, fdt_token* prop){
 fdt_token* fdt_token_next(fdt_header_t* fdt, fdt_token* token){
     /*Return root if token is null*/
     if(token == NULL){
-        token = fdt_get_tokens(fdt);
-        return token;
+        //token = fdt_get_tokens(fdt);
+        return NULL;
     }
 
     /*Skip ahead by length of current token*/
@@ -97,13 +97,13 @@ fdt_token* fdt_node_end(fdt_header_t* fdt, fdt_token* prop){
         switch(fdt_read_u32(&prop->token)){
             case FDT_BEGIN_NODE:
                 level++;
+                //printf("%s,%d\n", prop->name, level);
                 break;
 
             case FDT_END_NODE:
-                if(level == 1)
+                if(level == 0)
                     return prop;
-                else
-                    level--;
+                level--;
                 break;
 
             case FDT_END:
@@ -245,7 +245,7 @@ char* fdt_trace(fdt_header_t* fdt, fdt_token* t, char* buf){
     int i = 0;
 
     while(n != t){
-        switch(fdt_token_get_type(t)){
+        switch(fdt_token_get_type(n)){
             case FDT_BEGIN_NODE:
                 trace_stack[i] = n;
                 i++;
@@ -254,6 +254,7 @@ char* fdt_trace(fdt_header_t* fdt, fdt_token* t, char* buf){
                 i--;
                 break;
             case FDT_END:
+                //printf("END\n");
                 return NULL;
 
             default:
@@ -263,27 +264,31 @@ char* fdt_trace(fdt_header_t* fdt, fdt_token* t, char* buf){
         if(i >= 16)
             return NULL;
 
-        t = fdt_token_next(fdt, t);
+        n = fdt_token_next(fdt, n);
+        //printf("t=%p,n=%p,i=%d\n", t,n,i);
     }
+    char* s = buf;
     for(int j = 0; j < i; ++j){
-        *buf = '/';
-        buf++;
+        //printf("//%s", trace_stack[j]->name);
         char* nodename = trace_stack[j]->name;
         while(*nodename){
             *buf = *nodename;
             buf++;
             nodename++;
         }
+        *buf = '/';
+        buf++;
     }
-    *buf = ':';
-    buf++;
-    char* nodename = fdt_prop_name(fdt, n);
+
+
+    char* nodename = fdt_token_get_type(n) == FDT_PROP ? fdt_prop_name(fdt, n) : n->name;
     while(*nodename){
         *buf = *nodename;
         buf++;
         nodename++;
     }
-    return buf;
+    *buf = '\0';
+    return s;
 }
 
 

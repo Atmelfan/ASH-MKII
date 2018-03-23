@@ -3,17 +3,24 @@
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/timer.h>
 #include <stdio.h>
+#include <assert.h>
+#include <libopencm3/stm32/i2c.h>
 #include "math/linalg.h"
 #include "fdt/dtb_parser.h"
 #include "jetson.h"
+#include "leg.h"
+
+#define MAX_NUM_APPENDAGES 64
 
 extern void initialise_monitor_handles(void);
-extern fdt_header_t gait_normal;
+extern fdt_header_t octapod;
 
 bool mat4_from_node(fdt_token* t, mat4* m){
-    if(fdt_token_get_type(t) != FDT_PROP && fdt_read_u32(&t->len) >= 16*4){
+    m->mat.w = 4;
+    m->mat.h = 4;
+    if(fdt_token_get_type(t) == FDT_PROP && fdt_read_u32(&t->len) >= 16*4){
         for(int i = 0; i < 16; ++i){
-            m->members[i] = fdt_read_u32(&t->cells[i])/1000.0f;
+            m->members[i] = ((int32_t)fdt_read_u32(&t->cells[i]))/1000.0f;
         }
         return true;
     }
@@ -27,6 +34,8 @@ static void clock_setup(void)
 
     //Enable peripheral clocks
     rcc_periph_clock_enable(RCC_GPIOA);
+    rcc_periph_clock_enable(RCC_GPIOB);
+
     rcc_periph_clock_enable(RCC_TIM2);
 }
 
@@ -35,6 +44,16 @@ static void gpio_setup(void)
     //Configure gpio
     gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8);//PA8
 
+    //I2C2
+    //PB10, AF4
+    gpio_mode_setup(GPIOB, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO10);
+    gpio_set_output_options(GPIOB, GPIO_OTYPE_OD, GPIO_OSPEED_50MHZ, GPIO10);
+    gpio_set_af(GPIOB, GPIO_AF4, GPIO10);
+
+    //PB11, AF4
+    gpio_mode_setup(GPIOB, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO11);
+    gpio_set_output_options(GPIOB, GPIO_OTYPE_OD, GPIO_OSPEED_50MHZ, GPIO11);
+    gpio_set_af(GPIOB, GPIO_AF4, GPIO11);
 }
 
 static void timer_setup(){
@@ -51,6 +70,8 @@ void mk_indent(int lvl){
     }
 }
 
+leg_t* ik_appendages = NULL;
+
 int main(void)
 {
 
@@ -61,99 +82,143 @@ int main(void)
 
 
     int i;
-    printf("Hello world!");
-    scanf("%i", &i);
+    printf("Hello world!\n");
 
-    mat4 a = MAT4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
-    mat4 b = MAT4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
-    mat4 c = MAT4_ZERO();
+    fdt_header_t* fdt = &octapod;
 
-
-    mat_matmul((matxx*)&a, (matxx*)&b, (matxx*)&c);
-    printf("Hello world1!");
-
-    for(int j = 0; j < 4; ++j){
-        printf("RSULT: %f %f %f %f\n", c.members[j*4+0], c.members[j*4+1], c.members[j*4+2], c.members[j*4+3]);
-    }
-    scanf("%i", &i);
-
-    fdt_header_t* dtb = &gait_normal;
-
-    fdt_token* t = fdt_get_tokens(dtb);
-    int indent = 0;
-    while(t){
-        //printf("FDT TOKEN: %d, ", (int)fdt_token_get_type(t));
-
-        switch(fdt_token_get_type(t)){
-            case FDT_BEGIN_NODE:
-                mk_indent(indent);
-                if(*t->name)
-                    printf("%s {\n", t->name);
-                else
-                    printf("/ {\n");
-                indent++;
-                break;
-            case FDT_END_NODE:
-                indent--;
-                mk_indent(indent);
-                printf("}\n");
-                break;
-            case FDT_PROP:
-                mk_indent(indent);
-                printf("%s : %d\n", fdt_prop_name(dtb, t), (int)fdt_prop_len(dtb, t));
-                break;
-            case FDT_END:
-                printf("EOT\n");
-                break;
-            default:
-                mk_indent(indent);
-                printf("\n");
-                break;
-        }
-
-        t = fdt_token_next(dtb, t);
-    }
+    fdt_token* root = fdt_get_tokens(fdt);
+    fdt_token* bootmsg = fdt_node_get_prop(fdt, root, "bootmsg", false);
+    printf("%s\n", bootmsg->prop_str);
 
     char buffer[64];
-
-    printf("\n**Searching by phandle = '4'... ");
-    fdt_token* p = fdt_find_phandle(dtb, 3);
-    if(p)
-        printf("[OK, found %s at '%s'!]\n", p->name, fdt_trace(dtb, p, buffer));
-    else
-        printf("[FAIL]\n");
-
-    printf("\n**Searching by name = 'gait_start'... ");
-    fdt_token* g = fdt_find_subnode(dtb, fdt_get_tokens(dtb), "gait_start");
-    if(g)
-        printf("[OK, found %s at '%s'!]\n", g->name, fdt_trace(dtb, g, buffer));
-    else
-        printf("[FAIL]\n");
-
-    printf("\n**Running... \n");
-    int count = 0;
-    int num_commands = 0;
-    while(g && count < 10000){
-        //printf("> %s\n", g->name);
-        for(fdt_token* prop = fdt_token_next(dtb, g); prop && fdt_token_get_type(prop) == FDT_PROP; prop = fdt_token_next(dtb, prop)){
-            char* prop_name = fdt_prop_name(dtb, prop);
-            num_commands++;
+    fdt_token* legs = fdt_find_subnode(fdt, root, "legs");
+    uint32_t num_legs = fdt_node_get_u32(fdt, legs, "#num-legs", 0);
+    if(!num_legs || (num_legs >= MAX_NUM_APPENDAGES)){
+        printf("[ERROR] Property '#num-legs' missing or out of range at %s\n", fdt_trace(fdt, legs, buffer));
+        //assert(false && "Property '#num-legs' missing or 0");
+    }else{
+        /* Allocate appendages*/
+        ik_appendages = malloc(sizeof(leg_t)*num_legs);
+        if(!ik_appendages)
+            assert(false && "Out of memory");
+        for(int j = 0; j < num_legs; ++j){
+            ik_appendages[j].initialized = false;
         }
-        /*Next!*/
-        uint32_t next = fdt_node_get_u32(dtb, g, "next", 0);
-        if(next){
-            g = fdt_find_phandle(dtb, next);
-        }else{
-            printf("Failed to find next\n");
-            g = NULL;
+
+        /*Read appendages from FDT*/
+        for(fdt_token* l = fdt_token_next(fdt, legs); fdt_token_get_type(l) != FDT_END_NODE ; l = fdt_token_next(fdt, l)){
+            /*Check for nodes*/
+            if(fdt_token_get_type(l) == FDT_BEGIN_NODE){
+                //printf("-> %s:\n", fdt_trace(fdt, l, buffer));
+
+                /*Get index of appendage*/
+                fdt_token* reg = fdt_node_get_prop(fdt, l, "reg", false);
+                if(reg && fdt_prop_len(fdt, reg)){
+                    uint32_t r = fdt_read_u32(&reg->cells[0]);
+
+                    if(r < num_legs){
+                        bool success = leg_from_node(&ik_appendages[r], fdt, l);
+                        if(!success){
+                            printf("[ERROR] Failed to init leg from %s, missing 'home' or 'transform'\n", fdt_trace(fdt, l, buffer));
+                        }
+                    }else{
+                        printf("[ERROR] Property 'reg' must be less than #num-legs at %s\n", fdt_trace(fdt, l, buffer));
+                    }
+                }else{
+                    printf("[ERROR] Property 'reg' missing or empty in %s\n", fdt_trace(fdt, l, buffer));
+                }
+
+
+                /*Handle IK*/
+                fdt_token* ik = fdt_find_subnode(fdt, l, "inverse-kinematics");
+                if(ik){
+
+                }else{
+                    printf("[ERROR] Node 'inverse-kinematics' missing in %s\n", fdt_trace(fdt, l, buffer));
+                }
+
+                /*Exit node*/
+                l = fdt_node_end(fdt, l);
+            }
         }
-        //printf("next = %d\n", next);
-        count++;
     }
 
-    printf("10000 iterations took -s, found %d commands\n", num_commands);
+    //TODO: (in order) servos, IK, gait, commands, light
 
-    scanf("%i", &i);
+    /*Init I2C2*/
+    rcc_periph_clock_enable(RCC_I2C2);
+
+    #define I2C_BAUD 100000
+    uint32_t i2c_freq_mhz = rcc_apb1_frequency / 1000000;
+    uint32_t ccr = rcc_apb1_frequency / I2C_BAUD / 2 + 1;
+    if (ccr < 4)
+        ccr = 4;
+
+    i2c_peripheral_disable(I2C2);
+    i2c_set_clock_frequency(I2C2, i2c_freq_mhz);
+    i2c_set_trise(I2C2, i2c_freq_mhz + 1);
+    i2c_set_ccr(I2C2, ccr);
+    I2C_CR1(I2C2) = 0;
+    I2C_OAR1(I2C2) = 32;
+    i2c_peripheral_enable(I2C2);
+    uint8_t addr = 0b10001110;
+
+    void i2c_tx(uint8_t addr, uint8_t* buf, uint8_t n){
+        // Send start condition.
+        I2C_CR1(I2C2) |= I2C_CR1_START;
+        while(!(I2C_SR1(I2C2) & I2C_SR1_SB)){
+
+        }
+
+
+        // Send slave address.
+        I2C_DR(I2C2) = addr & (uint8_t)~0x01;
+        while(!(I2C_SR1(I2C2) & I2C_SR1_ADDR)){
+            if(I2C_SR1(I2C2) & I2C_SR1_AF){
+                I2C_CR1(I2C2) |= I2C_CR1_STOP;
+                I2C_SR1(I2C2) = ~I2C_SR1_AF;
+                break;
+            }
+        }
+
+        uint16_t unused;
+        unused = I2C_SR1(I2C2);
+        unused = I2C_SR2(I2C2);
+        unused = unused;
+
+        for (size_t t = 0; t < n; t++) {
+            I2C_DR(I2C2) = buf[t];
+            while (!(I2C_SR1(I2C2) & I2C_SR1_BTF)) {
+            }
+        }
+
+        I2C_CR1(I2C2) |= I2C_CR1_STOP;
+        fdt_node_get_u32(fdt, legs, "#num-legs", 0);
+    }
+
+
+    /*Test I2C2*/
+    uint8_t reset[] = {0x00, 0x20};//Reset
+    i2c_tx(addr, reset, 2);
+    uint8_t sleep[] = {0x00, 0x30};
+    i2c_tx(addr, sleep, 2);
+    uint8_t prescale[] = {0xfe, 122};
+    i2c_tx(addr, prescale, 2);
+
+    i2c_tx(addr, reset, 2);
+    uint8_t restart[] = {0x00, 0xA0};
+    uint32_t numl = fdt_node_get_u32(fdt, legs, "#num-legs", 0);
+    i2c_tx(addr, restart, 2);
+
+    for(int j = 0; j < 16; ++j){
+        uint8_t pwm[] = {0x06 + 4*j, 0x00, 0x00, ((319 >> 0) & 0xff), ((319 >> 8) & 0xff)};//Reset
+        i2c_tx(addr, pwm, 5);
+    }
+
+    while(true){
+
+
+    }
 
     return 0;
 }

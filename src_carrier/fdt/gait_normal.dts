@@ -1,16 +1,14 @@
 /dts-v1/;
 
-/include/ "gait_common.dtsi"
+#include "gait_common.dtsi"
 
 
 / {
-    #vector;
-    #num-legs = < 8 >;
+    #num-legs = < 10 >;
     start = < &start >;
 
     start: gait_start {
         is-start;
-        update-params;
         translate = < 0 5 0 >;
         rotate = < 0 0 0 >;
         next = < &step0 >;
@@ -18,13 +16,14 @@
         /*Home all legs*/
         all-home;
 
+        center = < 0 0 0 >;
     };
 
     step0: gait_step@0 {
         next = < &step1 >;
 
         leg@0 {
-            target-polar = < 1 >;
+            target-polar = < 1 >; //Rotation in degrees
             raise; /*raise leg to target*/
         };
         leg@1 {

@@ -25,6 +25,7 @@ typedef struct {
     uint8_t i2c_address;//Address of leg i/o expander
 
     uint8_t status;
+    bool initialized;
 } leg_t;
 
 bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node);
