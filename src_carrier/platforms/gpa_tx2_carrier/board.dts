@@ -4,9 +4,12 @@
 
     board-name = "gpa_tx2_carrier";
 
+
+
     i2c@0 {
         mode-master;
         speed-khz = 400;
+        reg = < >;
 
     };
 };
