@@ -12,15 +12,26 @@
 
 #define I2C_CHECK_VALID(reg) ((reg) == I2C1 || (reg) == I2C2 || (reg) == I2C3)
 
-bool i2c_init(i2c_ctr_dev_t i2c){
+static char* stm32f4_i2c_compat[] = {
+        "stm,f4-i2c",
+        NULL
+};
 
-    if(!I2C_CHECK_VALID(i2c.dev.reg))
+static struct dev_driver stm32f4_i2c_drv = {
+        .compatible = stm32f4_i2c_compat,
+};
+
+void reg_stm32f4_i2c_(){
+    dev_register_driver(&stm32f4_i2c_drv);
+}
+
+bool i2c_init(i2c_ctr_dev_t* i2c){
+
+    if(!I2C_CHECK_VALID(i2c->dev.reg))
         return false;
 
-
-
     enum rcc_periph_clken clken;
-    switch(i2c.dev.reg){
+    switch(i2c->dev.reg){
         case I2C1:
             clken = RCC_I2C1;
             break;
@@ -41,13 +52,16 @@ bool i2c_init(i2c_ctr_dev_t i2c){
     if (ccr < 4)
         ccr = 4;
 
-    i2c_reset(i2c.dev.reg);
-    i2c_peripheral_disable(i2c.dev.reg);
-    i2c_set_clock_frequency(i2c.dev.reg, i2c_freq_mhz);
-    i2c_set_trise(i2c.dev.reg, i2c_freq_mhz + 1);
-    i2c_set_ccr(i2c.dev.reg, ccr);
-    I2C_CR1(i2c.dev.reg) = 0;
-    I2C_OAR1(i2c.dev.reg) = 0x00000000;
-    i2c_peripheral_enable(i2c.dev.reg);
+    i2c_reset(i2c->dev.reg);
+    i2c_peripheral_disable(i2c->dev.reg);
+    i2c_set_clock_frequency(i2c->dev.reg, i2c_freq_mhz);
+    i2c_set_trise(i2c->dev.reg, i2c_freq_mhz + 1);
+    i2c_set_ccr(i2c->dev.reg, ccr);
+    I2C_CR1(i2c->dev.reg) = 0;
+    I2C_OAR1(i2c->dev.reg) = 0x00000000;
+    i2c_peripheral_enable(i2c->dev.reg);
     return true;
 }
+
+
+

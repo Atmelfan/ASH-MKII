@@ -11,7 +11,7 @@
 
 
 typedef struct {
-    dev_t dev;
+    device_t dev;
     struct {
         uint32_t sda, scl;
         uint32_t port;
@@ -20,13 +20,12 @@ typedef struct {
 } i2c_ctr_dev_t;
 
 typedef struct {
-    dev_t dev;
-    struct {
-        uint32_t sda, scl;
-        uint32_t port;
-    } pins;
-    uint8_t own_address;
+    device_t dev;
+    uint8_t master;
+
 } i2c_sub_dev_t;
+
+bool i2c_init(i2c_ctr_dev_t* i2c);
 
 
 

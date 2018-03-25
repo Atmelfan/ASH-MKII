@@ -1,0 +1,9 @@
+
+#
+# *** MODIFY THIS TO INCLUDE DRIVERS! ***
+#
+set(DRIVER_SOURCE
+        ${CMAKE_CURRENT_SOURCE_DIR}/pca9685/pca9685.c
+        PARENT_SCOPE
+        )
+

@@ -49,7 +49,7 @@ SET(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} ${GCC_CXXFLAGS} ${GCC_CCPFLAGS}" )
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h platforms/dev.c platforms/dev.h)
+set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h)
 include_directories(${LIBOCM3}/include)
 link_directories(${LIBOCM3}/lib )
 add_definitions( ${GCC_CPPFLAGS})
@@ -57,7 +57,6 @@ add_definitions( ${GCC_CPPFLAGS})
 
 
 add_subdirectory(math)
-add_subdirectory(drivers)
 add_subdirectory(platforms)
 add_subdirectory(fdt)
 add_subdirectory(gait)
@@ -66,7 +65,7 @@ include(fdt/fdt.cmake)
 ###
 
 
-set(DTS_SOURCES fdt/gait_normal.dts fdt/gpa_system.dts octapod.dts)
+set(DTS_SOURCES octapod.dts)
 
 add_executable(src_carrier ${SOURCE_FILES} ${DRIVERS_SRC})
 set_target_properties(src_carrier PROPERTIES OUTPUT_NAME "carrier.elf")
@@ -74,6 +73,9 @@ target_link_libraries(src_carrier ${GCC_LINKLIBRARIES} ${GCC_LINKERFLAGS} ${GCC_
 
 ##Add FDT...
 target_link_libraries(src_carrier fdt)
+
+##Add platforms...
+target_link_libraries(src_carrier platforms)
 
 ##Add gait
 target_link_libraries(src_carrier gait)

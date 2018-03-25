@@ -3,6 +3,8 @@
 / {
     /*Boot message displayed on LCD*/
     bootmsg = "GPA-Robotics","gpa-robotics.com";
+    #address-cells = <1>;
+    #size-cells = <0>;
 
     platform {
         compatible = "gpa_tx2_carrier";
@@ -10,8 +12,11 @@
 
     i2c@40005800 {
         reg = < 0x40005800 >;
+        #address-cells = <1>;
+        #size-cells = <0>;
 
         pca9685_1: pca9685@8e {
+            compatible = "nxp,pca9685";
             reg = < 0x8e >;
             freq = < 50 >;
             width = <

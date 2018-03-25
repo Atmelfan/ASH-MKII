@@ -9,6 +9,8 @@
 #include "fdt/dtb_parser.h"
 #include "jetson.h"
 #include "leg.h"
+#include "platforms/board.h"
+#include "platforms/i2c.h"
 
 #define MAX_NUM_APPENDAGES 64
 
@@ -79,8 +81,7 @@ int main(void)
     clock_setup();
     gpio_setup();
     jetson_batocp(false);
-
-
+    board_init_fdt(NULL);
     int i;
     printf("Hello world!\n");
 
@@ -142,6 +143,8 @@ int main(void)
             }
         }
     }
+
+
 
     //TODO: (in order) servos, IK, gait, commands, light
 
