@@ -81,7 +81,7 @@ int main(void)
     clock_setup();
     gpio_setup();
     jetson_batocp(false);
-    board_init_fdt(NULL);
+
     int i;
     printf("Hello world!\n");
 
@@ -90,6 +90,9 @@ int main(void)
     fdt_token* root = fdt_get_tokens(fdt);
     fdt_token* bootmsg = fdt_node_get_prop(fdt, root, "bootmsg", false);
     printf("%s\n", bootmsg->prop_str);
+
+    /*Override board init file with "/platform" node*/
+    board_init_fdt(fdt, fdt_find_subnode(fdt, root, "platform"));
 
     char buffer[64];
     fdt_token* legs = fdt_find_subnode(fdt, root, "legs");
@@ -148,22 +151,6 @@ int main(void)
 
     //TODO: (in order) servos, IK, gait, commands, light
 
-    /*Init I2C2*/
-    rcc_periph_clock_enable(RCC_I2C2);
-
-    #define I2C_BAUD 100000
-    uint32_t i2c_freq_mhz = rcc_apb1_frequency / 1000000;
-    uint32_t ccr = rcc_apb1_frequency / I2C_BAUD / 2 + 1;
-    if (ccr < 4)
-        ccr = 4;
-
-    i2c_peripheral_disable(I2C2);
-    i2c_set_clock_frequency(I2C2, i2c_freq_mhz);
-    i2c_set_trise(I2C2, i2c_freq_mhz + 1);
-    i2c_set_ccr(I2C2, ccr);
-    I2C_CR1(I2C2) = 0;
-    I2C_OAR1(I2C2) = 32;
-    i2c_peripheral_enable(I2C2);
     uint8_t addr = 0b10001110;
 
     void i2c_tx(uint8_t addr, uint8_t* buf, uint8_t n){

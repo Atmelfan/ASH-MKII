@@ -9,6 +9,6 @@
 
 void board_init(void);
 
-void board_init_fdt(const fdt_token* root);
+void board_init_fdt(fdt_header_t *fdt, fdt_token *root);
 
 #endif //SRC_CARRIER_BOARD_H

@@ -42,7 +42,7 @@ struct dev_driver {
      * @param dev
      * @return
      */
-    dev_probe_t (* probe)(fdt_header_t* fdt, fdt_token* node);
+    dev_probe_t (*probe)(fdt_header_t *fdt, fdt_token *node, uint32_t parent);
     dev_probe_t (*close)(dev_driver* dev);
     struct dev_driver* next;
 };
@@ -51,7 +51,13 @@ void dev_register_driver(dev_driver* d);
 void dev_register_device(device_t* d);
 void dev_init_drivers(void);
 dev_driver* dev_find_driver(char* compatible);
+void dev_init_from_fdt( device_t* d, fdt_header_t* fdt, fdt_token* node, dev_type typ);
 
 #define DEV_T_INIT() (dev_t){.name = NULL, type = DEV_TYPE_NULL, .phandle = 0}
+
+#define DEV_PROBE_CALLBACK(name, fdt, node, parent) dev_probe_t name##_probe(fdt_header_t* fdt, fdt_token* node, uint32_t parent)
+#define DEV_REGISTER_CALLBACK(name) void reg_##name##_()
+#define DEV_COMPAT_LIST(name) static char* name##_compat[]
+#define DEV_DRIVER_STRUCT(name) static struct dev_driver name##_drv
 
 #endif //SRC_CARRIER_DEV_H
