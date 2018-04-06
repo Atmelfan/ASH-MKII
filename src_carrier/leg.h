@@ -22,20 +22,16 @@ typedef struct {
     vec4 current_position;//Current position
     vec4 target_position;//Position to move towards
 
-    uint8_t i2c_address;//Address of leg i/o expander
+    /* Servo offsets from IK in degrees*100 */
+    uint32_t servo_offsets_100[3];
 
     uint8_t status;
-    bool initialized;
+    bool ready;
 } leg_t;
+
+void leg_init(leg_t* l);
 
 bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node);
 
-void leg_set_relative(leg_t* l, const vec4* position);
-void leg_set_absolute(leg_t* l, const vec4* position);
-void leg_get_relative(leg_t* l, vec4* position);
-
-void leg_update(leg_t* l, float dt);
-
-uint8_t leg_get(const leg_t* l, uint8_t mask);
 
 #endif //SRC_CARRIER_LEG_H

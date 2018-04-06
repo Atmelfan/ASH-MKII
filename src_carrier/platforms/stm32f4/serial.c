@@ -3,6 +3,3 @@
 //
 
 #include "../serial.h"
-void i2c_test(void){
-    return;
-}

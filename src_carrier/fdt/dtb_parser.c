@@ -220,8 +220,8 @@ uint32_t fdt_node_get_u32(fdt_header_t* fdt, fdt_token* t, char* name, uint32_t 
     fdt_token* f = fdt_node_get_prop(fdt, t, name, false);
     if(f && fdt_read_u32(&f->len))
         return fdt_read_u32(&f->cells[0]);
-    else
-        printf("Failed to find %s\n", name);
+    //else
+    //    printf("Failed to find %s\n", name);
     return def;
 }
 

@@ -3,160 +3,136 @@
 #include "platforms/gpio.dtsi"
 
 / {
-    /*Boot message displayed on LCD*/
+    /* Boot message displayed on LCD */
     bootmsg = "GPA-Robotics","gpa-robotics.com";
     #address-cells = <1>;
     #size-cells = <0>;
 
     platform {
-        compatible = "gpa_tx2_carrier";
+        compatible = "stm,stm32f4";
 
-        porta: gpioa@40020400 {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        porta: gpioa@40020000 {
             compatible = "stm32f4,port";
 
+            /* Address of GPIOA */
+            reg = < 0x40020000 >;
+
+            /* IO config */
+            io = <
+                /* JETSON BATTOC */
+                8 DTIO_MODE_OUTPUT DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_HIGH //PA8 OUT => NVM_BATTOC
+            >;
+        };
+
+        portb: gpioa@40020400 {
+            compatible = "stm32f4,port";
+
+            /* Address of GPIOA */
             reg = < 0x40020400 >;
 
+            /* IO config */
             io = <
-                10 GPIO_MODE_AF GPIO_OUTPUT_OD GPIO_PULL_NONE GPIO_AF4 //I2C2 SDA
-                11 GPIO_MODE_AF GPIO_OUTPUT_OD GPIO_PULL_NONE GPIO_AF4 //I2C2 SCL
+                /* IO pin, mode, output type, pull, af(if applicable)*/
+                /* I2C2 SDA & SCL */
+                10 DTIO_MODE_AF DTIO_OUTPUT_OD DTIO_PULL_NONE DTIO_AF4 //PB10 AF4 => I2C2 SCL
+                11 DTIO_MODE_AF DTIO_OUTPUT_OD DTIO_PULL_NONE DTIO_AF4 //PB11 AF4 => I2C2 SDA
+
+                /* TIM4 CH2-4*/
+                7 DTIO_MODE_AF DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_AF1 //PB7 AF1 => TIM4 CH2
+                8 DTIO_MODE_AF DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_AF1 //PB8 AF1 => TIM4 CH3
+                9 DTIO_MODE_AF DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_AF1 //PB9 AF1 => TIM4 CH4
             >;
         };
 
         i2c2: i2c@40005800 {
-                compatible = "stm32f4,i2c-ctr";
+            compatible = "stm32f4,i2c-ctr";
 
-                /* Address of I2C2*/
-                reg = < 0x40005800 >;
+            /* Address of I2C2*/
+            reg = < 0x40005800 >;
 
-                /* Own I2C address */
-                addr = < 0x00 >;
+            /* Own I2C address */
+            addr = < 0x00 >;
 
-                /* IO pins, port sda scl */
-                pins = <
-                    &porta 10 //PB10
-                    &porta 11 //PB11
-                 >;
+            /* Speed */
+            speed = < 10000 >;
 
-                /* Sub devices */
-                #address-cells = <1>;
-                #size-cells = <0>;
+            /* Sub devices */
+            #address-cells = <1>;
+            #size-cells = <0>;
 
-                pca9685_1: pca9685@8e {
-                    compatible = "nxp,pca9685";
-                    reg = < 0x8e >;
-                    freq = < 50 >;
-                    width = <
-                        0 0 0 0 0 0 0 0 //IO0-IO7
-                        0 0 0 0 0 0 0 0 //IO8-IO15
-                    >;
-                };
-                pca9685_2: pca9685@8c {
-                    reg = < 0x8c >;
-                    freq = < 50 >;
-                    width = <
-                        0 0 0 0 0 0 0 0 //IO0-IO7
-                        0 0 0 0 0 0 0 0 //IO8-IO15
-                    >;
-                };
-                lm3549: lm3549@6c {
-                    reg = < 0x6c >;
+            /* Right */
+            pca9685_1: pwm@8c {
+                compatible = "nxp,pca9685";
+                reg = < 0x8c >;
 
-                };
+                /* 50 Hz update frequency*/
+                freq = < 50 >;
+
+                /* Default to 307/4096 duty @ 50Hz ~ 1.5ms pulse */
+                all = < 0 307 >;
             };
+
+            /* Left */
+            pca9685_2: pwm@8e {
+
+                compatible = "nxp,pca9685";
+
+                /* I2C address*/
+                reg = < 0x8e >;
+
+                /* 50 Hz update frequency*/
+                freq = < 50 >;
+
+                /* Default to 307/4096 duty @ 50Hz ~ 1.5ms pulse */
+                all = < 0 307 >;
+            };
+
+            lm3549: lm3549@6c {
+                reg = < 0x6c >;
+
+            };
+
+        };
+
+        /* USART2 */
+        usart@40004400 {
+            compatible = "stm32f4,usart";
+
+            reg = < 0x40004400 >;
+
+
+
+        };
+
     };
 
+    /* The 'chosen' node is used to communicate between firmware and board configuration*/
+    chosen {
 
+
+    };
 
     legs {
+
         /*Number of legs*/
-        #num-legs = < 10 >;
+        #num-legs = < 8 >;
         #address-cells = <1>;
         #size-cells = <0>;
 
-        right_eye: eye@-1 {
-            reg = < 8 >;
-            devname = "eye-left";
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "2dof";
+        /* 90 degrees pulse width in us */
+        servo-scale = < 1024 >;
 
-                /*Length in mm*10*/
-                length = < 0 10 >;
-
-                /*Servo indices and offset*/
-                servos = <
-                    0
-                    (-1) 0
-                    (-2) 0
-                >;
-            };
-        };
-
-        eye@-2 {
-            reg = < 9 >;
-            devname = "eye-right";
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "2dof";
-
-                /*Length in mm*10*/
-                length = < 0 10 >;
-
-                /*Servo indices and offset*/
-                servos = <
-                    0
-                    (-3) 0
-                    (-4) 0
-                >;
-            };
-        };
-
-        leg@0 {
-            /*Index of leg*/
-            reg = < 0 >;
-
-            /*Name of leg*/
-            devname = "right-0";
-
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
-
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
-
-                /* index offset */
-                servos = <
-                    &pca9685_1
-                    0 0         /*Base joint*/
-                    1 0         /*Hip joint*/
-                    2 9000      /*Foot joint*/
-                >;
-
-            };
-        };
         leg@1 {
-            /*Index of leg*/
+            /* Index of leg */
             reg = < 1 >;
 
-            /*Name of leg*/
-            devname = "right-0";
+            /* Home coordinates (leg local-space) */
+            home = < 150000 0 (-50000) >;
 
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
                 1000    0       0       0
                 0       866     (-500)  0
@@ -164,67 +140,35 @@
                 55000   150000  0       1000
             >;
 
+            /* IK info */
             inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
+                /* IK driver */
+                #dof = < 3 >;
 
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
 
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
+                /* Servo indices and offsets*/
+                servos = < &pca9685_2
+                    4 0
+                    5 (-400)
+                    6 925
                 >;
+                //test = < 0 (-900) 900 >;
 
             };
+
+
         };
-        leg@2 {
-            /*Index of leg*/
-            reg = < 2 >;
 
-            /*Name of leg*/
-            devname = "right-0";
-
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
-
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
-
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
-                >;
-
-            };
-        };
         leg@3 {
-            /*Index of leg*/
+            /* Index of leg */
             reg = < 3 >;
 
-            /*Name of leg*/
-            devname = "right-0";
+            /* Home coordinates (leg local-space) */
+            home = < 150000 0 (-50000) >;
 
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
                 1000    0       0       0
                 0       866     (-500)  0
@@ -232,155 +176,21 @@
                 55000   150000  0       1000
             >;
 
+            /* IK info */
             inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
+                /* IK driver */
+                #dof = < 3 >;
 
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
 
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
+                /* Servo indices and offsets*/
+                servos = < &pca9685_2
+                    7 (-100)
+                    8 (-440)
+                    9 880
                 >;
-
-            };
-        };
-        leg@4 {
-            /*Index of leg*/
-            reg = < 4 >;
-
-            /*Name of leg*/
-            devname = "right-0";
-
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
-
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
-
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
-                >;
-
-            };
-        };
-        leg@5 {
-            /*Index of leg*/
-            reg = < 5 >;
-
-            /*Name of leg*/
-            devname = "right-0";
-
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
-
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
-
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
-                >;
-
-            };
-        };
-        leg@6 {
-            /*Index of leg*/
-            reg = < 6 >;
-
-            /*Name of leg*/
-            devname = "right-0";
-
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
-
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
-
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
-                >;
-
-            };
-        };
-        leg@7 {
-            /*Index of leg*/
-            reg = < 7 >;
-
-            /*Name of leg*/
-            devname = "right-0";
-
-            /*Home coordinates (leg local-space)*/
-            home = < 100000 0 0 >;
-
-            /*Matrix used to transform to leg local-space, scaled by 1000*/
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            inverse-kinematics {
-                /*IK driver*/
-                compatible = "3dof";
-
-                /*Length in mm*10*/
-                length = < 250 1500 1700 >;
-
-                /* index offset */
-                servos = <
-                    0 0     /*Base joint*/
-                    1 0     /*Hip joint*/
-                    2 90    /*Foot joint*/
-                >;
+                //test = < 0 (-900) 900 >;
 
             };
         };
