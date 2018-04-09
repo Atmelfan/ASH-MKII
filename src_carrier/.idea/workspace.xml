@@ -19,44 +19,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91cce475-f783-4acb-b67f-08bd6269f80f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/ik/CMakeLists.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ik/ik_3dof.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ik/ik_3dof.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/gpio.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/i2c.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/i2c.dtsi" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/log.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/log.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/pwm.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/platforms/pwm.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scpi/scpi.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/scpi/scpi.h" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/atmelfan.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/atmelfan.xml" />
+    <list default="true" id="91cce475-f783-4acb-b67f-08bd6269f80f" name="Default" comment="IK + PCA9685 driver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/fdt/dtb_parser.c" afterPath="$PROJECT_DIR$/fdt/dtb_parser.c" />
-      <change beforePath="$PROJECT_DIR$/gait/CMakeLists.txt" afterPath="$PROJECT_DIR$/gait/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/gait/gait.h" afterPath="$PROJECT_DIR$/gait/gait.h" />
-      <change beforePath="$PROJECT_DIR$/gait/ik.c" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/gait/ik.h" afterPath="" />
       <change beforePath="$PROJECT_DIR$/leg.c" afterPath="$PROJECT_DIR$/leg.c" />
       <change beforePath="$PROJECT_DIR$/leg.h" afterPath="$PROJECT_DIR$/leg.h" />
       <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
       <change beforePath="$PROJECT_DIR$/octapod.dts" afterPath="$PROJECT_DIR$/octapod.dts" />
-      <change beforePath="$PROJECT_DIR$/platforms/CMakeLists.txt" afterPath="$PROJECT_DIR$/platforms/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/platforms/board.c" afterPath="$PROJECT_DIR$/platforms/board.c" />
-      <change beforePath="$PROJECT_DIR$/platforms/dev.c" afterPath="$PROJECT_DIR$/platforms/dev.c" />
-      <change beforePath="$PROJECT_DIR$/platforms/dev.h" afterPath="$PROJECT_DIR$/platforms/dev.h" />
-      <change beforePath="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.c" afterPath="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.c" />
-      <change beforePath="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.h" afterPath="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.h" />
-      <change beforePath="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.txt" afterPath="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.txt" />
-      <change beforePath="$PROJECT_DIR$/platforms/gpio.dtsi" afterPath="$PROJECT_DIR$/platforms/gpio.dtsi" />
-      <change beforePath="$PROJECT_DIR$/platforms/gpio.h" afterPath="$PROJECT_DIR$/platforms/gpio.h" />
-      <change beforePath="$PROJECT_DIR$/platforms/i2c.h" afterPath="$PROJECT_DIR$/platforms/i2c.h" />
-      <change beforePath="$PROJECT_DIR$/platforms/stm32f4/gpio.c" afterPath="$PROJECT_DIR$/platforms/stm32f4/gpio.c" />
-      <change beforePath="$PROJECT_DIR$/platforms/stm32f4/i2c.c" afterPath="$PROJECT_DIR$/platforms/stm32f4/i2c.c" />
-      <change beforePath="$PROJECT_DIR$/platforms/stm32f4/serial.c" afterPath="$PROJECT_DIR$/platforms/stm32f4/serial.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -69,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="octapod.dts" pinned="true" current-in-tab="true">
+      <file leaf-file-name="octapod.dts" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/octapod.dts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="188" column="26" lean-forward="false" selection-start-line="188" selection-start-column="26" selection-end-line="188" selection-end-column="26" />
+            <state relative-caret-position="130">
+              <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,10 +50,34 @@
       <file leaf-file-name="main.c" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="162" column="62" lean-forward="false" selection-start-line="162" selection-start-column="62" selection-end-line="162" selection-end-column="62" />
+            <state relative-caret-position="452">
+              <caret line="163" column="50" lean-forward="true" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="leg.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/leg.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="453">
+              <caret line="127" column="41" lean-forward="false" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="41" />
+              <folding>
+                <element signature="e#45#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="leg.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/leg.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+              <folding>
+                <element signature="e#98#118#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,8 +96,8 @@
       <file leaf-file-name="dtb_parser.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fdt/dtb_parser.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="174">
+              <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -136,16 +128,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="226">
               <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="i2c_common_v1.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libopencm3/lib/stm32/common/i2c_common_v1.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -270,11 +252,11 @@
         <option value="$PROJECT_DIR$/platforms/stm32f4/i2c.c" />
         <option value="$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.c" />
         <option value="$PROJECT_DIR$/platforms/i2c.c" />
-        <option value="$PROJECT_DIR$/leg.h" />
         <option value="$PROJECT_DIR$/fdt/dtb_parser.c" />
-        <option value="$PROJECT_DIR$/leg.c" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/octapod.dts" />
+        <option value="$PROJECT_DIR$/leg.h" />
+        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/leg.c" />
       </list>
     </option>
   </component>
@@ -375,7 +357,7 @@
         <option name="RunConfigurationTask" enabled="true" run_configuration_name="Build All" run_configuration_type="CMakeRunConfiguration" />
       </method>
     </configuration>
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="/bin/true" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="src_carrier" RUN_TARGET_NAME="src_carrier" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
     <configuration name="fdt" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src_carrier" TARGET_NAME="fdt" CONFIG_NAME="Debug">
@@ -665,7 +647,14 @@
       <option name="project" value="LOCAL" />
       <updated>1522272821001</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="IK + PCA9685 driver">
+      <created>1523051933789</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1523051933789</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -686,7 +675,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14737992" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15811518" sideWeight="0.4978166" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30994764" sideWeight="0.54257643" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.04502618" sideWeight="0.54257643" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2104712" sideWeight="0.47925764" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26073298" sideWeight="0.52074236" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -695,7 +684,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3424084" sideWeight="0.49344978" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.373822" sideWeight="0.6430131" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09005236" sideWeight="0.6430131" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -739,14 +728,15 @@
     <MESSAGE value="FDT stuff, power board etc." />
     <MESSAGE value="FDT stuff etc." />
     <MESSAGE value="I2C driver" />
-    <option name="LAST_COMMIT_MESSAGE" value="I2C driver" />
+    <MESSAGE value="IK + PCA9685 driver" />
+    <option name="LAST_COMMIT_MESSAGE" value="IK + PCA9685 driver" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="103" />
+      <option name="time" value="107" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -817,6 +807,26 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>s</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>invert</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>l-&gt;name</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>l-&gt;&lt;anonymous union&gt;.name</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>(uint32_t) (1500 + (int32_t)(degres_10*scale)/900)</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -838,26 +848,6 @@
       </expression>
       <expression>
         <expression-string>(uint32_t) (1500 + (degres_10*scale)/900)</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>(int32_t)(degres_10*scale)/900</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>(degres_10*scale)/900</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>(uint8_t)tmp</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>tmp</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1156,24 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/leg.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leg.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="33" column="83" lean-forward="false" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="83" />
-          <folding>
-            <element signature="e#45#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libopencm3/lib/stm32/common/i2c_common_v1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1209,18 +1181,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fdt/dtb_parser.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/platforms/drivers/pca9685/pca9685.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-192">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fdt/dtb_parser.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1233,21 +1205,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/octapod.dts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leg.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding>
+            <element signature="e#98#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="162" column="62" lean-forward="false" selection-start-line="162" selection-start-column="62" selection-end-line="162" selection-end-column="62" />
+        <state relative-caret-position="452">
+          <caret line="163" column="50" lean-forward="true" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/octapod.dts">
+    <entry file="file://$PROJECT_DIR$/leg.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="188" column="26" lean-forward="false" selection-start-line="188" selection-start-column="26" selection-end-line="188" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="453">
+          <caret line="127" column="41" lean-forward="false" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="41" />
+          <folding>
+            <element signature="e#45#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

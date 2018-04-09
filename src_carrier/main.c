@@ -141,65 +141,40 @@ int main(void)
                     continue;
                 }
 
+                if(ik_appendages[reg].pwm_dev){
+                    leg_move_to_vec(&ik_appendages[reg], &ik_appendages[reg].home_position);
+                    vec4 s = ik_appendages[reg].home_position;
+                    logd_printf(LOG_DEBUG, "homed to %f, %f, %f\n", s.members[0], s.members[1], s.members[2]);
+                }else{
+                    logd_printfs(LOG_WARNING, "no servo driver\n");
+                }
+
                 /* Read ik parameters*/
+                //TODO: Remove this shit
                 fdt_token* ik = fdt_find_subnode(fdt, l, "inverse-kinematics");
                 if(ik){
-                    fdt_token* servos = fdt_node_get_prop(fdt, ik, "servos", false);
                     fdt_token* test = fdt_node_get_prop(fdt, ik, "test", false);
-                    fdt_token* length = fdt_node_get_prop(fdt, ik, "length", false);
 
-                    uint32_t servo_phandle = fdt_read_u32(&servos->cells[0]);
-                    pwm_dev_t* pca = (pwm_dev_t *) dev_find_device_phandle(servo_phandle);
+                    if(test){
+                        fdt_token* invert = fdt_node_get_prop(fdt, ik, "invert", false);
+                        fdt_token* servos = fdt_node_get_prop(fdt, ik, "servos", false);
 
-                    if(pca && length && fdt_prop_len(fdt, length) == 3*sizeof(uint32_t)){
+                        /* Find servo driver */
+                        uint32_t servo_phandle = fdt_read_u32(&servos->cells[0]);
+                        pwm_dev_t* pca = (pwm_dev_t *) dev_find_device_phandle(servo_phandle);
 
-                        if(test){
+                        if(pca){
                             float s[3];
                             for (int i = 0; i < 3; ++i) {
                                 uint32_t index = fdt_read_u32(&servos->cells[1 + 2*i + 0]);
-                                s[i] = (int32_t)fdt_read_u32(&test->cells[i]) - (int32_t)fdt_read_u32(&servos->cells[1 + 2*i + 1]);
+                                s[i] = ((int32_t)fdt_read_u32(&test->cells[i]) - (int32_t)fdt_read_u32(&servos->cells[1 + 2*i + 1])) * (invert ? -1 : 1);
                                 set_servo(pca, index, (int32_t) s[i], servo_scale);
                             }
                             logd_printf(LOG_DEBUG, "positioned to %f, %f, %f\n", s[0]/10, s[1]/10, s[2]/10);
-                        }else{
-                            float x = ik_appendages[reg].home_position.members[0],
-                                    y = ik_appendages[reg].home_position.members[1],
-                                    z = ik_appendages[reg].home_position.members[2];
-
-                            const float L1 = fdt_read_u32(&length->cells[0])/10.0f;
-                            const float L2 = fdt_read_u32(&length->cells[1])/10.0f;
-                            const float L3 = fdt_read_u32(&length->cells[2])/10.0f;
-                            float d_sq = x*x + y*y;
-                            float d = sqrtf(d_sq) - L1;
-                            float v = sqrtf(d*d + z*z);
-                            float s1 = (v*v + L2*L2 - L3*L3)/(2*v*L2);
-                            float s2 = (L2*L2 + L3*L3 - v*v)/(2*L2*L3);
-
-                            float S0 = (1800.0f/(float)M_PI)*(atan2f(y, x));
-                            float S1 = (1800.0f/(float)M_PI)*(acosf(s1) + atan2f(z, d));
-                            float S2 = (1800.0f/(float)M_PI)*(acosf(s2));
-
-                            uint32_t index = fdt_read_u32(&servos->cells[1 + 2*0 + 0]);
-                            int32_t degre = (int32_t)fdt_read_u32(&servos->cells[1 + 2*0 + 1]);
-                            set_servo(pca, index, (int32_t)S0 - degre, servo_scale);
-
-                            index = fdt_read_u32(&servos->cells[1 + 2*1 + 0]);
-                            degre = (int32_t)fdt_read_u32(&servos->cells[1 + 2*1 + 1]);
-                            set_servo(pca, index, ((int32_t)-S1 - degre), servo_scale);
-
-                            index = fdt_read_u32(&servos->cells[1 + 2*2 + 0]);
-                            degre = (int32_t)fdt_read_u32(&servos->cells[1 + 2*2 + 1]);
-                            set_servo(pca, index, ((int32_t)S2 - degre), servo_scale);
-                            logd_printf(LOG_DEBUG, "homed to %f, %f, %f\n", S0/10, S1/10, S2/10);
                         }
 
-
-
-
-
-                    }else{
-                        logd_printfs(LOG_INFO, "node 'inverse-kinematics' malformed\n");
                     }
+
                 }else{
                     logd_printfs(LOG_INFO, "node 'inverse-kinematics' missing\n");
                 }
