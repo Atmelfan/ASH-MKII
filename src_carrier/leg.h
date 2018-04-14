@@ -41,7 +41,7 @@ typedef struct {
     bool ready;
 } leg_t;
 
-void leg_init(leg_t* l);
+void leg_init(leg_t *l, uint32_t scale);
 
 bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node);
 

@@ -84,10 +84,11 @@ bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node){
     return true;
 }
 
-void leg_init(leg_t *l) {
+void leg_init(leg_t *l, uint32_t scale) {
     /* Initialize leg */
     l->home_position = VEC4_ZERO();
     l->transform = MAT4_ZERO();
+    l->scale = scale;
     l->pwm_dev = NULL;
     for (int j = 0; j < 3; ++j) {
         l->servo_offsets_100[j] = 0;

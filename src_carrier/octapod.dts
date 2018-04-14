@@ -131,80 +131,7 @@
             reg = < 0 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-50000) >;
-
-            /* Matrix used to transform to leg local-space, scaled by 1000 */
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                0       0       0       1000
-            >;
-
-            /* IK info */
-            inverse-kinematics {
-                /* IK driver */
-                #dof = < 3 >;
-
-                /* All servos are inverted on this leg*/
-                invert; //= < 1 1 1 >;
-
-                /* Length in mm*10 */
-                length = < 270 700 1300 >;
-
-                /* Servo indices and offsets*/
-                servos = < &pca9685_2
-                    4 60
-                    5 (-490)
-                    6 800
-                >;
-                //test = < 0 (-900) 900 >;
-
-            };
-        };
-
-        leg@1 {
-            /* Index of leg */
-            reg = < 1 >;
-
-            /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-50000) >;
-
-            /* Matrix used to transform to leg local-space, scaled by 1000 */
-            transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
-            >;
-
-            /* IK info */
-            inverse-kinematics {
-                /* IK driver */
-                #dof = < 3 >;
-
-                /* Length in mm*10 */
-                length = < 270 700 1300 >;
-
-                /* Servo indices and offsets*/
-                servos = < &pca9685_1
-                    4 0
-                    5 (-400)
-                    6 925
-                >;
-                //test = < 0 (-900) 900 >;
-
-            };
-
-
-        };
-
-        leg@2 {
-            /* Index of leg */
-            reg = < 0 >;
-
-            /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-50000) >;
+            home = < 150000 50000 (-100000) >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
@@ -228,8 +155,82 @@
                 /* Servo indices and offsets*/
                 servos = < &pca9685_2
                     7 (60)
-                    8 (-550)
-                    9 1025
+                    8 (-525)
+                    9 750
+                >;
+
+                //test = < 0 (-900) 900 >;
+
+            };
+        };
+
+        leg@1 {
+            /* Index of leg */
+            reg = < 1 >;
+
+            /* Home coordinates (leg local-space) */
+            home = < 150000 (50000) (-100000) >;
+
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                55000   150000  0       1000
+            >;
+
+            /* IK info */
+            inverse-kinematics {
+                /* IK driver */
+                #dof = < 3 >;
+
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
+
+                /* Servo indices and offsets*/
+                servos = < &pca9685_1
+                    12 0
+                    11 (-400)
+                    10 925
+                >;
+                //test = < 0 (-900) 900 >;
+
+            };
+
+
+        };
+
+        leg@2 {
+            /* Index of leg */
+            reg = < 0 >;
+
+            /* Home coordinates (leg local-space) */
+            home = < 150000 0 (-100000) >;
+
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                0       0       0       1000
+            >;
+
+            /* IK info */
+            inverse-kinematics {
+                /* IK driver */
+                #dof = < 3 >;
+
+                /* All servos are inverted on this leg*/
+                invert; //= < 1 1 1 >;
+
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
+
+                /* Servo indices and offsets*/
+                servos = < &pca9685_2
+                    4 110
+                    5 (-540)
+                    6 1000
                 >;
                 //test = < 0 (-900) 900 >;
 
@@ -241,7 +242,7 @@
             reg = < 3 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-50000) >;
+            home = < 150000 0 (-100000) >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
@@ -261,9 +262,149 @@
 
                 /* Servo indices and offsets*/
                 servos = < &pca9685_1
-                    7 (-100)
-                    8 (-440)
-                    9 880
+                    15 (-50)
+                    14 (-440)
+                    13 880
+                >;
+                //test = < 0 (-900) 900 >;
+
+            };
+        };
+
+        leg@4 {
+            /* Index of leg */
+            reg = < 4 >;
+
+            /* Home coordinates (leg local-space) */
+            home = < 150000 0 (-100000) >;
+
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                0       0       0       1000
+            >;
+
+            /* IK info */
+            inverse-kinematics {
+                /* IK driver */
+                #dof = < 3 >;
+
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
+
+                /* Servo indices and offsets*/
+                servos = < &pca9685_2
+                    13 (-100)
+                    14 (-480)
+                    15 900
+                >;
+                //test = < 0 (-900) 900 >;
+
+            };
+        };
+
+        leg@5 {
+            /* Index of leg */
+            reg = < 5 >;
+
+            /* Home coordinates (leg local-space) */
+            home = < 150000 0 (-100000) >;
+
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                0       0       0       1000
+            >;
+
+            /* IK info */
+            inverse-kinematics {
+                /* IK driver */
+                #dof = < 3 >;
+
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
+
+                invert;
+
+                /* Servo indices and offsets*/
+                servos = < &pca9685_1
+                    6 90
+                    5 (-475)
+                    4 900
+                >;
+                //test = < 0 (-900) 900 >;
+
+            };
+        };
+
+        leg@6 {
+            /* Index of leg */
+            reg = < 6 >;
+
+            /* Home coordinates (leg local-space) */
+            home = < 150000 50000 (-100000) >;
+
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                0       0       0       1000
+            >;
+
+            /* IK info */
+            inverse-kinematics {
+                /* IK driver */
+                #dof = < 3 >;
+
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
+
+                /* Servo indices and offsets*/
+                servos = < &pca9685_2
+                    10 (-110)
+                    11 (-440)
+                    12 780
+                >;
+                //test = < 0 (-900) 900 >;
+
+            };
+        };
+
+        leg@7 {
+            /* Index of leg */
+            reg = < 7 >;
+
+            /* Home coordinates (leg local-space) */
+            home = < 150000 50000 (-100000) >;
+
+            /* Matrix used to transform to leg local-space, scaled by 1000 */
+            transform = <
+                1000    0       0       0
+                0       866     (-500)  0
+                0       500     866     0
+                0       0       0       1000
+            >;
+
+            /* IK info */
+            inverse-kinematics {
+                /* IK driver */
+                #dof = < 3 >;
+
+                /* Length in mm*10 */
+                length = < 270 700 1300 >;
+
+                invert;
+
+                /* Servo indices and offsets*/
+                servos = < &pca9685_1
+                    9 110
+                    8 (-400)
+                    7 875
                 >;
                 //test = < 0 (-900) 900 >;
 

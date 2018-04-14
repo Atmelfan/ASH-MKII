@@ -114,7 +114,7 @@ int main(void)
 
         /* Initialize appendages */
         for(int j = 0; j < num_legs; ++j){
-            leg_init(&ik_appendages[j]);
+            leg_init(&ik_appendages[j], servo_scale);
         }
 
         /*Read appendages from FDT*/
@@ -164,13 +164,13 @@ int main(void)
                         pwm_dev_t* pca = (pwm_dev_t *) dev_find_device_phandle(servo_phandle);
 
                         if(pca){
-                            float s[3];
+                            int32_t s[3];
                             for (int i = 0; i < 3; ++i) {
                                 uint32_t index = fdt_read_u32(&servos->cells[1 + 2*i + 0]);
                                 s[i] = ((int32_t)fdt_read_u32(&test->cells[i]) - (int32_t)fdt_read_u32(&servos->cells[1 + 2*i + 1])) * (invert ? -1 : 1);
                                 set_servo(pca, index, (int32_t) s[i], servo_scale);
                             }
-                            logd_printf(LOG_DEBUG, "positioned to %f, %f, %f\n", s[0]/10, s[1]/10, s[2]/10);
+                            logd_printf(LOG_DEBUG, "positioned to %d, %d, %d\n", s[0]/10, s[1]/10, s[2]/10);
                         }
 
                     }
