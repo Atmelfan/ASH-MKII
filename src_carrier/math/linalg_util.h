@@ -11,10 +11,10 @@
 /**
  *
  * @param rot
- * @param pos
+ * @param tra
  * @param mat
  */
-void transform_matrix(const vec3* rot, const vec3* pos, mat4* mat);
+void transform_matrix(const vec4* rot, const vec4* tra, mat4* mat);
 
 /**
  * Check if a transform matrix is valid

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src_carrier)
 enable_language(C ASM)
 
-set(LIBOCM3 libopencm3)
+set(LIBOCM3 ../libopencm3)
 
 set(CMAKE_C_COMPILER "/usr/bin/arm-none-eabi-gcc")
 set(CMAKE_CXX_COMPILER "/usr/bin/arm-none-eabi-g++")
@@ -62,7 +62,7 @@ set(CMAKE_C_STANDARD 99)
 
 
 
-set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h scpi/scpi.c scpi/scpi.h fdt_mathutil.c fdt_mathutil.h)
+set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h scpi/scpi.c scpi/scpi.h fdt_mathutil.c fdt_mathutil.h body.c body.h)
 include_directories(${LIBOCM3}/include)
 link_directories(${LIBOCM3}/lib)
 add_definitions( ${GCC_CPPFLAGS})

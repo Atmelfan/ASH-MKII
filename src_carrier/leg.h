@@ -42,12 +42,51 @@ typedef struct {
     bool ready;
 } leg_t;
 
+/**
+ * Initializes a leg with basic parameters
+ * @param l, leg to initialize
+ * @param scale, pulse width required for a 90 deg rotation in us
+ */
 void leg_init(leg_t *l, uint32_t scale);
 
+/**
+ * Reads leg parameters from fdt node
+ * @param l, leg struct
+ * @param fdt, fdt header
+ * @param node, fdt node to read from
+ * @return true if leg fdt is valid, false otherwise
+ */
 bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node);
 
+/**
+ * Move leg to local coordinates without interpolation
+ * @param l, leg to move
+ * @param loc, local coordinates in mm
+ */
 void leg_move_to_local(leg_t* l, vec4* loc);
 
+/**
+ * Move leg to global coordinates without interpolation
+ * @param l, leg to move
+ * @param vec, global coordinates in mm
+ */
 void leg_move_to_vec(leg_t* l, vec4* vec);
+
+/**
+ * Sets interpolation target
+ * @param l, leg to move
+ * @param target, global coordinates in mm
+ * @param rate, velocity in mm/s
+ */
+void leg_target(leg_t* l, vec4* target, float rate);
+
+/**
+ * Interpolates
+ * @param l
+ * @param target
+ * @param dt
+ * @return true if the leg is at target
+ */
+bool leg_interpolate(leg_t* l, float t);
 
 #endif //SRC_CARRIER_LEG_H

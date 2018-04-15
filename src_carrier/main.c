@@ -1,21 +1,14 @@
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/timer.h>
 #include <stdio.h>
 #include <assert.h>
-#include <math.h>
 #include "math/linalg.h"
 #include "fdt/dtb_parser.h"
 #include "jetson.h"
 #include "leg.h"
 #include "platforms/board.h"
-#include "platforms/i2c.h"
 #include "platforms/log.h"
-#include "platforms/pwm.h"
-#include "ik/ik_3dof.h"
-#include "gait/gait.h"
-#include "libopencm3/cm3/systick.h"
+#include "body.h"
 
 #define MAX_NUM_APPENDAGES 64
 
@@ -36,7 +29,7 @@ void sys_tick_handler(){
     dev_systick();
 }
 
-leg_t* ik_appendages = NULL;
+leg_t* legs = NULL;
 
 /**
  * Set a servo to the requested angle
@@ -81,25 +74,25 @@ int main(void)
     board_init_fdt(fdt, fdt_find_subnode(fdt, root, "platform"));
 
     char buffer[64];
-    fdt_token* legs = fdt_find_subnode(fdt, root, "legs");
-    uint32_t num_legs = fdt_node_get_u32(fdt, legs, "#num-legs", 0);
-    uint32_t servo_scale = fdt_node_get_u32(fdt, legs, "servo-scale", 0);
+    fdt_token* legs_node = fdt_find_subnode(fdt, root, "legs");
+    uint32_t num_legs = fdt_node_get_u32(fdt, legs_node, "#num-legs", 0);
+    uint32_t servo_scale = fdt_node_get_u32(fdt, legs_node, "servo-scale", 0);
     logd_push("legs");
     if(!num_legs || (num_legs >= MAX_NUM_APPENDAGES)){
         logd_printfs(LOG_ERROR, "property '#num-legs' missing or out of range\n");
         //assert(false && "Property '#num-legs' missing or 0");
     }else{
         /* Allocate appendages*/
-        ik_appendages = malloc(sizeof(leg_t)*num_legs);
-        assert(ik_appendages && "Out of memory");
+        legs = malloc(sizeof(leg_t)*num_legs);
+        assert(legs && "Out of memory");
 
         /* Initialize appendages */
         for(int j = 0; j < num_legs; ++j){
-            leg_init(&ik_appendages[j], servo_scale);
+            leg_init(&legs[j], servo_scale);
         }
 
         /*Read appendages from FDT*/
-        for(fdt_token* l = fdt_token_next(fdt, legs); fdt_token_get_type(l) != FDT_END_NODE ; l = fdt_token_next(fdt, l)){
+        for(fdt_token* l = fdt_token_next(fdt, legs_node); fdt_token_get_type(l) != FDT_END_NODE ; l = fdt_token_next(fdt, l)){
             /*Check for nodes*/
             if(fdt_token_get_type(l) == FDT_BEGIN_NODE){
                 //printf("-> %s:\n", fdt_trace(fdt, l, buffer));
@@ -116,15 +109,15 @@ int main(void)
                 }
 
                 /* Read leg parameters*/
-                if(!leg_from_node(&ik_appendages[reg], fdt, l)){
+                if(!leg_from_node(&legs[reg], fdt, l)){
                     logd_pop();
                     l = fdt_node_end(fdt, l);
                     continue;
                 }
 
-                if(ik_appendages[reg].pwm_dev){
+                if(legs[reg].pwm_dev){
                     //leg_move_to_vec(&ik_appendages[reg], &ik_appendages[reg].home_position);
-                    vec4 s = ik_appendages[reg].home_position;
+                    vec4 s = legs[reg].home_position;
                     logd_printf(LOG_DEBUG, "home at %f, %f, %f\n", s.members[0], s.members[1], s.members[2]);
                 }else{
                     logd_printfs(LOG_WARNING, "no servo driver\n");
@@ -170,32 +163,48 @@ int main(void)
     logd_printfs(LOG_INFO, "ready!\n");
 
 
-    //TODO: (in order) servos, IK, gait, commands, light
+    //TODO: (in order) commands+remote, gait, light
 
-    fdt_token* chosen = fdt_find_subnode(fdt, root, "chosen");
-    fdt_token* powerup = fdt_find_phandle(fdt, fdt_node_get_u32(fdt, chosen, "gait-powerup", 0));
-    fdt_token* powerdown = fdt_find_phandle(fdt, fdt_node_get_u32(fdt, chosen, "gait-powerdown", 0));
-    gait_descriptor gait;
-    gait_init(&gait);
-
-    /* Execute startup gait if defined */
-    if(powerup){
-        gait_begin(&gait, fdt, powerup, ik_appendages);
-    }else{
-        gait_begin(&gait, fdt, NULL, ik_appendages);
+    /* Default to home positions */
+    for(int k = 0; k < num_legs; ++k){
+        legs[k].current_position = legs[k].home_position;
     }
 
+    /* Get application parameters node */
+    fdt_token* chosen = fdt_find_subnode(fdt, root, "chosen");
+    fdt_token* powerup = fdt_find_phandle(fdt, fdt_node_get_u32(fdt, chosen, "gait-powerup", 0));
+
+    /* Merged model matrix */
+    mat4 model;
+
+    /* Body struct keeps track of body rotation and translation */
+    body_t body;
+    body_reset(&body);
+
     while(true){
-        /* Advance gait if not done */
-        if(!gait.done){
-            /* Update, go to next if required */
-            if(gait_update(&gait, fdt, ik_appendages)){
-                gait_next(&gait, fdt, ik_appendages);
-            }
+        model = MAT4_IDENT();
+
+        /* Update body */
+        //body_rotate(&body, NULL);
+        //body_translate(&body, NULL);
+        mat_matmull((matxx*)&model, (matxx*)&body.model);
+
+        /* Update gait */
+        //gait_update(gait, );
+
+        /* Update legs */
+        for(int i = 0; i < num_legs; ++i){
+            vec4 l = legs[i].current_position;
+            vec4 target = VEC4_ZERO();
+
+            /* Rotate & translate all leg vectors with model matrix*/
+            vecmat_mul((matxx*)&model, (vecx*)&l, (vecx*)&target);
+
+            /* Move to target */
+            leg_move_to_vec(&legs[i], &target);
         }
+
         dev_systick_wait(100);
-
-
     }
 
     return 0;

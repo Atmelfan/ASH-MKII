@@ -8,7 +8,7 @@
 #include "log.h"
 
 /**
- * Defined inside plaform/board_name/board_name.c
+ *
  */
 extern fdt_header_t* board;
 

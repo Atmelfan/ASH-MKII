@@ -19,3 +19,16 @@ bool transform_valid(const mat4* mat){
             && mat->members[13] == 0.0f
             && mat->members[12] == 0.0f;
 }
+
+void transform_matrix(const vec4* rot, const vec4* tra, mat4* mat){
+    *mat = MAT4_IDENT();
+
+    /* Translation */
+    mat->MAT4_M(3,0) = tra->members[0];
+    mat->MAT4_M(3,1) = tra->members[1];
+    mat->MAT4_M(3,2) = tra->members[2];
+
+    /* Rotation */
+
+
+}
