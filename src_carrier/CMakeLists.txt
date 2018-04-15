@@ -62,7 +62,7 @@ set(CMAKE_C_STANDARD 99)
 
 
 
-set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h scpi/scpi.c scpi/scpi.h)
+set(SOURCE_FILES  main.c leg.c leg.h jetson.c jetson.h scpi/scpi.c scpi/scpi.h fdt_mathutil.c fdt_mathutil.h)
 include_directories(${LIBOCM3}/include)
 link_directories(${LIBOCM3}/lib)
 add_definitions( ${GCC_CPPFLAGS})

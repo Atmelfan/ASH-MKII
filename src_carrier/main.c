@@ -4,7 +4,6 @@
 #include <libopencm3/stm32/timer.h>
 #include <stdio.h>
 #include <assert.h>
-#include <libopencm3/stm32/i2c.h>
 #include <math.h>
 #include "math/linalg.h"
 #include "fdt/dtb_parser.h"
@@ -15,6 +14,8 @@
 #include "platforms/log.h"
 #include "platforms/pwm.h"
 #include "ik/ik_3dof.h"
+#include "gait/gait.h"
+#include "libopencm3/cm3/systick.h"
 
 #define MAX_NUM_APPENDAGES 64
 
@@ -29,29 +30,10 @@ extern fdt_header_t octapod;
 static void clock_setup(void)
 {
     rcc_clock_setup_hse_3v3(&rcc_hse_25mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
-
-    //Enable peripheral clocks
-    rcc_periph_clock_enable(RCC_GPIOA);
-    rcc_periph_clock_enable(RCC_GPIOB);
-
-    rcc_periph_clock_enable(RCC_TIM2);
 }
 
-static void gpio_setup(void)
-{
-    //Configure gpio
-    gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8);//PA8
-
-    //I2C2
-    //PB10, AF4
-    gpio_mode_setup(GPIOB, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO10);
-    gpio_set_output_options(GPIOB, GPIO_OTYPE_OD, GPIO_OSPEED_50MHZ, GPIO10);
-    gpio_set_af(GPIOB, GPIO_AF4, GPIO10);
-
-    //PB11, AF4
-    gpio_mode_setup(GPIOB, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO11);
-    gpio_set_output_options(GPIOB, GPIO_OTYPE_OD, GPIO_OSPEED_50MHZ, GPIO11);
-    gpio_set_af(GPIOB, GPIO_AF4, GPIO11);
+void sys_tick_handler(){
+    dev_systick();
 }
 
 leg_t* ik_appendages = NULL;
@@ -85,7 +67,6 @@ int main(void)
     initialise_monitor_handles();
 #endif
     clock_setup();
-    gpio_setup();
     jetson_batocp(false);
 
     printf("Hello world!\n");
@@ -142,14 +123,14 @@ int main(void)
                 }
 
                 if(ik_appendages[reg].pwm_dev){
-                    leg_move_to_vec(&ik_appendages[reg], &ik_appendages[reg].home_position);
+                    //leg_move_to_vec(&ik_appendages[reg], &ik_appendages[reg].home_position);
                     vec4 s = ik_appendages[reg].home_position;
-                    logd_printf(LOG_DEBUG, "homed to %f, %f, %f\n", s.members[0], s.members[1], s.members[2]);
+                    logd_printf(LOG_DEBUG, "home at %f, %f, %f\n", s.members[0], s.members[1], s.members[2]);
                 }else{
                     logd_printfs(LOG_WARNING, "no servo driver\n");
                 }
 
-                /* Read ik parameters*/
+                /* Read ik parameters */
                 //TODO: Remove this shit
                 fdt_token* ik = fdt_find_subnode(fdt, l, "inverse-kinematics");
                 if(ik){
@@ -191,10 +172,29 @@ int main(void)
 
     //TODO: (in order) servos, IK, gait, commands, light
 
-
     fdt_token* chosen = fdt_find_subnode(fdt, root, "chosen");
+    fdt_token* powerup = fdt_find_phandle(fdt, fdt_node_get_u32(fdt, chosen, "gait-powerup", 0));
+    fdt_token* powerdown = fdt_find_phandle(fdt, fdt_node_get_u32(fdt, chosen, "gait-powerdown", 0));
+    gait_descriptor gait;
+    gait_init(&gait);
+
+    /* Execute startup gait if defined */
+    if(powerup){
+        gait_begin(&gait, fdt, powerup, ik_appendages);
+    }else{
+        gait_begin(&gait, fdt, NULL, ik_appendages);
+    }
 
     while(true){
+        /* Advance gait if not done */
+        if(!gait.done){
+            /* Update, go to next if required */
+            if(gait_update(&gait, fdt, ik_appendages)){
+                gait_next(&gait, fdt, ik_appendages);
+            }
+        }
+        dev_systick_wait(100);
+
 
     }
 

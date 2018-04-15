@@ -37,6 +37,7 @@ typedef struct {
 
 #define MAT4(...) {{4,4}, {__VA_ARGS__}}
 #define MAT4_ZERO() (mat4){{4,4}, {0}}
+#define MAT4_IDENT() (mat4){{4,4}, {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, }}
 
 /**MOVES CONTENT OF r INTO l**/
 void mat_mov(matxx* l, const matxx* r);

@@ -74,6 +74,7 @@ DEV_PROBE_CALLBACK(stm32f4_gpio, fdt, node, parent){
             /* Initialize if available */
             if(ios){
                 uint32_t num_ios = fdt_prop_len(fdt, ios)/sizeof(uint32_t);
+                rcc_periph_clock_enable(gpio_ports[i].rcc);
 
                 #define CELLS_PER_IO 5
                 if((num_ios % CELLS_PER_IO) != 0){

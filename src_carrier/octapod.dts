@@ -1,6 +1,7 @@
 /dts-v1/;
 
 #include "platforms/gpio.dtsi"
+#include "gait/gait_octa_home.dtsi"
 
 / {
     /* Boot message displayed on LCD */
@@ -8,13 +9,19 @@
     #address-cells = <1>;
     #size-cells = <0>;
 
+    /* The 'chosen' node is used to communicate between firmware and board configuration*/
+    chosen {
+        gait-powerup = < &rise_n_shine >;
+        gait-powerdown = < &home >;
+    };
+
     platform {
         compatible = "stm,stm32f4";
 
         #address-cells = <1>;
         #size-cells = <0>;
 
-        porta: gpioa@40020000 {
+        porta: gpio@40020000 {
             compatible = "stm32f4,port";
 
             /* Address of GPIOA */
@@ -27,7 +34,7 @@
             >;
         };
 
-        portb: gpioa@40020400 {
+        portb: gpio@40020400 {
             compatible = "stm32f4,port";
 
             /* Address of GPIOA */
@@ -72,7 +79,7 @@
                 freq = < 50 >;
 
                 /* Default to 307/4096 duty @ 50Hz ~ 1.5ms pulse */
-                all = < 0 307 >;
+                all = < 0 0 >;
             };
 
             /* Left */
@@ -87,7 +94,7 @@
                 freq = < 50 >;
 
                 /* Default to 307/4096 duty @ 50Hz ~ 1.5ms pulse */
-                all = < 0 307 >;
+                all = < 0 0 >;
             };
 
             lm3549: lm3549@6c {
@@ -102,16 +109,13 @@
             compatible = "stm32f4,usart";
 
             reg = < 0x40004400 >;
-
-
-
         };
 
-    };
-
-    /* The 'chosen' node is used to communicate between firmware and board configuration*/
-    chosen {
-
+        /* SYSTICK */
+        systick {
+            compatible = "stm32f4,systick";
+            freq = < 1000 >;
+        };
 
     };
 
@@ -131,13 +135,16 @@
             reg = < 0 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 50000 (-100000) >;
+            home = < (-225000) 230000 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                (-1000) 0       0       (-75000)
+                0       1000    0       (-180000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 
@@ -169,14 +176,17 @@
             reg = < 1 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 (50000) (-100000) >;
+            home = < 225000 230000 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
-                55000   150000  0       1000
+                1000    0       0       (-75000)
+                0       1000    0       (-180000)
+                0       0       1000    (-50000)
+                0       0       0       1000
             >;
 
             /* IK info */
@@ -202,16 +212,19 @@
 
         leg@2 {
             /* Index of leg */
-            reg = < 0 >;
+            reg = < 2 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-100000) >;
+            home = < (-225000) 60000 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                (-1000) 0       0       (-75000)
+                0       1000    0       (-60000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 
@@ -242,13 +255,16 @@
             reg = < 3 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-100000) >;
+            home = < 225000 60000 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                1000    0       0       (-75000)
+                0       1000    0       (-60000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 
@@ -276,13 +292,16 @@
             reg = < 4 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-100000) >;
+            home = < (-225000) (-60000) 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                (-1000) 0       0       (-75000)
+                0       (-1000) 0       (-60000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 
@@ -310,13 +329,16 @@
             reg = < 5 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 0 (-100000) >;
+            home = < 225000 (-60000) 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                1000    0       0       (-75000)
+                0       (-1000) 0       (-60000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 
@@ -346,13 +368,16 @@
             reg = < 6 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 50000 (-100000) >;
+            home = < (-225000) (-230000) 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                (-1000) 0       0       (-75000)
+                0       (-1000) 0       (-180000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 
@@ -380,13 +405,16 @@
             reg = < 7 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 150000 50000 (-100000) >;
+            home = < 225000 (-230000) 0 >;
+
+            /* Leg offset from center */
+            offset = < 0 0 0 >;
 
             /* Matrix used to transform to leg local-space, scaled by 1000 */
             transform = <
-                1000    0       0       0
-                0       866     (-500)  0
-                0       500     866     0
+                1000    0       0       (-75000)
+                0       (-1000) 0       (-180000)
+                0       0       1000    (-50000)
                 0       0       0       1000
             >;
 

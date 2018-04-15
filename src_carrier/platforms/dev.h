@@ -137,6 +137,16 @@ uint32_t dev_probe_devices_in_fdt(fdt_header_t *fdt, fdt_token *node, device_t *
  */
 bool dev_init_from_fdt(device_t *d, fdt_header_t *fdt, fdt_token *node, dev_type typ);
 
+
+#define SYSTICKS_PER_SECOND 1000
+
+void dev_systick(void);
+
+uint32_t dev_systick_get(void);
+
+void dev_systick_wait(uint32_t c);
+
+
 #define DEV_T_INIT() (dev_t){.name = NULL, type = DEV_TYPE_NULL, .phandle = 0}
 
 #define DEV_PROBE_CALLBACK(name, fdt, node, parent) device_t* name##_probe(fdt_header_t* fdt, fdt_token* node, device_t* parent)

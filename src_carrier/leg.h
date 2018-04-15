@@ -23,6 +23,7 @@ typedef struct {
     /*  */
     vec4 home_position;//Default position with maximum movement range
     vec4 current_position;//Current position
+    vec4 offset_position;//Current position
     vec4 target_position;//Position to move towards
 
     /* Servo offsets from IK in degrees*100 */
@@ -44,6 +45,8 @@ typedef struct {
 void leg_init(leg_t *l, uint32_t scale);
 
 bool leg_from_node(leg_t* l, fdt_header_t* fdt, fdt_token* node);
+
+void leg_move_to_local(leg_t* l, vec4* loc);
 
 void leg_move_to_vec(leg_t* l, vec4* vec);
 

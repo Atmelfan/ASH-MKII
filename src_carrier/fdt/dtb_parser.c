@@ -118,6 +118,11 @@ fdt_token* fdt_node_end(fdt_header_t* fdt, fdt_token* prop){
 }
 
 fdt_token* fdt_find_phandle(fdt_header_t* fdt, uint32_t p){
+
+    /* phandle 0 is no*/
+    if(p == 0)
+        return NULL;
+
     fdt_token* t = fdt_get_tokens(fdt);
     fdt_token* node = NULL;
     while(t){

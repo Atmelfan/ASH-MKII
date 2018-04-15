@@ -48,6 +48,7 @@ void dev_register_device( device_t* d){
 void dev_init_drivers(){
     REG_DRIVER(stm32f4_gpio);
     REG_DRIVER(stm32f4_i2c);
+    REG_DRIVER(stm32f4_systick);
     REG_DRIVER(pca9685);
 }
 
@@ -140,4 +141,19 @@ device_t *dev_find_device_reg(uint32_t reg) {
             return t;
     }
     return NULL;
+}
+
+volatile uint32_t systick_counts = 0;
+
+void dev_systick(void) {
+    systick_counts++;
+}
+
+uint32_t dev_systick_get(void) {
+    return systick_counts;
+}
+
+void dev_systick_wait(uint32_t c) {
+    uint32_t l = systick_counts;
+    while(systick_counts - l < c){ }
 }
