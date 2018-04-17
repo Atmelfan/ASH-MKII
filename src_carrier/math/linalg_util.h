@@ -23,4 +23,9 @@ void transform_matrix(const vec4* rot, const vec4* tra, mat4* mat);
  */
 bool transform_valid(const mat4* mat);
 
+void mat4_rotx(float angle, mat4* mat);
+void mat4_roty(float angle, mat4* mat);
+void mat4_rotz(float angle, mat4* mat);
+
+
 #endif //SRC_CARRIER_LINALG_UTIL_H

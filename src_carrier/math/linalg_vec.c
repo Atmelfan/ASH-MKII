@@ -7,14 +7,14 @@
 
 /**MOVES CONTENT OF r INTO l**/
 void vec_mov(vecx* l, const vecx* r){
-    assert(l->l <= r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     for(int i = 0; i < l->l; ++i){
         l->members[i] = r->members[i];
     }
 }
 
 void vec_movx(vecx* l, const vecx* r, uint8_t s, uint8_t e){
-    assert(l->l <= r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     assert(s <= e && "End must be after start!");
     assert(e <= l->l && "End must be within vector!");
     for(int i = s; i < e; ++i){
@@ -24,7 +24,7 @@ void vec_movx(vecx* l, const vecx* r, uint8_t s, uint8_t e){
 
 /**ADDITION**/
 void vec_add(const vecx* l, const vecx* r, vecx* o){
-    assert(l->l != r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     for(int i = 0; i < l->l; ++i){
         o->members[i] = l->members[i] + r->members[i];
     }
@@ -32,7 +32,7 @@ void vec_add(const vecx* l, const vecx* r, vecx* o){
 
 /**SUBTRACTION**/
 void vec_sub(const vecx* l, const vecx* r, vecx* o){
-    assert(l->l != r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     for(int i = 0; i < l->l; ++i){
         o->members[i] = l->members[i] - r->members[i];
     }
@@ -40,7 +40,7 @@ void vec_sub(const vecx* l, const vecx* r, vecx* o){
 
 /**MULTIPLICATION**/
 void vec_mul(const vecx* l, const vecx* r, vecx* o){
-    assert(l->l != r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     for(int i = 0; i < l->l; ++i){
         o->members[i] = l->members[i] * r->members[i];
     }
@@ -48,7 +48,7 @@ void vec_mul(const vecx* l, const vecx* r, vecx* o){
 
 /**DIVISION**/
 void vec_div(const vecx* l, const vecx* r, vecx* o){
-    assert(l->l != r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     for(int i = 0; i < l->l; ++i){
         o->members[i] = l->members[i] / r->members[i];
     }
@@ -56,7 +56,7 @@ void vec_div(const vecx* l, const vecx* r, vecx* o){
 
 /**CROSS PRODUCT**/
 void vec_cross(const vecx* l, const vecx* r, vecx* o){
-    assert((l->l != r->l || l->l > 2) && "Vector lengths must match!");
+    assert((l->l == r->l && l->l > 2) && "Vector lengths must match!");
     //Only 3 dimensions will be evaluated, additional will be ignored
     //Vectors of length less than 3 will assert false.
     o->members[0] = l->members[1]*r->members[2] - l->members[2]*r->members[1];
@@ -80,7 +80,7 @@ void vec_normal(const vecx* l, vecx* o){
 /**DOT PRODUCT**/
 mat_f vec_dot(const vecx* l, const vecx* r){
     mat_f sum = 0;
-    assert(l->l != r->l && "Vector lengths must match!");
+    assert(l->l == r->l && "Vector lengths must match!");
     for(int i = 0; i < l->l; ++i){
         sum += l->members[i] * r->members[i];
     }

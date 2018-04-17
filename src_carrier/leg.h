@@ -11,20 +11,20 @@
 #include "ik/ik_3dof.h"
 #include "platforms/pwm.h"
 
-#define LEG_STATUS_ONFLOOR  0x01
-#define LEG_STATUS_MOVING   0x02
-#define LEG_STATUS_ENABLED  0x04
+typedef enum {
+    LEG_AT_HOME = 0,
+    LEG_INTERPOLATING,
+    LEG_AT_TARGET
+} leg_status;
 
-#define E_FACTOR 0.1f
 
 typedef struct {
-    mat4 transform;//Applies translation/rotation to convert an absolute pos to a leg relative pos.
+    /* Applies translation/mirroring to convert an absolute pos to a leg relative pos. */
+    mat4 transform;
 
-    /*  */
+    /* Home positioning */
     vec4 home_position;//Default position with maximum movement range
-    vec4 current_position;//Current position
-    vec4 offset_position;//Current position
-    vec4 target_position;//Position to move towards
+    vec4 offset_position;//Offset from default position
 
     /* Servo offsets from IK in degrees*100 */
     int32_t servo_offsets_100[3];
@@ -33,12 +33,13 @@ typedef struct {
     uint8_t invert[3];
     uint32_t scale;
 
+    /* PWM device used to control the servos */
     pwm_dev_t* pwm_dev;
 
-    /*  */
-    uint8_t status;
+    /* Status of leg movement */
+    leg_status status;
 
-    /*  */
+    /* Leg is ready to be used */
     bool ready;
 } leg_t;
 
@@ -72,21 +73,6 @@ void leg_move_to_local(leg_t* l, vec4* loc);
  */
 void leg_move_to_vec(leg_t* l, vec4* vec);
 
-/**
- * Sets interpolation target
- * @param l, leg to move
- * @param target, global coordinates in mm
- * @param rate, velocity in mm/s
- */
-void leg_target(leg_t* l, vec4* target, float rate);
 
-/**
- * Interpolates
- * @param l
- * @param target
- * @param dt
- * @return true if the leg is at target
- */
-bool leg_interpolate(leg_t* l, float t);
 
 #endif //SRC_CARRIER_LEG_H

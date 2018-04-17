@@ -11,8 +11,9 @@
 
     /* The 'chosen' node is used to communicate between firmware and board configuration*/
     chosen {
-        gait-powerup = < &rise_n_shine >;
-        gait-powerdown = < &home >;
+
+        /* Standby body translation */
+        standby-translation = < 0 0 50 >;
     };
 
     platform {
@@ -29,6 +30,7 @@
 
             /* IO config */
             io = <
+                3 DTIO_MODE_OUTPUT DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_LOW //PA3 OUT => NVM_TX
                 /* JETSON BATTOC */
                 8 DTIO_MODE_OUTPUT DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_HIGH //PA8 OUT => NVM_BATTOC
             >;
@@ -64,7 +66,7 @@
             addr = < 0x00 >;
 
             /* Speed */
-            speed = < 10000 >;
+            speed = < 100000 >;
 
             /* Sub devices */
             #address-cells = <1>;
@@ -104,13 +106,6 @@
 
         };
 
-        /* USART2 */
-        usart@40004400 {
-            compatible = "stm32f4,usart";
-
-            reg = < 0x40004400 >;
-        };
-
         /* SYSTICK */
         systick {
             compatible = "stm32f4,systick";
@@ -135,7 +130,7 @@
             reg = < 0 >;
 
             /* Home coordinates (leg local-space) */
-            home = < (-225000) 230000 0 >;
+            home = < (-175000) 230000 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -176,7 +171,7 @@
             reg = < 1 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 225000 230000 0 >;
+            home = < 175000 230000 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -215,7 +210,7 @@
             reg = < 2 >;
 
             /* Home coordinates (leg local-space) */
-            home = < (-225000) 60000 0 >;
+            home = < (-175000) 60000 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -255,7 +250,7 @@
             reg = < 3 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 225000 60000 0 >;
+            home = < 175000 60000 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -292,7 +287,7 @@
             reg = < 4 >;
 
             /* Home coordinates (leg local-space) */
-            home = < (-225000) (-60000) 0 >;
+            home = < (-175000) (-60000) 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -329,7 +324,7 @@
             reg = < 5 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 225000 (-60000) 0 >;
+            home = < 175000 (-60000) 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -368,7 +363,7 @@
             reg = < 6 >;
 
             /* Home coordinates (leg local-space) */
-            home = < (-225000) (-230000) 0 >;
+            home = < (-175000) (-230000) 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;
@@ -405,7 +400,7 @@
             reg = < 7 >;
 
             /* Home coordinates (leg local-space) */
-            home = < 225000 (-230000) 0 >;
+            home = < 175000 (-230000) 0 >;
 
             /* Leg offset from center */
             offset = < 0 0 0 >;

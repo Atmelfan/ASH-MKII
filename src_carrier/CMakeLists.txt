@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 project(src_carrier)
 enable_language(C ASM)
 
-set(LIBOCM3 ../libopencm3)
+set(LIBOCM3 libopencm3)
 
 set(CMAKE_C_COMPILER "/usr/bin/arm-none-eabi-gcc")
 set(CMAKE_CXX_COMPILER "/usr/bin/arm-none-eabi-g++")

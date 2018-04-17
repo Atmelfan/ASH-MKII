@@ -8,61 +8,40 @@
 #include "../fdt/dtb_parser.h"
 #include "../leg.h"
 
-typedef struct{
+
+typedef struct {
+    /* Name of node/step */
     char* name;
+
+    /* Associated fdt node */
     fdt_token* node;
-    fdt_token* current;
 
-    /* Used for home-all, value corresponds to time before next node*/
-    uint32_t home;
+    /*  */
+    uint32_t* targets;
 
-    /* Rotation */
-    vec4 current_rot, target_rot, delta_rot;
-    float period_rot;
-    uint32_t time_rot;
-    bool rotate;
+    /* Interpolation value, varies between 0 to 1 */
+    float t;
 
+} gait_step;
 
-    /* Translation */
-    vec4 current_tra, target_tra, delta_tra;
-    float period_tra;
-    uint32_t time_tra;
-    bool translate;
+typedef struct {
+    vec4 initial, target;
+} gait_target;
 
-    /* True if gait has ended */
-    bool done;
-
-    /* True if gait has been asked to end */
-    bool end;
-
-    /* Number of legs used by gait */
-    uint32_t num_legs;
-
-    uint32_t last_time;
-
-
-} gait_descriptor;
-
-void gait_translate(gait_descriptor* gait, vec4* target, float rate);
-
-void gait_init(gait_descriptor *gait);
+void gait_init_target(gait_target* t);
 
 /**
- * Load a gait and automatically go to start step.
- * @param gait, gait descriptor
+ * Read all targets for step and store in an array of gait_target for interpolation
+ * @param ts, target array
  * @param fdt, fdt header
- * @param node, fdt node containing
- * @return
+ * @param node, fdt gait step node
+ * @param num, max number of targets
  */
-bool gait_begin(gait_descriptor *gait, fdt_header_t *fdt, fdt_token *node, leg_t *legs);
 
-bool gait_update(gait_descriptor *gait, fdt_header_t *fdt, leg_t *legs);
+void gait_step_begin(gait_step *step, gait_target *ts, fdt_header_t *fdt, fdt_token *node, uint32_t num);
 
-bool gait_next(gait_descriptor *gait, fdt_header_t *fdt, leg_t *legs);
+bool gait_calc_mat(gait_step *step, uint32_t i, float t);
 
-void gait_end(gait_descriptor *gait);
-
-bool gait_home_all(leg_t* l, uint32_t num);
-
+bool gait_update_step(gait_step *step, fdt_header_t *fdt, float t);
 
 #endif //SRC_CARRIER_GAIT_H

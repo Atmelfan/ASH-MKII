@@ -110,6 +110,7 @@ void leg_init(leg_t *l, uint32_t scale) {
     for (int j = 0; j < 3; ++j) {
         l->servo_offsets_100[j] = 0;
     }
+    l->status = LEG_AT_HOME;
     l->ready = false;
 }
 
@@ -141,7 +142,7 @@ void leg_move_to_vec(leg_t* l, vec4* vec){
     vecmat_mul((matxx*)&l->transform, (vecx*)vec, (vecx*)&s);
     //vec4 t = VEC4_ZERO();
     //vec_add((vecx*)&s, (vecx*)&ik_appendages[reg].offset_position, (vecx*)&t);
-    logd_printf(LOG_DEBUG, "move to %f, %f, %f\n", s.members[0], s.members[1], s.members[2]);
+    //logd_printf(LOG_DEBUG, "move to %f, %f, %f\n", s.members[0], s.members[1], s.members[2]);
     leg_move_to_local(l, &s);
 
 }
@@ -174,3 +175,4 @@ void leg_move_to_local(leg_t* l, vec4* loc){
     leg_set_servo(l->pwm_dev, l->servo_index[1], ((int32_t)-S1 - l->servo_offsets_100[1])  * (l->invert[1] ? -1 : 1), l->scale);
     leg_set_servo(l->pwm_dev, l->servo_index[2], ( (int32_t)S2 - l->servo_offsets_100[2])  * (l->invert[2] ? -1 : 1), l->scale);
 }
+

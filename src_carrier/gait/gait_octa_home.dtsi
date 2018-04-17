@@ -1,25 +1,6 @@
 / {
 
-    rise_n_shine: gait@rise_n_shine {
-        #num-legs = < 8 >;
-
-        start {
-            home-all = < 5000 >;
-            next = < &{/gait@rise_n_shine/step@1} >;
-        };
-
-        step@1 {
-            translate = < 0 0 50000 50 >; //50mm, 5mm/s
-        };
-
-    };
-
-    home: gait@home {
-        #num-legs = < 8 >;
-
-        start {
-            home-all;
-        };
+    step@test {
 
     };
 

@@ -9,7 +9,7 @@
 
 typedef struct {
     vec4 offset;
-    mat4 model, temp;
+    mat4 model;
 } body_t;
 
 void body_init(body_t* body);
