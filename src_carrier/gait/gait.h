@@ -9,23 +9,31 @@
 #include "../leg.h"
 
 
-typedef struct {
-    /* Name of node/step */
-    char* name;
-
-    /* Associated fdt node */
-    fdt_token* node;
-
-    /*  */
-    uint32_t* targets;
-
-    /* Interpolation value, varies between 0 to 1 */
-    float t;
-
+typedef struct  {
+    bool raise[8];
+    bool end;
+    bool active;
+    vec4 vec;
+    float angle;
 } gait_step;
+
+typedef enum {
+    GAIT_IDLE = 0,  /* Not executing any gait code */
+    GAIT_RUNNING,   /* Running gait code */
+    GAIT_ENDNOW,    /* Next update will home */
+    GAIT_FINAL      /* Currently homing */
+} gait_state;
+
+typedef struct  {
+    gait_state state;
+    vec4 vec;
+    float angle;
+} gait_t;
 
 typedef struct {
     vec4 initial, target;
+    float iangle, tangle;
+    bool raise;
 } gait_target;
 
 void gait_init_target(gait_target* t);

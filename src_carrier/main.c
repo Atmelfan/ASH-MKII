@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <math.h>
 #include <libopencm3/stm32/usart.h>
+#include <string.h>
 #include "math/linalg.h"
 #include "fdt/dtb_parser.h"
 #include "jetson.h"
@@ -17,15 +18,35 @@
 #include "ik/ik_3dof.h"
 #include "math/linalg_util.h"
 #include "gait/gait.h"
+#include "scpi/scpi.h"
 
 #define MAX_NUM_APPENDAGES 64
 
 #define RECV_BUF_SIZE 128
 #ifdef DEBUG
 extern void initialise_monitor_handles(void);
+
 #endif
 
+/* FDT Linked binary */
 extern fdt_header_t octapod;
+
+/* Body state */
+body_t body;
+leg_t* legs = NULL;
+gait_target* targets = NULL;
+gait_t gait;
+uint8_t  gait_index = 0;
+
+
+gait_step test_gait[] = {
+        {
+                .raise = {true, false, false, true, true, false, false, true}
+        },
+        {
+                .raise = {false, true, true, false, false, true, true, false}
+        }
+};
 
 
 /* Set STM32 to 168 MHz. */
@@ -38,9 +59,10 @@ void sys_tick_handler(){
     dev_systick();
 }
 
+// TODO: Remove this POS
+/********************REMOVE********************/
 uint8_t recv_buf[RECV_BUF_SIZE];
-volatile int recv_ndx_nxt = 0, ready = 0;
-
+volatile int recv_ndx_nxt = 0, recv_complete = 0;
 void usart2_isr(void)
 {
     uint32_t	reg;
@@ -50,15 +72,20 @@ void usart2_isr(void)
         reg = USART_SR(USART2);
         if (reg & USART_SR_RXNE) {
             recv_buf[recv_ndx_nxt] = (uint8_t) USART_DR(USART2);
-            if(recv_buf[recv_ndx_nxt] == '\n')
-                ready = 1;
+            if(!recv_complete){
+                if(recv_buf[recv_ndx_nxt] == '\r'){
+                    recv_buf[recv_ndx_nxt] = '\0';
+                    recv_complete = 1;
+                    recv_ndx_nxt = 0;
+                }else{
+                    i = (recv_ndx_nxt + 1) % RECV_BUF_SIZE;
+                    recv_ndx_nxt = i;
+                }
+            }
 
-            i = (recv_ndx_nxt + 1) % RECV_BUF_SIZE;
-            recv_ndx_nxt = i;
 
         }
-    } while ((reg & USART_SR_RXNE) != 0); /* can read back-to-back
-						 interrupts */
+    } while ((reg & USART_SR_RXNE) != 0); /* can read back-to-back interrupts */
 }
 
 void usart2_setup(){
@@ -94,8 +121,216 @@ void usart2_setup(){
     usart_enable_rx_interrupt(USART2);
 }
 
-leg_t* legs = NULL;
-gait_target* targets = NULL;
+void uart2_send(char* s){
+    while(*s){
+        usart_send_blocking(USART2, (uint16_t) *s);
+        s++;
+    }
+}
+
+/********************REMOVE********************/
+
+
+void init_gait(gait_t *gait, gait_target *targets) {
+    gait->state = GAIT_IDLE;
+    gait->vec = VEC4_ZERO();
+    gait->angle = 0;
+    for (int k = 0; k < 8; ++k) {
+        targets[k].initial = VEC4_ZERO();
+        targets[k].target = VEC4_ZERO();
+        targets[k].iangle = 0;
+        targets[k].tangle = 0;
+        targets[k].raise = false;
+
+    }
+}
+
+void start_gait(gait_t* gait, gait_step *step, gait_target *targets, vec4* mov, float da){
+
+    if(gait->state != GAIT_IDLE)
+        return;
+
+    gait->state = GAIT_RUNNING;
+    gait->vec = *mov;
+    gait->angle = da;
+
+    /* Go to next */
+    for (int k = 0; k < 8; ++k) {
+        targets[k].target = *mov;
+        targets[k].raise = step->raise[k];
+        targets[k].tangle = da * (targets[k].raise ? 1 : -1);
+        vec_scalel((vecx *)&targets[k].target, targets[k].raise ? 1 : -1);
+    }
+}
+
+void stop_gait(gait_t *gait) {
+    /* Request end of gait */
+    if(gait->state == GAIT_RUNNING)
+        gait->state = GAIT_ENDNOW;
+}
+
+
+
+void next_gait(gait_t *gait, gait_step *step, gait_target *targets){
+    /* Gait is ending, do not update */
+
+    switch (gait->state){
+        case GAIT_RUNNING:
+            /* Go to next */
+            for (int k = 0; k < 8; ++k) {
+                targets[k].initial = targets[k].target;
+                targets[k].target = gait->vec;
+                targets[k].iangle = targets[k].tangle;
+                targets[k].raise = step->raise[k];
+                targets[k].tangle = gait->angle * (targets[k].raise ? 1 : -1);
+                vec_scalel((vecx *)&targets[k].target, targets[k].raise ? 1 : -1);
+            }
+            break;
+        case GAIT_ENDNOW:
+            /* Go home */
+            for (int k = 0; k < 8; ++k) {
+                targets[k].initial = targets[k].target;
+                targets[k].target = VEC4_ZERO();
+                targets[k].iangle = targets[k].tangle;
+                targets[k].tangle = 0;
+                targets[k].raise = step->raise[k];
+                vec_scalel((vecx *)&targets[k].target, targets[k].raise ? 1 : -1);
+            }
+            gait->state = GAIT_FINAL;
+            break;
+        case GAIT_FINAL:
+            gait->state = GAIT_IDLE;
+            break;
+        default:
+            break;
+
+    }
+
+}
+
+bool active_gait(gait_t* gait){
+    return gait->state != GAIT_IDLE;
+}
+
+scpi_status_t body_mat_reset(const scpi_context_t *context, char *args){
+    body.model = MAT4_IDENT();
+    //logd_printfs(LOG_INFO, "rot\n");
+    return SCPI_SUCCESS;
+}
+
+scpi_status_t body_rot_set(const scpi_context_t *context, char *args){
+    char* end;
+    char* token = strtok_r(args, " ", &end);
+    //logd_printfs(LOG_INFO, "rot\n");
+    for (int i = 0; token; ++i){
+        mat4 temp = MAT4_IDENT();
+        float a = atoff(token);
+        if(a > 10)
+            a = 10;
+        else if(a < -10)
+            a = -10;
+
+        switch (i){
+            case 1:
+                mat4_rotz((float) ((a / 180.0f) * M_PI), &temp);//YAW
+                break;
+            case 2:
+                mat4_rotx((float) ((a / 180.0f) * M_PI), &temp);//PITCH
+                break;
+            case 3:
+                mat4_roty((float) ((a / 180.0f) * M_PI), &temp);//ROLL
+                break;
+            default:
+                break;
+        }
+        mat_matmull((matxx *) &body.model, (matxx *) &temp);
+        token = strtok_r(NULL, ",", &end);
+    }
+    return SCPI_SUCCESS;
+}
+
+scpi_status_t body_tra_set(const scpi_context_t *context, char *args){
+    char* end;
+    char* token = strtok_r(args, " ", &end);
+    //logd_printfs(LOG_DEBUG, "--tra\n");
+    mat4 temp = MAT4_IDENT();
+    for (int i = 0; token; ++i){
+        //logd_printf(LOG_DEBUG, "%s\n", token);
+        float a = atoff(token);
+        if(a > 40)
+            a = 40;
+        else if(a < -40)
+            a = -40;
+        switch (i){
+            case 1:
+                temp.MAT4_M(3,0) = -a;//YAW
+                break;
+            case 2:
+                temp.MAT4_M(3,1) = -a;//PITCH
+                break;
+            case 3:
+                temp.MAT4_M(3,2) = -a;//PITCH
+                break;
+            default:
+                break;
+        }
+
+        token = strtok_r(NULL, ",", &end);
+    }
+    mat_matmull((matxx *) &body.model, (matxx *) &temp);
+    return SCPI_SUCCESS;
+}
+
+
+scpi_status_t scpi_gait_start(const scpi_context_t *context, char *args){
+    char* end;
+    char* token = strtok_r(args, " ", &end);
+    vec4 v = VEC4_ZERO();
+    float angle = 0;
+    for (int i = 0; token; ++i){
+        //logd_printf(LOG_DEBUG, "%s\n", token);
+        float a = atoff(token);
+        if(a > 40)
+            a = 40;
+        else if(a < -40)
+            a = -40;
+        switch (i){
+            case 1:
+                v.members[0] = fmodf(-a, 30);//YAW
+
+                break;
+            case 2:
+                v.members[1] = fmodf(-a, 30);//PITCH
+                break;
+            case 3:
+                v.members[2] = fmodf(-a, 30);//PITCH
+                break;
+            case 4:
+                angle = (float)(M_PI * fmodf(a, 7.5f) / 180.0f);
+                break;
+            default:
+                break;
+        }
+
+        token = strtok_r(NULL, ",", &end);
+    }
+    start_gait(&gait, &test_gait[0], targets, &v, angle);
+    return SCPI_SUCCESS;
+}
+
+scpi_status_t scpi_gait_stop_query(const scpi_context_t *context, char *args){
+    if(active_gait(&gait)){
+        uart2_send("1\n");
+    }else{
+        uart2_send("0\n");
+    }
+    return SCPI_SUCCESS;
+}
+
+scpi_status_t scpi_gait_stop(const scpi_context_t *context, char *args){
+    stop_gait(&gait);
+    return SCPI_SUCCESS;
+}
 
 /**
  * Set a servo to the requested angle
@@ -119,6 +354,92 @@ void set_servo(pwm_dev_t *pca, uint32_t index, int32_t degres_10, uint32_t scale
     set_pwm(pca, (uint16_t) index, 0, counts);
 }
 
+scpi_context_t scpi = {
+        .root = {
+                .name = ".",
+                .num_sub = 2,
+                .sub = (scpi_command_t[]){
+                        {
+                                .name = "*IDN",
+                                .num_sub = 0,
+                                .set = NULL,
+                                .get = NULL
+                        },
+                        {
+                                .name = "*RST",
+                                .num_sub = 0,
+                                .set = NULL,
+                                .get = NULL
+                        },
+                        {
+                                .name = "BODy",
+                                .num_sub = 3,
+                                .sub = (scpi_command_t[]){
+                                        {
+                                                .name = "RESet",
+                                                .num_sub = 0,
+                                                .set = body_mat_reset,
+                                                .get = NULL
+                                        },
+                                        {
+                                                .name = "ROTate",
+                                                .num_sub = 0,
+                                                .set = body_rot_set,
+                                                .get = NULL
+                                        },
+                                        {
+                                                .name = "TRAnslate",
+                                                .num_sub = 0,
+                                                .set = body_tra_set,
+                                                .get = NULL
+                                        },
+                                }
+
+                        },
+                        {
+                                .name = "GAIt",
+                                .num_sub = 5,
+                                .sub = (scpi_command_t[]){
+                                        {
+                                                .name = "STOp",
+                                                .num_sub = 0,
+                                                .set = scpi_gait_stop,
+                                                .get = scpi_gait_stop_query
+                                        },
+                                        {
+                                                .name = "STArt",
+                                                .num_sub = 0,
+                                                .set = scpi_gait_start,
+                                                .get = NULL
+                                        },
+                                        {
+                                                .name = "STAtus",
+                                                .num_sub = 0,
+                                                .set = NULL,
+                                                .get = NULL
+                                        },
+                                        {
+                                                .name = "TRAnslation",
+                                                .num_sub = 0,
+                                                .set = NULL,
+                                                .get = NULL
+                                        },
+                                        {
+                                                .name = "ROTation",
+                                                .num_sub = 0,
+                                                .set = NULL,
+                                                .get = NULL
+                                        }
+                                },
+                        }
+                },
+        }
+};
+
+
+
+
+
 int main(void)
 {
 
@@ -130,17 +451,16 @@ int main(void)
 
     printf("Hello world!\n");
 
+    /*  */
     fdt_header_t* fdt = &octapod;
-
     fdt_token* root = fdt_get_tokens(fdt);
     fdt_token* bootmsg = fdt_node_get_prop(fdt, root, "bootmsg", false);
     printf("%s\n", bootmsg->prop_str);
 
     /*Override board init file with "/platform" node*/
     board_init_fdt(fdt, fdt_find_subnode(fdt, root, "platform"));
-    //usart2_setup();
 
-    char buffer[64];
+    /* Read legs  */
     fdt_token* legs_node = fdt_find_subnode(fdt, root, "legs");
     uint32_t num_legs = fdt_node_get_u32(fdt, legs_node, "#num-legs", 0);
     uint32_t servo_scale = fdt_node_get_u32(fdt, legs_node, "servo-scale", 0);
@@ -236,28 +556,19 @@ int main(void)
 
     /* Get application parameters node */
     fdt_token* chosen = fdt_find_subnode(fdt, root, "chosen");
-    fdt_token* tstep = fdt_find_subnode(fdt, root, "step@test");
 
     /* Timekeeping */
-    uint32_t last = 0, dt = 0, now = 0, t = 0;
+    uint32_t last = 0, dt = 0, now = 0, t = 0, tboot = 0;
 
     /* Body struct keeps track of body rotation and translation */
-    body_t body;
     body_init(&body);
+    init_gait(&gait, targets);
 
+    /*Init uart */
+    usart2_setup();
 
+    /*TODO: Gait code modularization */
     mat4 gait_mat = MAT4_IDENT();
-    vec4 a = VEC4_ZERO(), mov = VEC4(0, 40, 0, 0);
-
-
-    uint8_t  index = 0;
-    bool x [8] = {true, false, false, true, true, false, false, true};
-    for (int k = 0; k < 8; ++k) {
-        targets[k].initial = VEC4_ZERO();
-        targets[k].target = mov;
-        vec_scalel((vecx *)&targets[k].target, x[k] ? 1 : -1);
-    }
-
 
     while(true){
 
@@ -265,29 +576,24 @@ int main(void)
         now = dev_systick_get();
         dt = now - last;
 
-        if((t + dt < 5000)){
-            t = t + dt;
-        }else{
-            t = 5000;
+        /* Raise from floor slowly */
+        if(tboot < 5000)
+            tboot += dt;
+        body.offset.members[2] = tboot/100.0f;
+
+
+        if(active_gait(&gait)){
+            if((t + dt < 2500)){
+                t = t + dt;
+
+            }else{
+                t = 0;
+                gait_index++;
+                if(gait_index > 1)
+                    gait_index = 0;
+                next_gait(&gait, &test_gait[gait_index], targets);
+            }
         }
-        body.offset.members[2] = 50;
-        body.model = MAT4_IDENT();
-
-        /* Body rotation */
-        //mat4 temp = MAT4_IDENT();
-        //mat4_rotz((float) (0.25f * (t / 5000.0f) * M_PI_4), &temp);//YAW
-        //mat_matmull((matxx *) &body.model, (matxx *) &temp);
-        //temp = MAT4_IDENT();
-        //mat4_rotz((float) (0.25f * (t / 5000.0f) * M_PI_4), &temp);//PITCH
-        //mat_matmull((matxx *) &body.model, (matxx *) &temp);
-        //temp = MAT4_IDENT();
-        //mat4_roty((float) (0.125f * (t / 5000.0f) * M_PI_4), &temp);//ROLL
-        //mat_matmull((matxx *) &body.model, (matxx *) &temp);
-
-        /* TEST */
-
-
-
 
         /* Update legs */
         for(int i = 0; i < num_legs; ++i){
@@ -302,16 +608,19 @@ int main(void)
             //mat4 gait_model = MAT4_IDENT();
             //vecmat_mul((matxx*)&gait_model, (vecx*)&target, (vecx*)&tmp);
             //target = tmp;
-            vec4 c = VEC4_ZERO();
-            vec_sub((vecx *) &targets[i].target, (vecx *) &targets[i].initial, (vecx *) &c);
-            vec_scalel((vecx *)&c, t / 5000.0f);
-            vec_addl((vecx *) &c, (vecx *) &targets[i].initial);
+            if(active_gait(&gait)){
+                vec4 c = VEC4_ZERO();
+                vec_sub((vecx *) &targets[i].target, (vecx *) &targets[i].initial, (vecx *) &c);
+                vec_scalel((vecx *)&c, t / 2500.0f);
+                vec_addl((vecx *) &c, (vecx *) &targets[i].initial);
 
-            gait_mat.MAT4_M(3,0) = c.members[0];
-            gait_mat.MAT4_M(3,1) = c.members[1];
-            gait_mat.MAT4_M(3,2) = c.members[2] + 100.0f*sinf(3.14f*t/5000.0f) * (x[i] ? 1 : 0);
-            vecmat_mul((matxx*)&gait_mat, (vecx*)&target, (vecx*)&tmp);
-            target = tmp;
+                c.members[2] += 100.0f*sinf(3.14f*t/2500.0f) * (targets[i].raise ? 1 : 0);
+                mat4_rotz(targets[i].iangle + (targets[i].tangle - targets[i].iangle)*t/2500.0f, &gait_mat);
+                mat4_trans(&c, &gait_mat);
+                vecmat_mul((matxx*)&gait_mat, (vecx*)&target, (vecx*)&tmp);
+                target = tmp;
+            }
+
 
             /* Rotate & translate all leg vectors with model matrix*/
             vecmat_mul((matxx*)&body.model, (vecx*)&target, (vecx*)&tmp);
@@ -321,9 +630,15 @@ int main(void)
             leg_move_to_vec(&legs[i], &target);
         }
 
+        if(recv_complete){
+            //logd_printf(LOG_INFO, "> %s\n", recv_buf);
+            scpi_execute(&scpi, (char*)recv_buf, NULL);
+            usart_send_blocking(USART2, '\n');
+            recv_complete = 0;
+        }
+
         /* Save last time */
         last = now;
-        //dev_systick_wait(10);
     }
 
     return 0;

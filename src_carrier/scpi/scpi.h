@@ -11,25 +11,13 @@
 #define SCPI_IDN_STR "GPA Robotics, GPA-AIX-323b, 1.0.0"
 
 typedef struct scpi_command_t scpi_command_t;
+typedef struct scpi_context_t scpi_context_t;
 
 typedef enum {
     SCPI_SUCCESS = 0,
     SCPI_NOCOMMAND
 } scpi_status_t;
 
-typedef struct {
-    int16_t errcode;
-    char* errstr;
-} scpi_error_t;
-
-typedef struct {
-    /* Root command */
-    scpi_command_t* root;
-    /* Last command */
-    scpi_command_t* last;
-
-    char* buffer;
-} scpi_context_t;
 
 struct scpi_command_t{
 
@@ -52,10 +40,22 @@ struct scpi_command_t{
      */
     scpi_status_t (*get)(const scpi_context_t* context, char* args);
 
-    /* Next command in linked list */
-    scpi_command_t* next;
+    uint16_t num_sub;
+    scpi_command_t* sub;
 };
 
+struct scpi_context_t {
+    /* Root command */
+    uint16_t num_commands;
+    scpi_command_t root;
+    /* Last command */
+    scpi_command_t* last;
+};
 
+void scpi_init(scpi_context_t* context);
+
+void scpi_register(scpi_context_t* context, scpi_command_t* t);
+
+void scpi_execute(scpi_context_t* context, char* s, char* buf);
 
 #endif //SRC_CARRIER_SCPI_H

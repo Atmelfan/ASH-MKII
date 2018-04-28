@@ -30,7 +30,7 @@
 
             /* IO config */
             io = <
-                3 DTIO_MODE_OUTPUT DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_LOW //PA3 OUT => NVM_TX
+                //3 DTIO_MODE_OUTPUT DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_HIGH //PA3 OUT => NVM_TX
                 /* JETSON BATTOC */
                 8 DTIO_MODE_OUTPUT DTIO_OUTPUT_PP DTIO_PULL_NONE DTIO_HIGH //PA8 OUT => NVM_BATTOC
             >;
@@ -105,6 +105,10 @@
             };
 
         };
+
+        uart@00000000 {
+            reg = < 0x00000000 >;
+        }
 
         /* SYSTICK */
         systick {
@@ -310,9 +314,9 @@
 
                 /* Servo indices and offsets*/
                 servos = < &pca9685_2
-                    13 (-100)
+                    13 (-140)
                     14 (-480)
-                    15 900
+                    15 850
                 >;
                 //test = < 0 (-900) 900 >;
 

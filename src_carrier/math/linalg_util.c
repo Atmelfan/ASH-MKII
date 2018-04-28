@@ -55,6 +55,12 @@ void mat4_rotz(float angle, mat4* mat){
     mat->MAT4_M(1,1) =  c;//m11
 }
 
+void mat4_trans(vec4* t, mat4* mat){
+    mat->MAT4_M(3,0) = t->members[0];//m00
+    mat->MAT4_M(3,1) = t->members[1];//m01
+    mat->MAT4_M(3,2) = t->members[2];//m10
+}
+
 
 
 
