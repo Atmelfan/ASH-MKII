@@ -1,0 +1,87 @@
+Added Component: Designator=C1(CAPC1005X06N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "100n"; VariantName = "[No Variations]"
+Added Component: Designator=D1(PSON125P500X302_HS-9N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D2(PSON125P500X302_HS-9N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=J1(hdr_2x5_50mil)
+Add component. Clean all parameters for all variants
+Added Component: Designator=L(RESC1005X04N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "0R"; VariantName = "[No Variations]"
+Added Component: Designator=MH1(mount_m2l)
+Add component. Clean all parameters for all variants
+Added Component: Designator=MH2(mount_m2l)
+Add component. Clean all parameters for all variants
+Added Component: Designator=MH3(mount_m2l)
+Add component. Clean all parameters for all variants
+Added Component: Designator=MH4(mount_m2l)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R(RESC1005X04N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "value"; Value = "0R"; VariantName = "[No Variations]"
+Added Component: Designator=U1(PSON65P300X110-6N)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=GND Pin=D1-WA
+Added Pin To Net: NetName=GND Pin=D1-WC
+Added Pin To Net: NetName=GND Pin=D2-WA
+Added Pin To Net: NetName=GND Pin=D2-WC
+Added Pin To Net: NetName=GND Pin=J1-5
+Added Pin To Net: NetName=GND Pin=J1-6
+Added Pin To Net: NetName=GND Pin=L-1
+Added Pin To Net: NetName=GND Pin=MH1-1
+Added Pin To Net: NetName=GND Pin=MH2-1
+Added Pin To Net: NetName=GND Pin=MH3-1
+Added Pin To Net: NetName=GND Pin=MH4-1
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Net: Name=GND
+Added Pin To Net: NetName=LED_BLUE Pin=D2-BC
+Added Pin To Net: NetName=LED_BLUE Pin=J1-9
+Added Net: Name=LED_BLUE
+Added Pin To Net: NetName=LED_GREEN Pin=D2-GC
+Added Pin To Net: NetName=LED_GREEN Pin=J1-10
+Added Net: Name=LED_GREEN
+Added Pin To Net: NetName=LED_PWR Pin=D1-BA
+Added Pin To Net: NetName=LED_PWR Pin=D1-GA
+Added Pin To Net: NetName=LED_PWR Pin=D1-RA
+Added Pin To Net: NetName=LED_PWR Pin=J1-7
+Added Net: Name=LED_PWR
+Added Pin To Net: NetName=LED_RED Pin=D2-RC
+Added Pin To Net: NetName=LED_RED Pin=J1-8
+Added Net: Name=LED_RED
+Added Pin To Net: NetName=NetD1_BC Pin=D1-BC
+Added Pin To Net: NetName=NetD1_BC Pin=D2-BA
+Added Net: Name=NetD1_BC
+Added Pin To Net: NetName=NetD1_GC Pin=D1-GC
+Added Pin To Net: NetName=NetD1_GC Pin=D2-GA
+Added Net: Name=NetD1_GC
+Added Pin To Net: NetName=NetD1_RC Pin=D1-RC
+Added Pin To Net: NetName=NetD1_RC Pin=D2-RA
+Added Net: Name=NetD1_RC
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-2
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-2
+Added Pin To Net: NetName=NetJ1_2 Pin=U1-6
+Added Net: Name=NetJ1_2
+Added Pin To Net: NetName=NetJ1_3 Pin=J1-3
+Added Pin To Net: NetName=NetJ1_3 Pin=U1-5
+Added Net: Name=NetJ1_3
+Added Pin To Net: NetName=NetJ1_4 Pin=J1-4
+Added Pin To Net: NetName=NetJ1_4 Pin=U1-7
+Added Net: Name=NetJ1_4
+Added Pin To Net: NetName=NetL_2 Pin=L-2
+Added Pin To Net: NetName=NetL_2 Pin=R-1
+Added Pin To Net: NetName=NetL_2 Pin=U1-1
+Added Net: Name=NetL_2
+Added Pin To Net: NetName=VCC Pin=C1-2
+Added Pin To Net: NetName=VCC Pin=J1-1
+Added Pin To Net: NetName=VCC Pin=R-2
+Added Pin To Net: NetName=VCC Pin=U1-3
+Added Net: Name=VCC
+Added Class: Name=eye
+Added Room: Name=eye
