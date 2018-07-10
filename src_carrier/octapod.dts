@@ -100,6 +100,9 @@
             };
 
             lm3549: lm3549@6c {
+                compatible = "ti,lm3549";
+
+                /* I2C address */
                 reg = < 0x6c >;
 
             };
@@ -108,7 +111,7 @@
 
         uart@00000000 {
             reg = < 0x00000000 >;
-        }
+        };
 
         /* SYSTICK */
         systick {
